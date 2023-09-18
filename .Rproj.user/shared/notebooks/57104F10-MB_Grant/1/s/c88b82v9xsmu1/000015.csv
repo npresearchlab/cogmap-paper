@@ -1,0 +1,8 @@
+"0","p_corr <- ggplot(data, aes(x=completion, y=map))+"
+"0","  geom_point(size = 3, aes(color = factor(group))) +"
+"0","  scale_color_manual(values = c(""#D85193"",""#5072D1""))+"
+"0","  geom_smooth(method = ""lm"", se = FALSE, aes(color = factor(group))) +"
+"0","  labs(title = ""completion Vs. CMCA Score"","
+"0","       x = ""Distance travelled"","
+"0","       y = ""CMCA Score"")"
+"0","p_corr"

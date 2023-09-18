@@ -1,0 +1,7 @@
+"0","p_corr <- ggplot(data, aes(x=completion, y=map))+"
+"0","  geom_point(aes(color = factor(group))) +"
+"0","  geom_smooth(method = ""lm"", se = FALSE, aes(color = factor(group))) +"
+"0","  labs(title = ""Completion Time Vs. CMCA Score"","
+"0","       x = ""Completion Time"","
+"0","       y = ""CMCA Score"")"
+"0","p_corr"

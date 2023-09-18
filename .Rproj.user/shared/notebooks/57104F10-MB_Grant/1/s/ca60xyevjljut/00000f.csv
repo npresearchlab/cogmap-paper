@@ -1,0 +1,7 @@
+"0","# Correlation analysis between ALL participants Distance travelled and cognitive map score"
+"0",""
+"0","cor(data$sss, data$map, method=""pearson"")"
+"1","[1]"
+"1"," -0.3208442"
+"1","
+"

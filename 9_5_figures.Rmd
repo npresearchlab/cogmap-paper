@@ -1,0 +1,124 @@
+---
+title: "5.1_CMARA_Paper"
+output: html_document
+date: "2023-05-01"
+---
+```{r}
+# This code chunk loads various libraries necessary to complete the data analysis and produce graphics
+library(tidyverse)
+library(stringr)
+library(ez)
+library(cowplot)
+library(viridis)
+library(viridisLite)
+library("readxl")
+library("ggcorrplot")
+library(dplyr)
+library(ltm)
+library(plotrix)
+library("viridis")
+```
+
+```{r}
+#This data chunk loads and tidies up the data
+
+#This loads the data file as the variable "data"
+data <- read.csv('averaged_results.csv')
+# Tidying up the data
+names(data)[1] <- 'index'
+names(data)[2] <- 'Participant'
+names(data)[3] <- 'Block_num'
+names(data)[4] <- 'Total_Time'
+names(data)[5] <- 'Orientation_Time'
+names(data)[6] <- 'Navigation_Time'
+names(data)[7] <- 'Distance'
+names(data)[8] <- 'Speed'
+names(data)[9] <- 'Mean_Dwell'
+names(data)[10] <- 'Var_X'
+names(data)[11] <- 'Var_Y'
+names(data)[12] <- 'Var_Z'
+names(data)[13] <- 'Teleportations'
+data <- data[ -c(1) ]
+data$Block_num <- as.factor(data$Block_num)
+sapply(data, class)
+data
+```
+
+
+```{r}
+data.summary <- data %>%
+  group_by(Block_num) %>%
+  summarise(
+    se = std.error(Total_Time),
+    Total_Time = mean(Total_Time)
+  )
+data.summary
+```
+```{r}
+p1oa <- ggplot(data, aes(x= Block_num, y = Total_Time, group = Participant, color = Participant))+
+  geom_point(size=2) + 
+  geom_line()+
+  theme(panel.background = element_blank())
+
+g <- ggplot(data.summary, aes(x= Block_num, y = Total_Time)) +
+  geom_line(aes(group = 1)) +
+  geom_errorbar(aes(ymin = Total_Time-se, ymax = Total_Time+se),width = 0.2) +
+  geom_point(size = 2)
+
+p <- ggplot(data, aes(x= Block_num, y = Total_Time)) +
+  geom_jitter(position = position_jitter(0.2), aes(color = Participant)) + 
+  geom_violin(color = "darkgray",alpha = .5, trim = FALSE) +
+  geom_pointrange(data = data.summary,aes(ymin = Total_Time-se, ymax = Total_Time+se))+
+  geom_line(data = data.summary,aes(group = 1))
+```
+```{r}
+plot <- ggplot()+
+  geom_line(data, mapping = aes(x= Block_num, y = Total_Time, group = Participant, color = Participant), alpha = .6)+
+  geom_point(data, mapping = aes(x= Block_num, y = Total_Time, group = Participant),color = 'white', size = 3)+
+  geom_point(data, mapping = aes(x= Block_num, y = Total_Time, group = Participant, color = Participant),alpha = .6)+
+  #geom_line(data.summary, mapping = aes(x= Block_num, y = Total_Time, group = 1), size = 1.5, color = 'black')+
+  #geom_point(data.summary, mapping = aes(x= Block_num, y = Total_Time, group = 1), size = 1.5, color = 'black')+
+  #geom_crossbar( mapping = aes(x = Block_num, ymin = Total_Time-se, ymax = Total_Time+se),data = data.summary,width = 0.1, linewidth = .8)+
+  theme_classic() + 
+  theme(axis.line = element_line(linewidth = .5, colour = "darkgrey"))+
+  theme(axis.ticks = element_line(linewidth = .2, colour = "darkgrey")) 
+  #theme(legend.position = "none")
+
+```
+```{r}
+plot <- ggplot()+
+  geom_line(data, mapping = aes(x= Block_num, y = Total_Time, group = Participant, color = Participant), alpha = .6)+
+  #geom_point(data, mapping = aes(x= Block_num, y = Total_Time, group = Participant),color = 'white', size = 3)+
+  geom_point(data, mapping = aes(x= Block_num, y = Total_Time, group = Participant, color = Participant),alpha = .6)+
+  stat_summary(fun.args = list(mult=1), geom="crossbar", width=0.2, color="#ba3175") +
+  #geom_line(data.summary, mapping = aes(x= Block_num, y = Total_Time, group = 1), size = 1.5, color = 'black')+
+  #geom_point(data.summary, mapping = aes(x= Block_num, y = Total_Time, group = 1), size = 1.5, color = 'black')+
+  #geom_crossbar( mapping = aes(x = Block_num, ymin = Total_Time-se, ymax = Total_Time+se),data = data.summary,width = 0.1, linewidth = .8)+
+  theme_classic() + 
+  theme(axis.line = element_line(linewidth = .5, colour = "darkgrey"))+
+  theme(axis.ticks = element_line(linewidth = .2, colour = "darkgrey")) 
+  #theme(legend.position = "none")
+
+```
+```{r}
+try <- ggplot(data, aes(x=Block_num, y=Total_Time, color=Participant))+
+  geom_line(data, mapping = aes(x= Block_num, y = Total_Time, group = Participant, color = Participant), alpha = .6)+
+  scale_color_viridis(discrete = TRUE, option = "D")+
+  geom_point(data, mapping = aes(x= Block_num, y = Total_Time, group = Participant),color = 'white', size = 3)+
+  geom_point(data, mapping = aes(x= Block_num, y = Total_Time, group = Participant, color = Participant),alpha = .5)+
+  geom_line(data.summary, mapping = aes(x= Block_num, y = Total_Time, group = 1), size = 1.5, color = '#242526')+
+  stat_summary(fun.args = list(mean_se), 
+                geom="crossbar", 
+                width=0.2, 
+                color="#242526") +
+  labs(color= "Participant", y="Total Time (s)", x="Block")+
+  scale_x_discrete(labels = c( "Block 1","Block 2","Block 3"))+
+  ggtitle("Total Completion Time Over Three Blocks")+
+  theme_classic()+
+  theme(axis.line = element_line(linewidth = .5, colour = "#242526"))+
+  theme(axis.ticks = element_line(linewidth = .2, colour = "#242526"))+
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(legend.position = "none")
+try
+```
+

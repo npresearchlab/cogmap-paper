@@ -1,0 +1,7 @@
+"0","# Correlation analysis between Older Adult Distance travelled and cognitive map score"
+"0",""
+"0","cor(oa_data$dti, oa_data$map, method=""pearson"")"
+"1","[1]"
+"1"," 0.003418329"
+"1","
+"

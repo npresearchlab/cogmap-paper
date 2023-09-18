@@ -1,0 +1,7 @@
+"0","# Correlation analysis between Younger Adult Distance travelled and cognitive map score"
+"0",""
+"0","cor(ya_data$dti, ya_data$map, method=""pearson"")"
+"1","[1]"
+"1"," 0.05688937"
+"1","
+"

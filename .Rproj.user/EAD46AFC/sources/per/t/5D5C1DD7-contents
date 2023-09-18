@@ -1,0 +1,447 @@
+---
+title: "MB_Grant"
+output: html_document
+date: "2023-02-06"
+---
+```{r}
+# This code chunk loads various libraries necessary to complete the data analysis and produce graphics
+library(tidyverse)
+library(stringr)
+library(ez)
+library(cowplot)
+library(viridis)
+library(viridisLite)
+library("readxl")
+library("ggcorrplot")
+library(dplyr)
+#library(MASS)
+library(ltm)
+```
+
+```{r}
+#This data chunk loads and tidies up the data
+
+#This loads the data file as the variable "data"
+data <- read.csv('2023_MB_data.csv')
+# Tidying up the data
+names(data)[1] <- 'participant'
+names(data)[2] <- 'group'
+names(data)[3] <- 'age'
+names(data)[7] <- 'sbsod'
+names(data)[8] <- 'minicog'
+names(data)[12] <- 'sss'
+names(data)[13] <-'corsi'
+names(data)[20] <-'dti'
+names(data)[26] <-'c_b1'
+names(data)[27] <-'c_b2'
+names(data)[28] <-'c_b3'
+names(data)[29] <- 'completion'
+names(data)[34] <-'d_b1'
+names(data)[35] <-'d_b2'
+names(data)[36] <-'d_b3'
+names(data)[37] <- 'distance'
+names(data)[41] <- 'dwell'
+names(data)[43] <- 'map'
+names(data)[44] <- 'dw_B1'
+names(data)[45] <- 'dw_B2'
+names(data)[46] <- 'dw_B3'
+data <- data %>%
+  dplyr::select('participant', 'group', 'age', 'sbsod', 'minicog', 'sss','corsi', 'dti','c_b1', 'c_b2','c_b3','completion', 'd_b1', 'd_b2','d_b3', 'distance','dwell','map','dw_B1','dw_B2','dw_B3')
+data
+
+data_d <- data %>% dplyr::select(c('participant','group','d_b1', 'd_b2','d_b3'))
+data_d <- pivot_longer(data_d, 3:5,names_to= "names", values_to = 'distance_travelled')
+data_d <- data_d %>%
+  mutate(
+    group=as.character(group)
+  )
+data_c <- data %>% dplyr::select(c('participant','group','c_b1', 'c_b2','c_b3'))
+data_c <- pivot_longer(data_c, 3:5,names_to= "names", values_to = 'completion_time')
+data_c <- data_c %>%
+  mutate(
+    group=as.character(group)
+  )
+data_dw <- data %>% dplyr::select(c('participant','group','dw_b1', 'dw_b2','dw_b3'))
+data_dw <- pivot_longer(data_dw, 3:5,names_to= "names", values_to = 'dwell_time')
+data_dw <- data_dw %>%
+  mutate(
+    group=as.character(group)
+  )
+#Filtering the data based on participant group (AKA seperating into older adults and younger adults)
+# oa contains the data set for the older adults participants
+ya_data_d <- data_d %>% filter(group == '0')
+ya_data_dw <- data_dw %>% filter(group == '0')
+# ya contains the data set for the younger adults participants
+ya_data_c <-data_c %>% filter(group == '0')
+```
+```{r}
+#This loads the data file as the variable "data"
+data_dt <- read.csv('dt.csv')
+# Tidying up the data
+names(data_dt)[1] <- 'group'
+names(data_dt)[2] <-'dt_b1'
+names(data_dt)[3] <-'dt_b2'
+names(data_dt)[4] <-'dt_b3'
+data_dt <- data_dt %>%
+  dplyr::select('group', 'dt_b1', 'dt_b2','dt_b3')
+data_dt <- pivot_longer(data_dt, 2:4,names_to= "names", values_to = 'distancetravelled')
+data_dt <- data_dt %>%
+  mutate(
+    group=as.character(group)
+  )
+ya_data_dt <-data_dt %>% filter(group == '0')
+
+#This loads the data file as the variable "data"
+data_ct <- read.csv('ct.csv')
+# Tidying up the data
+names(data_ct)[1] <- 'group'
+names(data_ct)[2] <-'ct_b1'
+names(data_ct)[3] <-'ct_b2'
+names(data_ct)[4] <-'ct_b3'
+data_ct <- data_ct %>%
+  dplyr::select('group', 'ct_b1', 'ct_b2','ct_b3')
+data_ct <- pivot_longer(data_ct, 2:4,names_to= "names", values_to = 'completiontime')
+data_ct <- data_ct %>%
+  mutate(
+    group=as.character(group)
+  )
+ya_data_ct <-data_ct %>% filter(group == '0')
+```
+```{r}
+p1oa <- ggplot(ya_data_d, aes(x=names, y=distance_travelled, group=participant, color=group))+
+  geom_point(size=4) + 
+  geom_line()+
+  scale_color_manual(values = c("#D85193","#5072D1"))+
+  labs(color= "Participant", y="Distance Travelled", x="Block")+
+  scale_x_discrete("Block Number",labels = c("d_b1" = "Block 1", "d_b2" = "Block 2", "d_b3" = "Block 3"))+
+  ylab("Distance (VR Coordinate Units)")+
+  ylim(0,7000)
+p1oa
+p1oa <- ggplot(ya_data_c, aes(x=names, y=completion_time, group=participant, color=group))+
+  geom_point(size=4) + 
+  geom_line()+
+  scale_color_manual(values = c("#D85193","#5072D1"))+
+  labs(color= "Participant", y="Distance Travelled", x="Block")+
+  scale_x_discrete("Block Number",labels = c("c_b1" = "Block 1", "c_b2" = "Block 2", "c_b3" = "Block 3"))+
+  ylab("time")+
+  ylim(0,2200)
+p1oa
+p1oa <- ggplot(ya_data_dt, aes(x=names, y=distancetravelled, group = group,color=group))+
+  geom_point(size=4) + 
+  geom_line()+
+  scale_color_manual(values = c("#D85193","#5072D1"))+
+  labs(color= "Participant", y="distance", x="Block")+
+  scale_x_discrete("Block Number",labels = c("d_b1" = "Block 1", "d_b2" = "Block 2", "d_b3" = "Block 3"))+
+  ylab("Distance (VR Coordinate Units)")+
+  ylim(0,7000)
+p1oa
+p1oa <- ggplot(ya_data_ct, aes(x=names, y=completiontime,group = group, color=group))+
+  geom_point(size=4) + 
+  geom_line()+
+  scale_color_manual(values = c("#D85193","#5072D1"))+
+  labs(color= "Participant", y="completion", x="Block")+
+  scale_x_discrete("Block Number",labels = c("c_b1" = "Block 1", "c_b2" = "Block 2", "c_b3" = "Block 3"))+
+  ylab("time")+
+  ylim(0,2200)
+p1oa
+
+```
+```{r}
+p_completion <- ggplot(data, aes(x=group, y=completion, color=participant))+
+  geom_point(size=4) + 
+  stat_summary( fun.args = list(mult=1), 
+                geom="crossbar", 
+                width=0.2, 
+                color="purple") +
+  labs(color= "Participant", y="Completion Time", x="Age Group")+
+  scale_x_discrete("Age Group", labels = c( "0" = "Younger Adult","1" = "Older Adult"))+
+  ggtitle("Aging Effects on Completion Time")
+p_completion
+```
+```{r}
+ttest <- t.test(oa_data$completion, ya_data$completion, p.adjust="none")
+ttest
+```
+```{r}
+p_distance <- ggplot(data, aes(x=group, y=distance, color=participant))+
+  geom_point(size=4) + 
+  stat_summary( fun.args = list(mult=1), 
+                geom="crossbar", 
+                width=0.2, 
+                color="purple") +
+  labs(color= "Participant", y="Distance", x="Age Group")+
+  scale_x_discrete("Age Group", labels = c( "0" = "Younger Adult","1" = "Older Adult"))+
+  ggtitle("Aging Effects on distance")
+p_distance
+
+ttest <- t.test(oa_data$distance, ya_data$distance, p.adjust="none")
+ttest
+```
+```{r}
+p_sss <- ggplot(data, aes(x=group, y=sbsod, color=participant))+
+  geom_point(size=4) + 
+  stat_summary( fun.args = list(mult=1), 
+                geom="crossbar", 
+                width=0.2, 
+                color="purple") +
+  labs(color= "Participant", y="SBSOD", x="Age Group")+
+  scale_x_discrete("Age Group", labels = c( "0" = "Younger Adult","1" = "Older Adult"))+
+  ggtitle("Aging Effects on SBSOD")
+p_sss
+ttest <- t.test(oa_data$sbsod, ya_data$sbsod, p.adjust="none")
+ttest
+```
+
+```{r}
+p_distance <- ggplot(data, aes(x=group, y=distance, color=participant))+
+  geom_point(size=4) + 
+  labs(color= "Participant", y="Distance Travelled", x="Age Group")+
+  stat_summary(fun.args = list(mult=1), 
+                geom="crossbar", 
+                width=0.2, 
+                color="purple")+
+  labs(color= "Participant", y="Distance Travelled", x="Age Group")+
+  scale_x_discrete("Age Group", labels = c( "0" = "Younger Adult","1" = "Older Adult"))+
+  ggtitle("Aging Effects on Distance Travelled")
+p_distance
+
+```
+```{r}
+ttest <- t.test(oa_data$distance, ya_data$distance, p.adjust="none")
+ttest
+```
+```{r}
+p_map <- ggplot(data, aes(x=group, y=map, color=participant))+
+  geom_point(size=4) + 
+  stat_summary( fun.args = list(mult=1), 
+                geom="crossbar", 
+                width=0.2, 
+                color="purple") +
+  labs(color= "Participant", y="CMCA Score", x="Age Group")+
+  scale_x_discrete("Age Group", labels = c( "0" = "Younger Adult","1" = "Older Adult"))+
+  ggtitle("Aging Effects on Cognitive Map Construction")
+p_map
+```
+```{r}
+ttest <- t.test(oa_data$map, ya_data$map, p.adjust="none")
+ttest
+```
+```{r}
+ttest <- t.test(oa_data$minicog, ya_data$minicog, p.adjust="none")
+ttest
+```
+```{r}
+p_map <- ggplot(data, aes(x=group, y=sbsod , color=participant))+
+  geom_point(size=7) + 
+  stat_summary( fun.args = list(mult=1), 
+                geom="crossbar", 
+                width=0.2, 
+                color="purple") +
+  labs(color= "Participant", y="SBSOD Score", x="Age Group")+
+  scale_x_discrete("Age Group", labels = c( "0" = "Younger Adult","1" = "Older Adult"))+
+  ggtitle("Aging Effects on Self Navigation Assesment")
+p_map
+
+ttest <- t.test(oa_data$sbsod, ya_data$sbsod, p.adjust="none")
+ttest
+```
+```{r}
+p_map <- ggplot(data, aes(x=group, y=sss , color=participant))+
+  geom_point(size=7) + 
+  stat_summary( fun.args = list(mult=1), 
+                geom="crossbar", 
+                width=0.2, 
+                color="purple") +
+  labs(color= "Participant", y="sss", x="Age Group")+
+  scale_x_discrete("Age Group", labels = c( "0" = "Younger Adult","1" = "Older Adult"))+
+  ggtitle("Aging Effects on Setshifting")
+p_map
+
+ttest <- t.test(oa_data$sss, ya_data$sss, p.adjust="none")
+ttest
+```
+```{r}
+p_map <- ggplot(data, aes(x=group, y=sss , color=participant))+
+  geom_point(size=7) + 
+  stat_summary( fun.args = list(mult=1), 
+                geom="crossbar", 
+                width=0.2, 
+                color="purple") +
+  labs(color= "Participant", y="sss", x="Age Group")+
+  scale_x_discrete("Age Group", labels = c( "0" = "Younger Adult","1" = "Older Adult"))+
+  ggtitle("Aging Effects on Setshifting")
+p_map
+
+ttest <- t.test(oa_data$sss, ya_data$sss, p.adjust="none")
+ttest
+```
+```{r}
+p_map <- ggplot(data, aes(x=group, y= corsi , color=participant))+
+  geom_point(size=7, position=position_jitter(h=0,w=0.15)) + 
+  stat_summary( fun.args = list(mult=1), 
+                geom="crossbar", 
+                width=0.2, 
+                color="purple") +
+  labs(color= "Participant", y="Corsi", x="Age Group")+
+  scale_x_discrete("Age Group", labels = c( "0" = "Younger Adult","1" = "Older Adult"))+
+  ggtitle("Aging Effects on Corsi")
+p_map
+
+
+```
+
+```{r}
+m1<-wilcox.test(corsi ~ group, data, na.rm=TRUE, paired=FALSE, exact=FALSE, conf.int=TRUE)
+m1
+```
+```{r}
+p_map <- ggplot(data, aes(x=group, y= dti , color=participant))+
+  geom_point(size=7, position=position_jitter(h=0,w=0.15)) + 
+  stat_summary( fun.args = list(mult=1), 
+                geom="crossbar", 
+                width=0.2, 
+                color="purple") +
+  labs(color= "Participant", y="MiniCog", x="Age Group")+
+  scale_x_discrete("Age Group", labels = c( "0" = "Younger Adult","1" = "Older Adult"))+
+  ggtitle("Aging Effects on MiniCog")
+p_map
+
+ttest <- t.test(oa_data$dti, ya_data$dti, p.adjust="none")
+ttest
+```
+
+
+
+```{r}
+p_corr <- ggplot(data, aes(x=distance, y=map))+
+  geom_point(size = 3, aes(color = factor(group))) +
+  scale_color_manual(values = c("#D85193","#5072D1"))+
+  geom_smooth(method = "lm", se = FALSE, aes(color = factor(group))) +
+  labs(title = "Distance Travelled Vs. CMCA Score",
+       x = "Distance travelled",
+       y = "CMCA Score")
+p_corr
+p_corr <- ggplot(data, aes(x=completion, y=map))+
+  geom_point(size = 3, aes(color = factor(group))) +
+  scale_color_manual(values = c("#D85193","#5072D1"))+
+  geom_smooth(method = "lm", se = FALSE, aes(color = factor(group))) +
+  labs(title = "completion Vs. CMCA Score",
+       x = "Distance travelled",
+       y = "CMCA Score")
+p_corr
+```
+
+```{r}
+# Correlation analysis between Older Adult Distance travelled and cognitive map score
+
+cor(oa_data$sss, oa_data$map, method="pearson")
+```
+```{r}
+# Correlation analysis between Younger Adult Distance travelled and cognitive map score
+
+cor(ya_data$sss, ya_data$map, method="pearson")
+```
+
+```{r}
+# Correlation analysis between ALL participants Distance travelled and cognitive map score
+
+cor(data$sss, data$map, method="pearson")
+```
+
+
+
+```{r}
+p_corr <- ggplot(data, aes(x=completion, y=map))+
+  geom_point(aes(color = factor(group))) +
+  geom_smooth(method = "lm", se = FALSE, aes(color = factor(group))) +
+  labs(title = "Completion Time Vs. CMCA Score",
+       x = "Completion Time",
+       y = "CMCA Score")
+p_corr
+```
+
+```{r}
+p_corra <- ggplot(data, aes(x=sss, y=map))+
+  geom_point(size=4,aes(color = factor(group))) +
+  geom_smooth(method = "lm", se = FALSE, aes(color = factor(group))) +
+  scale_color_manual(values = c("#D85193","#5072D1"))+
+  labs(title = "Set Shifting Vs. ARI",
+       x = "Set Shifting",
+       y = "ARI")
+p_corrb <- ggplot(data, aes(x=corsi, y=map))+
+  geom_point(size=4,aes(color = factor(group))) + 
+  scale_color_manual(values = c("#D85193","#5072D1"))+
+  #stat_summary( fun.args = list(mult=1), 
+                #geom="crossbar", 
+                #width=0.2, 
+                #color="purple") +
+  labs(color= "Participant", y="ARI", x="Corsi")+
+  scale_x_discrete("Corsi")+
+  ggtitle("Aging Effects on Corsi")
+p_corrc <- ggplot(data, aes(x=dti, y=map))+
+  geom_point(size=4,aes(color = factor(group))) +
+  geom_smooth(method = "lm", se = FALSE, aes(color = factor(group))) +
+  scale_color_manual(values = c("#D85193","#5072D1"))+
+  labs(title = "DTI Vs. CMCA Score",
+       x = "DTI",
+       y = "CMCA Score")
+p_corra
+p_corrb
+p_corrc
+```
+
+```{r}
+# Correlation analysis between Older Adult Distance travelled and cognitive map score
+
+cor(oa_data$dti, oa_data$map, method="pearson")
+```
+```{r}
+# Correlation analysis between Younger Adult Distance travelled and cognitive map score
+
+cor(ya_data$dti, ya_data$map, method="pearson")
+```
+
+```{r}
+# Correlation analysis between ALL participants Distance travelled and cognitive map score
+
+cor(data$dti, data$map, method="pearson")
+```
+
+
+
+
+
+```{r}
+#This data chunk loads and tidies up the data
+
+#This loads the data file as the variable "data"
+rf_data <- read.csv('Bias.csv')
+# Tidying up the data
+names(rf_data)[1] <- 'group'
+names(rf_data)[2] <- 'bias'
+names(rf_data)[3] <- 'percent'
+rf_data <- rf_data %>%
+  dplyr::select('group', 'bias', 'percent')
+
+rf_data
+
+#Filtering the data based on participant group (AKA seperating into older adults and younger adults)
+# oa contains the data set for the older adults participants
+oa_rf_data <- rf_data %>% filter(group == 'OA')
+# ya contains the data set for the younger adults participants
+ya_rf_data <-rf_data %>% filter(group == 'YA')
+```
+```{r}
+# aging and reference frame bias
+p <- ggplot(rf_data, aes(x=group, y=percent, fill=bias)) +
+  geom_bar(stat="identity", color="black", position=position_dodge())+
+  labs(title = "Aging effects on Preferred Reference Frame",
+       x = "Age Group",
+       y = "Percent (%)")
+# Use brewer color palettes
+p + scale_fill_brewer(palette="Purples")
+
+
+```
+
+

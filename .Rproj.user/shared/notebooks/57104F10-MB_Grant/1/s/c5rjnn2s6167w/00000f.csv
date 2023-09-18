@@ -1,0 +1,6 @@
+"0","#Filtering the data based on participant group (AKA seperating into older adults and younger adults)
+# oa contains the data set for the older adults participants
+ya_data_d <- data_d %>% filter(group == '0')
+"
+"2","Error in data_d %>% filter(group == ""0"") : could not find function ""%>%""
+"

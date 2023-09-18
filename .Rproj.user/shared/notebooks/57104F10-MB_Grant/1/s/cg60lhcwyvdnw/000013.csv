@@ -1,0 +1,6 @@
+"0",""
+"0","#Filtering the data based on participant group (AKA seperating into older adults and younger adults)"
+"0","# oa contains the data set for the older adults participants"
+"0","oa_rf_data <- rf_data %>% filter(group == 'OA')"
+"0","# ya contains the data set for the younger adults participants"
+"0","ya_rf_data <-rf_data %>% filter(group == 'YA')"
