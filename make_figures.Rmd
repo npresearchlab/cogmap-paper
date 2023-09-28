@@ -1,5 +1,5 @@
 ---
-title: "5.1_CMARA_Paper"
+title: "make_figures"
 output: html_document
 date: "2023-05-01"
 ---
@@ -17,7 +17,6 @@ library(dplyr)
 library(ltm)
 library(plotrix)
 library("viridis")
-install.packages("paletteer")
 library("paletteer")
 ```
 
@@ -251,7 +250,7 @@ p_dwell <- ggplot(data, aes(x=Block_num, y=Mean_Dwell, color=Participant))+
                 color="#242526") +
   labs(color= "Participant", y="Mean Dwell Time (s)", x="")+
   scale_x_discrete(labels = c( "Block 1","Block 2","Block 3"))+
-  ylim(0,65)+
+  ylim(0,3)+
   theme_classic()+
   theme(axis.line = element_line(linewidth = .5, colour = "#242526"))+
   theme(axis.ticks = element_line(linewidth = .2, colour = "#242526"))+
@@ -261,7 +260,7 @@ p_dwell <- ggplot(data, aes(x=Block_num, y=Mean_Dwell, color=Participant))+
   theme(axis.text.y = element_text(size=16))+
   theme(axis.title.y = element_text(size=16))
 p_dwell
-```
+``` 
 
 ```{r}
 #Data.summary for Var_X
@@ -385,7 +384,7 @@ p_teleport <- ggplot(data, aes(x=Block_num, y=Teleportations, color=Participant)
                 geom="crossbar", 
                 width=0.2, 
                 color="#242526") +
-  labs(color= "Participant", y="Number of Teleportations", x="")+
+  labs(color= "Participant", y="Teleportations (count)", x="")+
   scale_x_discrete(labels = c( "Block 1","Block 2","Block 3"))+
   theme_classic()+
   theme(axis.line = element_line(linewidth = .5, colour = "#242526"))+
