@@ -142,6 +142,14 @@ m_ct_anova <- anova(m_ct)
 m_ct_anova
 # omnibus p-values - main effect of this variable
 ```
+```{r}
+# Jasmine's code
+emm_m_ct_b <- emmeans(m_ct,~Block_num)
+# can look at just Block_num, or just Target_Name; or the interaction with |
+# can run the reverse: Target_Name | Block_num for contrasts 
+m_ct_block <- pairs(emm_m_ct_b)
+m_ct_block <- as.data.frame(m_ct_block)
+```
 
 ```{r}
 # Jasmine's code
@@ -150,6 +158,15 @@ emm_m_ct_t <- emmeans(m_ct,~Target_Name)
 # can run the reverse: Target_Name | Block_num for contrasts 
 m_ct_targetonly <- pairs(emm_m_ct_t)
 m_ct_targetonly <- as.data.frame(m_ct_targetonly)
+```
+
+```{r}
+# Jasmine's code
+emm_m_ct <- emmeans(m_ct,~Block_num|Target_Name)
+# can look at just Block_num, or just Target_Name; or the interaction with |
+# can run the reverse: Target_Name | Block_num for contrasts 
+m_ct_blocktarget <- pairs(emm_m_ct)
+m_ct_blocktarget <- as.data.frame(m_ct_blocktarget)
 ```
 
 # Orientation Time
@@ -163,11 +180,29 @@ m_orict_anova
 
 ```{r}
 # Jasmine's code
+emm_m_orict_b <- emmeans(m_orict,~Block_num)
+# can look at just Block_num, or just Target_Name; or the interaction with |
+# can run the reverse: Target_Name | Block_num for contrasts 
+m_orict_block <- pairs(emm_m_orict_b)
+m_orict_block <- as.data.frame(m_orict_block)
+```
+
+```{r}
+# Jasmine's code
 emm_m_orict_t <- emmeans(m_orict,~Target_Name)
 # can look at just Block_num, or just Target_Name; or the interaction with |
 # can run the reverse: Target_Name | Block_num for contrasts 
 m_orict_targetonly <- pairs(emm_m_orict_t)
 m_orict_targetonly <- as.data.frame(m_orict_targetonly)
+```
+
+```{r}
+# Jasmine's code
+emm_m_orict <- emmeans(m_orict,~Block_num|Target_Name)
+# can look at just Block_num, or just Target_Name; or the interaction with |
+# can run the reverse: Target_Name | Block_num for contrasts 
+m_orict_blocktarget <- pairs(emm_m_orict)
+m_orict_blocktarget <- as.data.frame(m_orict_blocktarget)
 ```
 
 # Navigation Time
@@ -177,6 +212,14 @@ m_orict_targetonly <- as.data.frame(m_orict_targetonly)
 m_navct <- lmer(Navigation_Time ~ Block_num*Target_Name + (1|Participant), data=nav_data)
 m_navct_anova <- anova(m_navct)
 m_navct_anova
+```
+```{r}
+# Jasmine's code
+emm_m_navct_b <- emmeans(m_navct,~Block_num)
+# can look at just Block_num, or just Target_Name; or the interaction with |
+# can run the reverse: Target_Name | Block_num for contrasts 
+m_navct_block <- pairs(emm_m_navct_b)
+m_navct_block <- as.data.frame(m_navct_block)
 ```
 
 ```{r}
@@ -188,6 +231,15 @@ m_navct_targetonly <- pairs(emm_m_navct_t)
 m_navct_targetonly <- as.data.frame(m_navct_targetonly)
 ```
 
+```{r}
+# Jasmine's code
+emm_m_navct <- emmeans(m_navct,~Block_num|Target_Name)
+# can look at just Block_num, or just Target_Name; or the interaction with |
+# can run the reverse: Target_Name | Block_num for contrasts 
+m_navct_blocktarget <- pairs(emm_m_navct)
+m_navct_blocktarget <- as.data.frame(m_navct_blocktarget)
+```
+
 # Distance
 
 ```{r}
@@ -196,7 +248,14 @@ m_dt <- lmer(Distance ~ Block_num*Target_Name + (1|Participant), data=nav_data)
 m_dt_anova <- anova(m_dt)
 m_dt_anova
 ```
-
+```{r}
+# Jasmine's code
+emm_m_dt_b <- emmeans(m_dt,~Block_num)
+# can look at just Block_num, or just Target_Name; or the interaction with |
+# can run the reverse: Target_Name | Block_num for contrasts 
+m_dt_block <- pairs(emm_m_dt_b)
+m_dt_block <- as.data.frame(m_dt_block)
+```
 
 ```{r}
 # Jasmine's code
@@ -207,6 +266,16 @@ m_dt_targetonly <- pairs(emm_m_dt_t)
 m_dt_targetonly <- as.data.frame(m_dt_targetonly)
 ```
 
+```{r}
+# Jasmine's code
+emm_m_dt <- emmeans(m_dt,~Block_num|Target_Name)
+# can look at just Block_num, or just Target_Name; or the interaction with |
+# can run the reverse: Target_Name | Block_num for contrasts 
+m_dt_blocktarget <- pairs(emm_m_dt)
+m_dt_blocktarget <- as.data.frame(m_dt_blocktarget)
+```
+
+
 # Speed
 
 ```{r}
@@ -214,6 +283,14 @@ m_dt_targetonly <- as.data.frame(m_dt_targetonly)
 m_speed <- lmer(Speed ~ Block_num*Target_Name + (1|Participant), data=nav_data)
 m_speed_anova <- anova(m_speed)
 m_speed_anova
+```
+```{r}
+# Jasmine's code
+emm_m_speed_b <- emmeans(m_speed,~Block_num)
+# can look at just Block_num, or just Target_Name; or the interaction with |
+# can run the reverse: Target_Name | Block_num for contrasts 
+m_speed_block <- pairs(emm_m_speed_b)
+m_speed_block <- as.data.frame(m_speed_block)
 ```
 
 ```{r}
@@ -223,6 +300,15 @@ emm_m_speed_t <- emmeans(m_speed,~Target_Name)
 # can run the reverse: Target_Name | Block_num for contrasts 
 m_speed_targetonly <- pairs(emm_m_speed_t)
 m_speed_targetonly <- as.data.frame(m_speed_targetonly)
+```
+
+```{r}
+# Jasmine's code
+emm_m_speed <- emmeans(m_speed,~Block_num|Target_Name)
+# can look at just Block_num, or just Target_Name; or the interaction with |
+# can run the reverse: Target_Name | Block_num for contrasts 
+m_speed_blocktarget <- pairs(emm_m_speed)
+m_speed_blocktarget <- as.data.frame(m_speed_blocktarget)
 ```
 
 # Dwell Time
@@ -236,11 +322,29 @@ m_dwell_anova
 
 ```{r}
 # Jasmine's code
+emm_m_dwell_b <- emmeans(m_dwell,~Block_num)
+# can look at just Block_num, or just Target_Name; or the interaction with |
+# can run the reverse: Target_Name | Block_num for contrasts 
+m_dwell_block <- pairs(emm_m_dwell_b)
+m_dwell_block <- as.data.frame(m_dwell_block)
+```
+
+```{r}
+# Jasmine's code
 emm_m_dwell_t <- emmeans(m_dwell,~Target_Name)
 # can look at just Block_num, or just Target_Name; or the interaction with |
 # can run the reverse: Target_Name | Block_num for contrasts 
 m_dwell_targetonly <- pairs(emm_m_dwell_t)
 m_dwell_targetonly <- as.data.frame(m_dwell_targetonly)
+```
+
+```{r}
+# Jasmine's code
+emm_m_dwell <- emmeans(m_dwell,~Block_num|Target_Name)
+# can look at just Block_num, or just Target_Name; or the interaction with |
+# can run the reverse: Target_Name | Block_num for contrasts 
+m_dwell_blocktarget <- pairs(emm_m_dwell)
+m_dwell_blocktarget <- as.data.frame(m_dwell_blocktarget)
 ```
 
 # Teleportations 
@@ -252,6 +356,14 @@ m_teleport_anova <- anova(m_teleport)
 m_teleport_anova
 ```
 
+```{r}
+# Jasmine's code
+emm_m_teleport_b <- emmeans(m_teleport,~Block_num)
+# can look at just Block_num, or just Target_Name; or the interaction with |
+# can run the reverse: Target_Name | Block_num for contrasts 
+m_teleport_block <- pairs(emm_m_teleport_b)
+m_teleport_block <- as.data.frame(m_teleport_block)
+```
 
 ```{r}
 # Jasmine's code
@@ -260,6 +372,15 @@ emm_m_teleport_t <- emmeans(m_teleport,~Target_Name)
 # can run the reverse: Target_Name | Block_num for contrasts 
 m_teleport_targetonly <- pairs(emm_m_teleport_t)
 m_teleport_targetonly <- as.data.frame(m_teleport_targetonly)
+```
+
+```{r}
+# Jasmine's code
+emm_m_teleport <- emmeans(m_teleport,~Block_num|Target_Name)
+# can look at just Block_num, or just Target_Name; or the interaction with |
+# can run the reverse: Target_Name | Block_num for contrasts 
+m_teleport_blocktarget <- pairs(emm_m_teleport)
+m_teleport_blocktarget <- as.data.frame(m_teleport_blocktarget)
 ```
 
 # Variance X
@@ -273,11 +394,29 @@ m_varx_anova
 
 ```{r}
 # Jasmine's code
+emm_m_varx_b <- emmeans(m_varx,~Block_num)
+# can look at just Block_num, or just Target_Name; or the interaction with |
+# can run the reverse: Target_Name | Block_num for contrasts 
+m_varx_block <- pairs(emm_m_varx_b)
+m_varx_block <- as.data.frame(m_varx_block)
+```
+
+```{r}
+# Jasmine's code
 emm_m_varx_t <- emmeans(m_varx,~Target_Name)
 # can look at just Block_num, or just Target_Name; or the interaction with |
 # can run the reverse: Target_Name | Block_num for contrasts 
 m_varx_targetonly <- pairs(emm_m_varx_t)
 m_varx_targetonly <- as.data.frame(m_varx_targetonly)
+```
+
+```{r}
+# Jasmine's code
+emm_m_varx <- emmeans(m_varx,~Block_num|Target_Name)
+# can look at just Block_num, or just Target_Name; or the interaction with |
+# can run the reverse: Target_Name | Block_num for contrasts 
+m_varx_blocktarget <- pairs(emm_m_varx)
+m_varx_blocktarget <- as.data.frame(m_varx_blocktarget)
 ```
 
 # Variance Y
@@ -288,6 +427,15 @@ m_vary <- lmer(Var_Y ~ Block_num*Target_Name + (1|Participant), data=nav_data)
 m_vary_anova <- anova(m_vary)
 m_vary_anova
 ```
+
+```{r}
+# Jasmine's code
+emm_m_vary_b <- emmeans(m_vary,~Block_num)
+# can look at just Block_num, or just Target_Name; or the interaction with |
+# can run the reverse: Target_Name | Block_num for contrasts 
+m_vary_block <- pairs(emm_m_vary_b)
+m_vary_block <- as.data.frame(m_vary_block)
+```
 ```{r}
 # Jasmine's code
 emm_m_vary_t <- emmeans(m_vary,~Target_Name)
@@ -297,6 +445,14 @@ m_vary_targetonly <- pairs(emm_m_vary_t)
 m_vary_targetonly <- as.data.frame(m_vary_targetonly)
 ```
 
+```{r}
+# Jasmine's code
+emm_m_vary <- emmeans(m_vary,~Block_num|Target_Name)
+# can look at just Block_num, or just Target_Name; or the interaction with |
+# can run the reverse: Target_Name | Block_num for contrasts 
+m_vary_blocktarget <- pairs(emm_m_vary)
+m_vary_blocktarget <- as.data.frame(m_vary_blocktarget)
+```
 
 # Variance Z
 
@@ -306,7 +462,14 @@ m_varz <- lmer(Var_Z ~ Block_num*Target_Name + (1|Participant), data=nav_data)
 m_varz_anova <- anova(m_varz)
 m_varz_anova
 ```
-
+```{r}
+# Jasmine's code
+emm_m_varz_b <- emmeans(m_varz,~Block_num)
+# can look at just Block_num, or just Target_Name; or the interaction with |
+# can run the reverse: Target_Name | Block_num for contrasts 
+m_varz_block <- pairs(emm_m_varz_b)
+m_varz_block <- as.data.frame(m_varz_block)
+```
 ```{r}
 # Jasmine's code
 emm_m_varz_t <- emmeans(m_varz,~Target_Name)
@@ -314,6 +477,138 @@ emm_m_varz_t <- emmeans(m_varz,~Target_Name)
 # can run the reverse: Target_Name | Block_num for contrasts 
 m_varz_targetonly <- pairs(emm_m_varz_t)
 m_varz_targetonly <- as.data.frame(m_varz_targetonly)
+```
+
+```{r}
+# Jasmine's code
+emm_m_varz <- emmeans(m_varz,~Block_num|Target_Name)
+# can look at just Block_num, or just Target_Name; or the interaction with |
+# can run the reverse: Target_Name | Block_num for contrasts 
+m_varz_blocktarget <- pairs(emm_m_varz)
+m_varz_blocktarget <- as.data.frame(m_varz_blocktarget)
+```
+
+
+```{r}
+
+# List all dataframes in the global environment
+dataframes <- ls()
+
+# Filter dataframes that end with "anova"
+dataframes_to_save <- dataframes[grep("anova$", dataframes)]
+
+# Create an empty list to store dataframes
+combined_dataframes <- list()
+
+# Loop through the selected dataframes, combine them, and add a "Source" column
+for (df_name in dataframes_to_save) {
+  # Get the dataframe by name
+  df <- get(df_name)
+  
+  # Add a "Source" column with the dataframe name
+  df$Source <- df_name
+  
+  # Append the modified dataframe to the list
+  combined_dataframes[[df_name]] <- df
+}
+
+# Combine all dataframes into one giant dataframe
+final_combined_dataframe <- do.call(rbind, combined_dataframes)
+
+# Specify the directory where you want to save the CSV file
+output_directory <- "/Users/yasminebassil/Documents/Emory/3_Research/Projects/CogMap_Paper/stat_tests/"
+
+# Define the CSV file name
+csv_file <- paste0(output_directory, "combined_anova_data.csv")
+
+# Save the combined dataframe as a CSV file
+write.csv(final_combined_dataframe, file = csv_file, row.names = FALSE)
+
+# Print a message to confirm the save
+cat("Saved combined data as", csv_file, "\n")
+
+```
+
+
+```{r}
+
+# List all dataframes in the global environment
+dataframes <- ls()
+
+# Filter dataframes that end with "anova"
+dataframes_to_save <- dataframes[grep("block$", dataframes)]
+
+# Create an empty list to store dataframes
+combined_dataframes <- list()
+
+# Loop through the selected dataframes, combine them, and add a "Source" column
+for (df_name in dataframes_to_save) {
+  # Get the dataframe by name
+  df <- get(df_name)
+  
+  # Add a "Source" column with the dataframe name
+  df$Source <- df_name
+  
+  # Append the modified dataframe to the list
+  combined_dataframes[[df_name]] <- df
+}
+
+# Combine all dataframes into one giant dataframe
+final_combined_dataframe <- do.call(rbind, combined_dataframes)
+
+# Specify the directory where you want to save the CSV file
+output_directory <- "/Users/yasminebassil/Documents/Emory/3_Research/Projects/CogMap_Paper/stat_tests/"
+
+# Define the CSV file name
+csv_file <- paste0(output_directory, "combined_block_data.csv")
+
+# Save the combined dataframe as a CSV file
+write.csv(final_combined_dataframe, file = csv_file, row.names = FALSE)
+
+# Print a message to confirm the save
+cat("Saved combined data as", csv_file, "\n")
+
+```
+
+
+
+```{r}
+
+# List all dataframes in the global environment
+dataframes2 <- ls()
+
+# Filter dataframes that end with "anova"
+dataframes_to_save2 <- dataframes2[grep("blocktarget$", dataframes2)]
+
+# Create an empty list to store dataframes
+combined_dataframes2 <- list()
+
+# Loop through the selected dataframes, combine them, and add a "Source" column
+for (df_name in dataframes_to_save2) {
+  # Get the dataframe by name
+  df <- get(df_name)
+  
+  # Add a "Source" column with the dataframe name
+  df$Source <- df_name
+  
+  # Append the modified dataframe to the list
+  combined_dataframes2[[df_name]] <- df
+}
+
+# Combine all dataframes into one giant dataframe
+final_combined_dataframe <- do.call(rbind, combined_dataframes2)
+
+# Specify the directory where you want to save the CSV file
+output_directory <- "/Users/yasminebassil/Documents/Emory/3_Research/Projects/CogMap_Paper/stat_tests/"
+
+# Define the CSV file name
+csv_file <- paste0(output_directory, "combined_blocktarget_data.csv")
+
+# Save the combined dataframe as a CSV file
+write.csv(final_combined_dataframe, file = csv_file, row.names = FALSE)
+
+# Print a message to confirm the save
+cat("Saved combined data as", csv_file, "\n")
 ```
 
 
