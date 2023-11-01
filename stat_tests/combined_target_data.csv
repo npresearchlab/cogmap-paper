@@ -1,0 +1,281 @@
+contrast,estimate,SE,df,t.ratio,p.value,Source
+Automobile shop - Police station ,-9.144314708,5.633668355,575,-1.6231546,0.736187677,m_ct_targetonly
+Automobile shop - Fire Station,-3.902118121,5.633668355,575,-0.692642498,0.997178736,m_ct_targetonly
+Automobile shop - Bank,-17.26394787,5.633668355,575,-3.064423885,0.046862299,m_ct_targetonly
+Automobile shop - Pawn Shop,-20.22276112,5.633668355,575,-3.589625773,0.008561571,m_ct_targetonly
+Automobile shop - Pizzeria,-6.453762787,5.633668355,575,-1.145570236,0.94635551,m_ct_targetonly
+Automobile shop - Quattroki Restaurant,-20.47945226,5.633668355,575,-3.635189536,0.007277385,m_ct_targetonly
+Automobile shop - High School,0.377770949,5.633668355,575,0.067055944,1,m_ct_targetonly
+Police station  - Fire Station,5.242196587,5.633668355,575,0.930512103,0.983021568,m_ct_targetonly
+Police station  - Bank,-8.11963316,5.633668355,575,-1.441269285,0.837633639,m_ct_targetonly
+Police station  - Pawn Shop,-11.07844641,5.633668355,575,-1.966471172,0.505626147,m_ct_targetonly
+Police station  - Pizzeria,2.690551921,5.633668355,575,0.477584364,0.999749432,m_ct_targetonly
+Police station  - Quattroki Restaurant,-11.33513755,5.633668355,575,-2.012034936,0.474560566,m_ct_targetonly
+Police station  - High School,9.522085656,5.633668355,575,1.690210544,0.693706106,m_ct_targetonly
+Fire Station - Bank,-13.36182975,5.633668355,575,-2.371781387,0.257307841,m_ct_targetonly
+Fire Station - Pawn Shop,-16.320643,5.633668355,575,-2.896983275,0.07505466,m_ct_targetonly
+Fire Station - Pizzeria,-2.551644667,5.633668355,575,-0.452927738,0.999824199,m_ct_targetonly
+Fire Station - Quattroki Restaurant,-16.57733414,5.633668355,575,-2.942547039,0.066262388,m_ct_targetonly
+Fire Station - High School,4.279889069,5.633668355,575,0.759698441,0.994973235,m_ct_targetonly
+Bank - Pawn Shop,-2.958813254,5.633668355,575,-0.525201888,0.999529217,m_ct_targetonly
+Bank - Pizzeria,10.81018508,5.633668355,575,1.918853649,0.538421678,m_ct_targetonly
+Bank - Quattroki Restaurant,-3.215504388,5.633668355,575,-0.570765651,0.999187042,m_ct_targetonly
+Bank - High School,17.64171882,5.633668355,575,3.131479829,0.038421583,m_ct_targetonly
+Pawn Shop - Pizzeria,13.76899833,5.633668355,575,2.444055537,0.222270043,m_ct_targetonly
+Pawn Shop - Quattroki Restaurant,-0.256691135,5.633668355,575,-0.045563764,1,m_ct_targetonly
+Pawn Shop - High School,20.60053207,5.633668355,575,3.656681716,0.006734998,m_ct_targetonly
+Pizzeria - Quattroki Restaurant,-14.02568947,5.633668355,575,-2.4896193,0.201884628,m_ct_targetonly
+Pizzeria - High School,6.831533736,5.633668355,575,1.21262618,0.928126564,m_ct_targetonly
+Quattroki Restaurant - High School,20.85722321,5.633668355,575,3.70224548,0.005705526,m_ct_targetonly
+Automobile shop - Police station ,-121.7330869,33.15688035,575,-3.671427637,0.006384554,m_dt_targetonly
+Automobile shop - Fire Station,-108.0765657,33.15688035,575,-3.259551701,0.02589191,m_dt_targetonly
+Automobile shop - Bank,-210.2248552,33.15688035,575,-6.340308647,1.35E-08,m_dt_targetonly
+Automobile shop - Pawn Shop,-197.0890682,33.15688035,575,-5.944137871,1.35E-07,m_dt_targetonly
+Automobile shop - Pizzeria,-117.0799615,33.15688035,575,-3.531090992,0.01051346,m_dt_targetonly
+Automobile shop - Quattroki Restaurant,-245.5192637,33.15688035,575,-7.404775756,5.16E-10,m_dt_targetonly
+Automobile shop - High School,-184.4303666,33.15688035,575,-5.562355826,1.13E-06,m_dt_targetonly
+Police station  - Fire Station,13.65652113,33.15688035,575,0.411875936,0.999907228,m_dt_targetonly
+Police station  - Bank,-88.4917683,33.15688035,575,-2.66888101,0.134351935,m_dt_targetonly
+Police station  - Pawn Shop,-75.3559813,33.15688035,575,-2.272710234,0.310559607,m_dt_targetonly
+Police station  - Pizzeria,4.65312534,33.15688035,575,0.140336645,0.999999945,m_dt_targetonly
+Police station  - Quattroki Restaurant,-123.7861769,33.15688035,575,-3.733348119,0.005088075,m_dt_targetonly
+Police station  - High School,-62.69727971,33.15688035,575,-1.890928189,0.557728342,m_dt_targetonly
+Fire Station - Bank,-102.1482894,33.15688035,575,-3.080756946,0.044672524,m_dt_targetonly
+Fire Station - Pawn Shop,-89.01250242,33.15688035,575,-2.68458617,0.129365095,m_dt_targetonly
+Fire Station - Pizzeria,-9.003395786,33.15688035,575,-0.271539291,0.999994613,m_dt_targetonly
+Fire Station - Quattroki Restaurant,-137.442698,33.15688035,575,-4.145224055,0.001013741,m_dt_targetonly
+Fire Station - High School,-76.35380084,33.15688035,575,-2.302804125,0.293766619,m_dt_targetonly
+Bank - Pawn Shop,13.135787,33.15688035,575,0.396170776,0.999928674,m_dt_targetonly
+Bank - Pizzeria,93.14489364,33.15688035,575,2.809217655,0.094681748,m_dt_targetonly
+Bank - Quattroki Restaurant,-35.29440858,33.15688035,575,-1.06446711,0.963778653,m_dt_targetonly
+Bank - High School,25.79448858,33.15688035,575,0.777952821,0.994181088,m_dt_targetonly
+Pawn Shop - Pizzeria,80.00910664,33.15688035,575,2.413046879,0.236899025,m_dt_targetonly
+Pawn Shop - Quattroki Restaurant,-48.43019559,33.15688035,575,-1.460637885,0.82796754,m_dt_targetonly
+Pawn Shop - High School,12.65870158,33.15688035,575,0.381782045,0.999944495,m_dt_targetonly
+Pizzeria - Quattroki Restaurant,-128.4393022,33.15688035,575,-3.873684764,0.00299566,m_dt_targetonly
+Pizzeria - High School,-67.35040505,33.15688035,575,-2.031264834,0.461585558,m_dt_targetonly
+Quattroki Restaurant - High School,61.08889717,33.15688035,575,1.84241993,0.59123818,m_dt_targetonly
+Automobile shop - Police station ,0.157351125,0.044829336,575,3.510003445,0.011310112,m_dwell_targetonly
+Automobile shop - Fire Station,0.417954351,0.044829336,575,9.323233049,5.03E-10,m_dwell_targetonly
+Automobile shop - Bank,0.097045038,0.044829336,575,2.164766321,0.374854476,m_dwell_targetonly
+Automobile shop - Pawn Shop,0.234693804,0.044829336,575,5.235272765,6.39E-06,m_dwell_targetonly
+Automobile shop - Pizzeria,0.263168853,0.044829336,575,5.87046058,2.05E-07,m_dwell_targetonly
+Automobile shop - Quattroki Restaurant,0.441454908,0.044829336,575,9.847455775,5.03E-10,m_dwell_targetonly
+Automobile shop - High School,0.585250398,0.044829336,575,13.05507608,5.03E-10,m_dwell_targetonly
+Police station  - Fire Station,0.260603226,0.044829336,575,5.813229604,2.84E-07,m_dwell_targetonly
+Police station  - Bank,-0.060306088,0.044829336,575,-1.345237124,0.881035733,m_dwell_targetonly
+Police station  - Pawn Shop,0.077342679,0.044829336,575,1.72526932,0.670704584,m_dwell_targetonly
+Police station  - Pizzeria,0.105817727,0.044829336,575,2.360457135,0.26309432,m_dwell_targetonly
+Police station  - Quattroki Restaurant,0.284103783,0.044829336,575,6.33745233,1.37E-08,m_dwell_targetonly
+Police station  - High School,0.427899273,0.044829336,575,9.545072633,5.03E-10,m_dwell_targetonly
+Fire Station - Bank,-0.320909314,0.044829336,575,-7.158466729,5.73E-10,m_dwell_targetonly
+Fire Station - Pawn Shop,-0.183260547,0.044829336,575,-4.087960284,0.001282012,m_dwell_targetonly
+Fire Station - Pizzeria,-0.154785499,0.044829336,575,-3.452772469,0.013754654,m_dwell_targetonly
+Fire Station - Quattroki Restaurant,0.023500557,0.044829336,575,0.524222726,0.999534981,m_dwell_targetonly
+Fire Station - High School,0.167296047,0.044829336,575,3.731843029,0.005116477,m_dwell_targetonly
+Bank - Pawn Shop,0.137648766,0.044829336,575,3.070506444,0.046036341,m_dwell_targetonly
+Bank - Pizzeria,0.166123815,0.044829336,575,3.705694259,0.005633815,m_dwell_targetonly
+Bank - Quattroki Restaurant,0.34440987,0.044829336,575,7.682689455,5.05E-10,m_dwell_targetonly
+Bank - High School,0.48820536,0.044829336,575,10.89030976,5.03E-10,m_dwell_targetonly
+Pawn Shop - Pizzeria,0.028475048,0.044829336,575,0.635187815,0.998374813,m_dwell_targetonly
+Pawn Shop - Quattroki Restaurant,0.206761104,0.044829336,575,4.61218301,0.000132482,m_dwell_targetonly
+Pawn Shop - High School,0.350556594,0.044829336,575,7.819803313,5.04E-10,m_dwell_targetonly
+Pizzeria - Quattroki Restaurant,0.178286056,0.044829336,575,3.976995195,0.00200148,m_dwell_targetonly
+Pizzeria - High School,0.322081546,0.044829336,575,7.184615498,5.62E-10,m_dwell_targetonly
+Quattroki Restaurant - High School,0.14379549,0.044829336,575,3.207620303,0.03045892,m_dwell_targetonly
+Automobile shop - Police station ,-11.02259207,5.613182437,575,-1.963697455,0.507529154,m_navct_targetonly
+Automobile shop - Fire Station,-5.756253421,5.613182437,575,-1.02548839,0.970507046,m_navct_targetonly
+Automobile shop - Bank,-18.77777937,5.613182437,575,-3.34530003,0.01966085,m_navct_targetonly
+Automobile shop - Pawn Shop,-21.93550094,5.613182437,575,-3.907854623,0.00262483,m_navct_targetonly
+Automobile shop - Pizzeria,-7.656020885,5.613182437,575,-1.363935873,0.873189464,m_navct_targetonly
+Automobile shop - Quattroki Restaurant,-21.88283816,5.613182437,575,-3.898472641,0.002722151,m_navct_targetonly
+Automobile shop - High School,-1.802670187,5.613182437,575,-0.321149403,0.999982935,m_navct_targetonly
+Police station  - Fire Station,5.266338647,5.613182437,575,0.938209065,0.982192368,m_navct_targetonly
+Police station  - Bank,-7.755187304,5.613182437,575,-1.381602574,0.86550446,m_navct_targetonly
+Police station  - Pawn Shop,-10.91290887,5.613182437,575,-1.944157168,0.520964747,m_navct_targetonly
+Police station  - Pizzeria,3.366571183,5.613182437,575,0.599761583,0.998877742,m_navct_targetonly
+Police station  - Quattroki Restaurant,-10.86024609,5.613182437,575,-1.934775186,0.52743109,m_navct_targetonly
+Police station  - High School,9.219921881,5.613182437,575,1.642548053,0.724130454,m_navct_targetonly
+Fire Station - Bank,-13.02152595,5.613182437,575,-2.319811639,0.284510387,m_navct_targetonly
+Fire Station - Pawn Shop,-16.17924752,5.613182437,575,-2.882366233,0.078070502,m_navct_targetonly
+Fire Station - Pizzeria,-1.899767464,5.613182437,575,-0.338447482,0.999975567,m_navct_targetonly
+Fire Station - Quattroki Restaurant,-16.12658474,5.613182437,575,-2.872984251,0.080057933,m_navct_targetonly
+Fire Station - High School,3.953583233,5.613182437,575,0.704338987,0.996864617,m_navct_targetonly
+Bank - Pawn Shop,-3.157721565,5.613182437,575,-0.562554594,0.999260509,m_navct_targetonly
+Bank - Pizzeria,11.12175849,5.613182437,575,1.981364157,0.495429077,m_navct_targetonly
+Bank - Quattroki Restaurant,-3.105058788,5.613182437,575,-0.553172612,0.99933765,m_navct_targetonly
+Bank - High School,16.97510918,5.613182437,575,3.024150627,0.052655748,m_navct_targetonly
+Pawn Shop - Pizzeria,14.27948005,5.613182437,575,2.543918751,0.17931614,m_navct_targetonly
+Pawn Shop - Quattroki Restaurant,0.052662777,5.613182437,575,0.009381982,1,m_navct_targetonly
+Pawn Shop - High School,20.13283075,5.613182437,575,3.586705221,0.008650539,m_navct_targetonly
+Pizzeria - Quattroki Restaurant,-14.22681728,5.613182437,575,-2.534536769,0.183082088,m_navct_targetonly
+Pizzeria - High School,5.853350697,5.613182437,575,1.04278647,0.967645047,m_navct_targetonly
+Quattroki Restaurant - High School,20.08016797,5.613182437,575,3.577323238,0.008942068,m_navct_targetonly
+Automobile shop - Police station ,1.87827736,0.329139956,575,5.706622136,5.14E-07,m_orict_targetonly
+Automobile shop - Fire Station,1.8541353,0.329139956,575,5.633273216,7.71E-07,m_orict_targetonly
+Automobile shop - Bank,1.513831504,0.329139956,575,4.599355001,0.000140491,m_orict_targetonly
+Automobile shop - Pawn Shop,1.712739815,0.329139956,575,5.203682454,7.51E-06,m_orict_targetonly
+Automobile shop - Pizzeria,1.202258097,0.329139956,575,3.652726065,0.006831957,m_orict_targetonly
+Automobile shop - Quattroki Restaurant,1.403385904,0.329139956,575,4.263796835,0.000616962,m_orict_targetonly
+Automobile shop - High School,2.180441136,0.329139956,575,6.624662531,2.74E-09,m_orict_targetonly
+Police station  - Fire Station,-0.02414206,0.329139956,575,-0.07334892,0.999999999,m_orict_targetonly
+Police station  - Bank,-0.364445856,0.329139956,575,-1.107267135,0.955186533,m_orict_targetonly
+Police station  - Pawn Shop,-0.165537545,0.329139956,575,-0.502939682,0.999646532,m_orict_targetonly
+Police station  - Pizzeria,-0.676019263,0.329139956,575,-2.05389607,0.446443277,m_orict_targetonly
+Police station  - Quattroki Restaurant,-0.474891456,0.329139956,575,-1.442825301,0.836868071,m_orict_targetonly
+Police station  - High School,0.302163776,0.329139956,575,0.918040396,0.984302409,m_orict_targetonly
+Fire Station - Bank,-0.340303796,0.329139956,575,-1.033918215,0.969136524,m_orict_targetonly
+Fire Station - Pawn Shop,-0.141395485,0.329139956,575,-0.429590762,0.99987677,m_orict_targetonly
+Fire Station - Pizzeria,-0.651877203,0.329139956,575,-1.980547151,0.495987502,m_orict_targetonly
+Fire Station - Quattroki Restaurant,-0.450749396,0.329139956,575,-1.369476381,0.870807668,m_orict_targetonly
+Fire Station - High School,0.326305836,0.329139956,575,0.991389315,0.975598085,m_orict_targetonly
+Bank - Pawn Shop,0.198908312,0.329139956,575,0.604327453,0.998821227,m_orict_targetonly
+Bank - Pizzeria,-0.311573406,0.329139956,575,-0.946628935,0.981250494,m_orict_targetonly
+Bank - Quattroki Restaurant,-0.1104456,0.329139956,575,-0.335558166,0.999976957,m_orict_targetonly
+Bank - High School,0.666609632,0.329139956,575,2.025307531,0.465595121,m_orict_targetonly
+Pawn Shop - Pizzeria,-0.510481718,0.329139956,575,-1.550956389,0.779159131,m_orict_targetonly
+Pawn Shop - Quattroki Restaurant,-0.309353912,0.329139956,575,-0.939885619,0.982007748,m_orict_targetonly
+Pawn Shop - High School,0.467701321,0.329139956,575,1.420980077,0.847437952,m_orict_targetonly
+Pizzeria - Quattroki Restaurant,0.201127806,0.329139956,575,0.61107077,0.998733502,m_orict_targetonly
+Pizzeria - High School,0.978183038,0.329139956,575,2.971936466,0.06105825,m_orict_targetonly
+Quattroki Restaurant - High School,0.777055232,0.329139956,575,2.360865696,0.262884174,m_orict_targetonly
+Automobile shop - Police station ,-3.569650089,0.49957771,575,-7.145334985,5.79E-10,m_speed_targetonly
+Automobile shop - Fire Station,-6.610757547,0.49957771,575,-13.23269116,5.03E-10,m_speed_targetonly
+Automobile shop - Bank,-5.382544765,0.49957771,575,-10.77418919,5.03E-10,m_speed_targetonly
+Automobile shop - Pawn Shop,-2.778380041,0.49957771,575,-5.561457178,1.14E-06,m_speed_targetonly
+Automobile shop - Pizzeria,-3.313075622,0.49957771,575,-6.631752289,2.65E-09,m_speed_targetonly
+Automobile shop - Quattroki Restaurant,-7.109828709,0.49957771,575,-14.23167721,5.03E-10,m_speed_targetonly
+Automobile shop - High School,-10.91315014,0.49957771,575,-21.84474992,5.03E-10,m_speed_targetonly
+Police station  - Fire Station,-3.041107458,0.49957771,575,-6.087356176,5.91E-08,m_speed_targetonly
+Police station  - Bank,-1.812894676,0.49957771,575,-3.62885421,0.007444724,m_speed_targetonly
+Police station  - Pawn Shop,0.791270048,0.49957771,575,1.583877807,0.759960811,m_speed_targetonly
+Police station  - Pizzeria,0.256574467,0.49957771,575,0.513582696,0.999593925,m_speed_targetonly
+Police station  - Quattroki Restaurant,-3.54017862,0.49957771,575,-7.086342223,6.16E-10,m_speed_targetonly
+Police station  - High School,-7.34350005,0.49957771,575,-14.69941493,5.03E-10,m_speed_targetonly
+Fire Station - Bank,1.228212782,0.49957771,575,2.458501966,0.215663379,m_speed_targetonly
+Fire Station - Pawn Shop,3.832377506,0.49957771,575,7.671233983,5.05E-10,m_speed_targetonly
+Fire Station - Pizzeria,3.297681925,0.49957771,575,6.600938872,3.10E-09,m_speed_targetonly
+Fire Station - Quattroki Restaurant,-0.499071162,0.49957771,575,-0.998986047,0.974525132,m_speed_targetonly
+Fire Station - High School,-4.302392592,0.49957771,575,-8.612058757,5.03E-10,m_speed_targetonly
+Bank - Pawn Shop,2.604164724,0.49957771,575,5.212732017,7.17E-06,m_speed_targetonly
+Bank - Pizzeria,2.069469143,0.49957771,575,4.142436906,0.001025471,m_speed_targetonly
+Bank - Quattroki Restaurant,-1.727283944,0.49957771,575,-3.457488013,0.013536583,m_speed_targetonly
+Bank - High School,-5.530605374,0.49957771,575,-11.07056072,5.03E-10,m_speed_targetonly
+Pawn Shop - Pizzeria,-0.534695581,0.49957771,575,-1.070295112,0.962684798,m_speed_targetonly
+Pawn Shop - Quattroki Restaurant,-4.331448668,0.49957771,575,-8.67022003,5.03E-10,m_speed_targetonly
+Pawn Shop - High School,-8.134770098,0.49957771,575,-16.28329274,5.03E-10,m_speed_targetonly
+Pizzeria - Quattroki Restaurant,-3.796753087,0.49957771,575,-7.599924918,5.06E-10,m_speed_targetonly
+Pizzeria - High School,-7.600074517,0.49957771,575,-15.21299763,5.03E-10,m_speed_targetonly
+Quattroki Restaurant - High School,-3.80332143,0.49957771,575,-7.61307271,5.06E-10,m_speed_targetonly
+Automobile shop - Police station ,-10.85897436,5.492685978,575,-1.976988017,0.498421544,m_teleport_targetonly
+Automobile shop - Fire Station,-9.115384615,5.492685978,575,-1.659549563,0.713401038,m_teleport_targetonly
+Automobile shop - Bank,-20.92307692,5.492685978,575,-3.809261445,0.003830361,m_teleport_targetonly
+Automobile shop - Pawn Shop,-25.96153846,5.492685978,575,-4.726565212,7.80E-05,m_teleport_targetonly
+Automobile shop - Pizzeria,-12.41025641,5.492685978,575,-2.259414876,0.318143482,m_teleport_targetonly
+Automobile shop - Quattroki Restaurant,-30,5.492685978,575,-5.461808689,1.95E-06,m_teleport_targetonly
+Automobile shop - High School,-14.43589744,5.492685978,575,-2.628203668,0.14794479,m_teleport_targetonly
+Police station  - Fire Station,1.743589744,5.492685978,575,0.317438454,0.999984241,m_teleport_targetonly
+Police station  - Bank,-10.06410256,5.492685978,575,-1.832273428,0.598225156,m_teleport_targetonly
+Police station  - Pawn Shop,-15.1025641,5.492685978,575,-2.749577195,0.110223787,m_teleport_targetonly
+Police station  - Pizzeria,-1.551282051,5.492685978,575,-0.28242686,0.999992938,m_teleport_targetonly
+Police station  - Quattroki Restaurant,-19.14102564,5.492685978,575,-3.484820672,0.012332784,m_teleport_targetonly
+Police station  - High School,-3.576923077,5.492685978,575,-0.651215651,0.998093477,m_teleport_targetonly
+Fire Station - Bank,-11.80769231,5.492685978,575,-2.149711881,0.384280924,m_teleport_targetonly
+Fire Station - Pawn Shop,-16.84615385,5.492685978,575,-3.067015648,0.046508828,m_teleport_targetonly
+Fire Station - Pizzeria,-3.294871795,5.492685978,575,-0.599865313,0.998876484,m_teleport_targetonly
+Fire Station - Quattroki Restaurant,-20.88461538,5.492685978,575,-3.802259126,0.003933026,m_teleport_targetonly
+Fire Station - High School,-5.320512821,5.492685978,575,-0.968654105,0.978608555,m_teleport_targetonly
+Bank - Pawn Shop,-5.038461538,5.492685978,575,-0.917303767,0.984375683,m_teleport_targetonly
+Bank - Pizzeria,8.512820513,5.492685978,575,1.549846568,0.779794018,m_teleport_targetonly
+Bank - Quattroki Restaurant,-9.076923077,5.492685978,575,-1.652547244,0.717837488,m_teleport_targetonly
+Bank - High School,6.487179487,5.492685978,575,1.181057776,0.937159158,m_teleport_targetonly
+Pawn Shop - Pizzeria,13.55128205,5.492685978,575,2.467150335,0.211771935,m_teleport_targetonly
+Pawn Shop - Quattroki Restaurant,-4.038461538,5.492685978,575,-0.735243477,0.995897151,m_teleport_targetonly
+Pawn Shop - High School,11.52564103,5.492685978,575,2.098361543,0.417164924,m_teleport_targetonly
+Pizzeria - Quattroki Restaurant,-17.58974359,5.492685978,575,-3.202393812,0.030955391,m_teleport_targetonly
+Pizzeria - High School,-2.025641026,5.492685978,575,-0.368788792,0.999956131,m_teleport_targetonly
+Quattroki Restaurant - High School,15.56410256,5.492685978,575,2.833605021,0.08885411,m_teleport_targetonly
+Automobile shop - Police station ,-0.079335663,0.41896888,575,-0.189359322,0.999999556,m_varx_targetonly
+Automobile shop - Fire Station,-0.787460641,0.41896888,575,-1.879520601,0.565617629,m_varx_targetonly
+Automobile shop - Bank,-0.890410917,0.41896888,575,-2.125243569,0.399814859,m_varx_targetonly
+Automobile shop - Pawn Shop,0.361720646,0.41896888,575,0.863359223,0.989068918,m_varx_targetonly
+Automobile shop - Pizzeria,-0.963560043,0.41896888,575,-2.299836789,0.295399079,m_varx_targetonly
+Automobile shop - Quattroki Restaurant,-0.48592478,0.41896888,575,-1.159811156,0.942784728,m_varx_targetonly
+Automobile shop - High School,-0.222249514,0.41896888,575,-0.530467834,0.999497191,m_varx_targetonly
+Police station  - Fire Station,-0.708124977,0.41896888,575,-1.690161279,0.693738084,m_varx_targetonly
+Police station  - Bank,-0.811075254,0.41896888,575,-1.935884247,0.526666253,m_varx_targetonly
+Police station  - Pawn Shop,0.441056309,0.41896888,575,1.052718545,0.965913073,m_varx_targetonly
+Police station  - Pizzeria,-0.884224379,0.41896888,575,-2.110477466,0.409309956,m_varx_targetonly
+Police station  - Quattroki Restaurant,-0.406589117,0.41896888,575,-0.970451834,0.978381206,m_varx_targetonly
+Police station  - High School,-0.142913851,0.41896888,575,-0.341108512,0.999974224,m_varx_targetonly
+Fire Station - Bank,-0.102950276,0.41896888,575,-0.245722967,0.999997297,m_varx_targetonly
+Fire Station - Pawn Shop,1.149181287,0.41896888,575,2.742879824,0.112087563,m_varx_targetonly
+Fire Station - Pizzeria,-0.176099402,0.41896888,575,-0.420316187,0.99989362,m_varx_targetonly
+Fire Station - Quattroki Restaurant,0.30153586,0.41896888,575,0.719709446,0.996409557,m_varx_targetonly
+Fire Station - High School,0.565211126,0.41896888,575,1.349052767,0.879458763,m_varx_targetonly
+Bank - Pawn Shop,1.252131563,0.41896888,575,2.988602791,0.058261991,m_varx_targetonly
+Bank - Pizzeria,-0.073149126,0.41896888,575,-0.17459322,0.999999747,m_varx_targetonly
+Bank - Quattroki Restaurant,0.404486136,0.41896888,575,0.965432413,0.979011491,m_varx_targetonly
+Bank - High School,0.668161403,0.41896888,575,1.594775734,0.753455598,m_varx_targetonly
+Pawn Shop - Pizzeria,-1.325280689,0.41896888,575,-3.163196011,0.034908988,m_varx_targetonly
+Pawn Shop - Quattroki Restaurant,-0.847645427,0.41896888,575,-2.023170378,0.467035778,m_varx_targetonly
+Pawn Shop - High School,-0.58397016,0.41896888,575,-1.393827057,0.860033452,m_varx_targetonly
+Pizzeria - Quattroki Restaurant,0.477635262,0.41896888,575,1.140025633,0.947703048,m_varx_targetonly
+Pizzeria - High School,0.741310528,0.41896888,575,1.769368954,0.641172014,m_varx_targetonly
+Quattroki Restaurant - High School,0.263675266,0.41896888,575,0.629343321,0.998468541,m_varx_targetonly
+Automobile shop - Police station ,-28.76983358,4.769721281,575,-6.031764097,8.15E-08,m_vary_targetonly
+Automobile shop - Fire Station,-12.69259595,4.769721281,575,-2.661077074,0.136883577,m_vary_targetonly
+Automobile shop - Bank,-30.03562597,4.769721281,575,-6.297144885,1.73E-08,m_vary_targetonly
+Automobile shop - Pawn Shop,-63.61482258,4.769721281,575,-13.33722011,5.03E-10,m_vary_targetonly
+Automobile shop - Pizzeria,-36.2592884,4.769721281,575,-7.601972161,5.06E-10,m_vary_targetonly
+Automobile shop - Quattroki Restaurant,-7.980560867,4.769721281,575,-1.673171323,0.704703701,m_vary_targetonly
+Automobile shop - High School,-14.36147597,4.769721281,575,-3.010967544,0.054679256,m_vary_targetonly
+Police station  - Fire Station,16.07723763,4.769721281,575,3.370687023,0.018091716,m_vary_targetonly
+Police station  - Bank,-1.26579239,4.769721281,575,-0.265380788,0.999995401,m_vary_targetonly
+Police station  - Pawn Shop,-34.844989,4.769721281,575,-7.305456011,5.29E-10,m_vary_targetonly
+Police station  - Pizzeria,-7.48945482,4.769721281,575,-1.570208064,0.768016801,m_vary_targetonly
+Police station  - Quattroki Restaurant,20.78927271,4.769721281,575,4.358592774,0.000410678,m_vary_targetonly
+Police station  - High School,14.40835761,4.769721281,575,3.020796553,0.053164474,m_vary_targetonly
+Fire Station - Bank,-17.34303002,4.769721281,575,-3.636067811,0.00725446,m_vary_targetonly
+Fire Station - Pawn Shop,-50.92222663,4.769721281,575,-10.67614303,5.03E-10,m_vary_targetonly
+Fire Station - Pizzeria,-23.56669245,4.769721281,575,-4.940895088,2.80E-05,m_vary_targetonly
+Fire Station - Quattroki Restaurant,4.712035083,4.769721281,575,0.987905751,0.976078695,m_vary_targetonly
+Fire Station - High School,-1.668880021,4.769721281,575,-0.34989047,0.999969341,m_vary_targetonly
+Bank - Pawn Shop,-33.57919661,4.769721281,575,-7.040075223,6.57E-10,m_vary_targetonly
+Bank - Pizzeria,-6.22366243,4.769721281,575,-1.304827277,0.89697364,m_vary_targetonly
+Bank - Quattroki Restaurant,22.0550651,4.769721281,575,4.623973562,0.000125507,m_vary_targetonly
+Bank - High School,15.67415,4.769721281,575,3.286177341,0.023792821,m_vary_targetonly
+Pawn Shop - Pizzeria,27.35553418,4.769721281,575,5.735247946,4.39E-07,m_vary_targetonly
+Pawn Shop - Quattroki Restaurant,55.63426171,4.769721281,575,11.66404878,5.03E-10,m_vary_targetonly
+Pawn Shop - High School,49.25334661,4.769721281,575,10.32625256,5.03E-10,m_vary_targetonly
+Pizzeria - Quattroki Restaurant,28.27872753,4.769721281,575,5.928800838,1.47E-07,m_vary_targetonly
+Pizzeria - High School,21.89781243,4.769721281,575,4.591004617,0.00014595,m_vary_targetonly
+Quattroki Restaurant - High School,-6.380915105,4.769721281,575,-1.337796221,0.884075303,m_vary_targetonly
+Automobile shop - Police station ,-1.240039212,0.190697988,575,-6.50263397,5.30E-09,m_varz_targetonly
+Automobile shop - Fire Station,-0.957093158,0.190697988,575,-5.018894904,1.90E-05,m_varz_targetonly
+Automobile shop - Bank,-1.587521629,0.190697988,575,-8.324794871,5.03E-10,m_varz_targetonly
+Automobile shop - Pawn Shop,-1.562207078,0.190697988,575,-8.192048051,5.03E-10,m_varz_targetonly
+Automobile shop - Pizzeria,-1.39773778,0.190697988,575,-7.329588517,5.25E-10,m_varz_targetonly
+Automobile shop - Quattroki Restaurant,-0.89446762,0.190697988,575,-4.690493228,9.23E-05,m_varz_targetonly
+Automobile shop - High School,-0.950265919,0.190697988,575,-4.983093583,2.27E-05,m_varz_targetonly
+Police station  - Fire Station,0.282946054,0.190697988,575,1.483739066,0.81605652,m_varz_targetonly
+Police station  - Bank,-0.347482417,0.190697988,575,-1.822160901,0.605176091,m_varz_targetonly
+Police station  - Pawn Shop,-0.322167865,0.190697988,575,-1.689414081,0.694222967,m_varz_targetonly
+Police station  - Pizzeria,-0.157698568,0.190697988,575,-0.826954547,0.991557912,m_varz_targetonly
+Police station  - Quattroki Restaurant,0.345571593,0.190697988,575,1.812140742,0.612048919,m_varz_targetonly
+Police station  - High School,0.289773294,0.190697988,575,1.519540387,0.796805565,m_varz_targetonly
+Fire Station - Bank,-0.630428471,0.190697988,575,-3.305899968,0.022336258,m_varz_targetonly
+Fire Station - Pawn Shop,-0.60511392,0.190697988,575,-3.173153147,0.033865257,m_varz_targetonly
+Fire Station - Pizzeria,-0.440644622,0.190697988,575,-2.310693613,0.289451492,m_varz_targetonly
+Fire Station - Quattroki Restaurant,0.062625539,0.190697988,575,0.328401676,0.999980116,m_varz_targetonly
+Fire Station - High School,0.00682724,0.190697988,575,0.035801321,1,m_varz_targetonly
+Bank - Pawn Shop,0.025314552,0.190697988,575,0.132746821,0.999999963,m_varz_targetonly
+Bank - Pizzeria,0.189783849,0.190697988,575,0.995206355,0.975063259,m_varz_targetonly
+Bank - Quattroki Restaurant,0.69305401,0.190697988,575,3.634301643,0.007300628,m_varz_targetonly
+Bank - High School,0.637255711,0.190697988,575,3.341701288,0.019892814,m_varz_targetonly
+Pawn Shop - Pizzeria,0.164469298,0.190697988,575,0.862459534,0.9891366,m_varz_targetonly
+Pawn Shop - Quattroki Restaurant,0.667739458,0.190697988,575,3.501554823,0.011644327,m_varz_targetonly
+Pawn Shop - High School,0.611941159,0.190697988,575,3.208954468,0.030333305,m_varz_targetonly
+Pizzeria - Quattroki Restaurant,0.503270161,0.190697988,575,2.639095289,0.144208408,m_varz_targetonly
+Pizzeria - High School,0.447471862,0.190697988,575,2.346494934,0.270337554,m_varz_targetonly
+Quattroki Restaurant - High School,-0.055798299,0.190697988,575,-0.292600355,0.999990991,m_varz_targetonly
