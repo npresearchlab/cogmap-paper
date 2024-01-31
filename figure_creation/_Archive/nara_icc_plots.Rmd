@@ -1,0 +1,93 @@
+---
+title: "NARA ICC Plot"
+output: html_document
+date: "2023-10-17"
+fig_width: 3 
+fig_height: 4 
+---
+
+```{r}
+# This code chunk loads various libraries necessary to complete the data analysis and produce graphics
+library(tidyverse)
+library(stringr)
+library(ez)
+library(cowplot)
+library(viridis)
+library(viridisLite)
+library("readxl")
+library("ggcorrplot")
+library(dplyr)
+library(ltm)
+library(plotrix)
+library("viridis")
+library('paletteer')
+```
+
+```{r}
+#This data chunk loads and tidies up the data
+
+#This loads the data file as the variable "data"
+nara_raters <- read.csv('/Users/yasminebassil/Desktop/Data/nara_all_raters.csv')
+# Tidying up the data
+names(nara_raters)[1] <- 'Participant'
+names(nara_raters)[2] <- 'Rater_1'
+names(nara_raters)[3] <- 'Rater_2'
+names(nara_raters)[4] <- 'Rater_3'
+names(nara_raters)[5] <- 'Rater_4'
+names(nara_raters)[6] <- 'Rater_5'
+names(nara_raters)[7] <- 'Rater_6'
+names(nara_raters)[8] <- 'Rater_7'
+names(nara_raters)[9] <- 'Rater_8'
+
+#names(data)[10] <- 'Rater_mean'
+#names(data)[11] <- 'Rater_final'
+nara_raters <- nara_raters %>%
+  pivot_longer(cols = starts_with("Rater"),
+               names_to = "Rater",
+               values_to = "Score")
+
+non_nav_data <- read.csv('/Users/yasminebassil/Desktop/Data/non_nav_data.csv')
+nara <- non_nav_data[, c("Participant.ID", "Age", "NARA")]
+names(nara)[1] <- 'Participant'
+names(nara)[2] <- 'Age'
+names(nara)[3] <- 'NARA'
+nara$Group <- 'YA'
+```
+
+
+```{r fig1, fig.height = 4, fig.width = 10, fig.align = "center"}
+
+data_plot <- ggplot(nara_raters, aes(x=Participant, y=Score, color = Rater))+
+  theme_classic()+
+  scale_color_viridis(option = "plasma", discrete = TRUE)+
+  theme(panel.background = element_rect(fill = "white", linewidth = .5, colour = "#242526"),
+        axis.line = element_line(linewidth = .5, colour = "#242526"),
+        axis.ticks = element_line(linewidth = .2, colour = "#242526"),
+        axis.text.y = element_text(size = 12),
+        axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),
+        axis.title.y = element_text(size = 16),
+        plot.title = element_text(hjust = 0.5),
+        panel.grid.major.x = element_line(color = "#242526", size = 0.2),
+        panel.grid.minor.x = element_blank())+
+  theme(legend.position = "right")+
+  geom_point(size=2, position=position_jitter(w=0.3),show.legend = TRUE, alpha = 0.6) +
+  labs(color= "Rater", y="NARA Score (%)", x=NULL)
+data_plot
+ggsave(file="/Users/yasminebassil/Documents/Emory/3_Research/Projects/CogMap_Paper/figure_creation/plots/fig_nara_icc.svg", 
+       plot=data_plot)
+```
+
+
+```{r}
+p_nara <- ggplot(nara, aes(x = Group, y=NARA, color = "#ffa6b4"))+
+  geom_point(size=2, position=position_jitter(w=0.05),show.legend = TRUE, alpha = 0.6) + 
+  labs(color= "Participant", y="NARA Score (%)", x="Age Group") +
+  theme(text = element_text(size = 15),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank(), 
+        axis.line = element_line(colour = "black"),
+        legend.position = "none")
+p_nara
+ggsave(file="/Users/yasminebassil/Documents/Emory/3_Research/Projects/CogMap_Paper/figure_creation/plots/fig_nara_scores.svg", 
+       plot=p_nara)
+```

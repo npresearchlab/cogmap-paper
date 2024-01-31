@@ -1,5 +1,5 @@
 ---
-title: "Correlation Plots"
+title: "Correlation Plots B3-B1"
 output: html_document
 date: "2023-10-06"
 ---
@@ -28,7 +28,7 @@ library(corrplot)
 
 ```{r reading data, include=FALSE}
 #This loads the data file as the variable "data"
-nav_data <- read.csv('/Users/yasminebassil/Desktop/Data/averaged_results.csv')
+nav_data <- read.csv('/Users/yasminebassil/Desktop/YA_Data/averaged_results.csv')
 # Tidying up the data
 names(nav_data)[1] <- 'index'
 names(nav_data)[2] <- 'Participant'
@@ -48,7 +48,7 @@ nav_data$Block_num <- as.factor(nav_data$Block_num)
 sapply(nav_data, class)
 
 #This loads the data file as the variable "data"
-non_nav_data <- read.csv('/Users/yasminebassil/Desktop/Data/non_nav_data.csv')
+non_nav_data <- read.csv('/Users/yasminebassil/Desktop/YA_Data/non_nav_data.csv')
 # Tidying up the data
 names(non_nav_data)[1] <- 'Participant'
 names(non_nav_data)[2] <- 'Age'
@@ -96,207 +96,154 @@ all_blocks <- aggregate(cbind(Total_Time, Orientation_Time, Navigation_Time,
                         data = nav_data, FUN = mean)
 
 all_blocks$NARA <- non_nav_data$NARA
+change$NARA <- non_nav_data$NARA
 ```
 
-## Correlations between All-Block All-Target Outcome Measures vs NARA
+## Correlations between B3-B1 All-Target Outcome Measures vs NARA
 
 ```{r p_corr_ct}
-p_corr_ct <- ggplot(all_blocks, aes(x=NARA, y=Total_Time)) + 
-  geom_point(color = "#ffa6b4")+
+p_corr_ct <- ggplot(change, aes(x=NARA, y=Total_Time)) + 
+  geom_point(data = change, aes(color = Participant), size = 3, alpha = 0.5)+
+  scale_color_viridis(option = "plasma", discrete = TRUE)+
   geom_smooth(method=lm, color = "black", fill = "#ffa6b4")+
-  ylab("Time to Target (s)")+
-  xlim(0,100)+
+  ylab("Total Time (s)")+
   theme(text = element_text(size = 20),
         panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
         panel.background = element_blank(), 
-        axis.line = element_line(colour = "black"))
+        axis.line = element_line(colour = "black")) +
+  theme(legend.position = "none")
 p_corr_ct
 ggsave(file="/Users/yasminebassil/Documents/Emory/3_Research/Projects/CogMap_Paper/figure_creation/plots/fig6_ct.svg",
        height = 4, width=5, plot=p_corr_ct)
 ```
 
 ```{r echo=TRUE}
-corr_ct <- cor.test(all_blocks$Total_Time, all_blocks$NARA)
+corr_ct <- cor.test(change$Total_Time, change$NARA)
 corr_ct
 ```
 
-```{r p_corr_ctnav}
-p_corr_ctnav <- ggplot(all_blocks, aes(x=NARA, y=Navigation_Time)) + 
-  geom_point(color = "#ffa6b4")+
+```{r p_corr_ct_nav}
+p_corr_ctnav <- ggplot(change, aes(x=NARA, y=Navigation_Time)) + 
+  geom_point(data = change, aes(color = Participant), size = 3, alpha = 0.5)+
+  scale_color_viridis(option = "plasma", discrete = TRUE)+
   geom_smooth(method=lm, color = "black", fill = "#ffa6b4")+
   ylab("Navigation Time (s)")+
-  xlim(0,100)+
   theme(text = element_text(size = 20),
         panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
         panel.background = element_blank(), 
-        axis.line = element_line(colour = "black"))
+        axis.line = element_line(colour = "black")) +
+  theme(legend.position = "none")
 p_corr_ctnav
 ggsave(file="/Users/yasminebassil/Documents/Emory/3_Research/Projects/CogMap_Paper/figure_creation/plots/fig6_ctnav.svg",
        height = 4, width=5, plot=p_corr_ctnav)
 ```
+
 ```{r echo=TRUE}
-corr_ctnav <- cor.test(all_blocks$Navigation_Time, all_blocks$NARA)
+corr_ctnav <- cor.test(change$Navigation_Time, change$NARA)
 corr_ctnav
 ```
 
-```{r p_corr_ctori}
-p_corr_ctori <- ggplot(all_blocks, aes(x=NARA, y=Orientation_Time)) + 
-  geom_point(color = "#ffa6b4")+
+```{r p_corr_ct_ori}
+p_corr_ctori <- ggplot(change, aes(x=NARA, y=Orientation_Time)) + 
+  geom_point(data = change, aes(color = Participant), size = 3, alpha = 0.5)+
+  scale_color_viridis(option = "plasma", discrete = TRUE)+
   geom_smooth(method=lm, color = "black", fill = "#ffa6b4")+
   ylab("Orientation Time (s)")+
-  xlim(0,100)+
   theme(text = element_text(size = 20),
         panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
         panel.background = element_blank(), 
-        axis.line = element_line(colour = "black"))
+        axis.line = element_line(colour = "black")) +
+  theme(legend.position = "none")
 p_corr_ctori
 ggsave(file="/Users/yasminebassil/Documents/Emory/3_Research/Projects/CogMap_Paper/figure_creation/plots/fig6_ctori.svg",
        height = 4, width=5, plot=p_corr_ctori)
 ```
 
 ```{r echo=TRUE}
-corr_ctori <- cor.test(all_blocks$Orientation_Time, all_blocks$NARA)
+corr_ctori <- cor.test(change$Orientation_Time, change$NARA)
 corr_ctori
 ```
 
 ```{r p_corr_dt}
-p_corr_dt <- ggplot(all_blocks, aes(x=NARA, y=Distance)) + 
-  geom_point(color = "#ffa6b4")+
+p_corr_dt <- ggplot(change, aes(x=NARA, y=Distance)) + 
+  geom_point(data = change, aes(color = Participant), size = 3, alpha = 0.5)+
+  scale_color_viridis(option = "plasma", discrete = TRUE)+
   geom_smooth(method=lm, color = "black", fill = "#ffa6b4")+
-  ylab("Distance (VR Units)")+
-  xlim(0,100)+
-  theme(text = element_text(size = 20),
+  ylab("Distance Traveled (VR Units)")+
+  theme(text = element_text(size = 18),
         panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
         panel.background = element_blank(), 
-        axis.line = element_line(colour = "black"))
+        axis.line = element_line(colour = "black")) +
+  theme(legend.position = "none")
 p_corr_dt
 ggsave(file="/Users/yasminebassil/Documents/Emory/3_Research/Projects/CogMap_Paper/figure_creation/plots/fig6_dt.svg",
        height = 4, width=5, plot=p_corr_dt)
 ```
 
 ```{r echo=TRUE}
-corr_dt <- cor.test(all_blocks$Distance, all_blocks$NARA)
+corr_dt <- cor.test(change$Distance, change$NARA)
 corr_dt
 ```
 
 ```{r p_corr_dwell}
-p_corr_dwell <- ggplot(all_blocks, aes(x=NARA, y=Mean_Dwell)) + 
-  geom_point(color = "#ffa6b4")+
+p_corr_dwell <- ggplot(change, aes(x=NARA, y=Mean_Dwell)) + 
+  geom_point(data = change, aes(color = Participant), size = 3, alpha = 0.5)+
+  scale_color_viridis(option = "plasma", discrete = TRUE)+
   geom_smooth(method=lm, color = "black", fill = "#ffa6b4")+
-  ylab("Mean Dwell Time (s)")+
-  xlim(0,100)+
+  ylab("Dwell Time (s)")+
   theme(text = element_text(size = 20),
         panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
         panel.background = element_blank(), 
-        axis.line = element_line(colour = "black"))
-p_corr_dt
+        axis.line = element_line(colour = "black")) +
+  theme(legend.position = "none")
+p_corr_dwell
 ggsave(file="/Users/yasminebassil/Documents/Emory/3_Research/Projects/CogMap_Paper/figure_creation/plots/fig6_dwell.svg",
        height = 4, width=5, plot=p_corr_dwell)
 ```
 
 ```{r echo=TRUE}
-corr_dwell <- cor.test(all_blocks$Mean_Dwell, all_blocks$NARA)
+corr_dwell <- cor.test(change$Mean_Dwell, change$NARA)
 corr_dwell
 ```
 
 ```{r p_corr_speed}
-p_corr_speed <- ggplot(all_blocks, aes(x=NARA, y=Speed)) + 
-  geom_point(color = "#ffa6b4")+
+p_corr_speed <- ggplot(change, aes(x=NARA, y=Speed)) + 
+  geom_point(data = change, aes(color = Participant), size = 3, alpha = 0.5)+
+  scale_color_viridis(option = "plasma", discrete = TRUE)+
   geom_smooth(method=lm, color = "black", fill = "#ffa6b4")+
   ylab("Speed (VR Units/s)")+
-  xlim(0,100)+
   theme(text = element_text(size = 20),
         panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
         panel.background = element_blank(), 
-        axis.line = element_line(colour = "black"))
+        axis.line = element_line(colour = "black")) +
+  theme(legend.position = "none")
 p_corr_speed
 ggsave(file="/Users/yasminebassil/Documents/Emory/3_Research/Projects/CogMap_Paper/figure_creation/plots/fig6_speed.svg",
        height = 4, width=5, plot=p_corr_speed)
 ```
 
 ```{r echo=TRUE}
-corr_speed <- cor.test(all_blocks$Speed, all_blocks$NARA)
+corr_speed <- cor.test(change$Speed, change$NARA)
 corr_speed
 ```
 
-```{r p_corr_varx}
-p_corr_varx <- ggplot(all_blocks, aes(x=NARA, y=Var_X)) + 
-  geom_point(color = "#ffa6b4")+
-  geom_smooth(method=lm, color = "black", fill = "#ffa6b4")+
-  ylab("Var X (degrees/s)")+
-  xlim(0,100)+
-  theme(text = element_text(size = 20),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank(), 
-        axis.line = element_line(colour = "black"))
-p_corr_varx
-ggsave(file="/Users/yasminebassil/Documents/Emory/3_Research/Projects/CogMap_Paper/figure_creation/plots/fig6_varx.svg",
-       height = 4, width=5, plot=p_corr_varx)
-```
-
-```{r echo=TRUE}
-corr_varx <- cor.test(all_blocks$Var_X, all_blocks$NARA)
-corr_varx
-```
-
-```{r p_corr_vary}
-p_corr_vary <- ggplot(all_blocks, aes(x=NARA, y=Var_Y)) + 
-  geom_point(color = "#ffa6b4")+
-  geom_smooth(method=lm, color = "black", fill = "#ffa6b4")+
-  ylab("Var Y (degrees/x)")+
-  xlim(0,100)+
-  theme(text = element_text(size = 20),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank(), 
-        axis.line = element_line(colour = "black"))
-p_corr_vary
-ggsave(file="/Users/yasminebassil/Documents/Emory/3_Research/Projects/CogMap_Paper/figure_creation/plots/fig6_vary.svg",
-       height = 4, width=5, plot=p_corr_vary)
-```
-
-```{r echo=TRUE}
-corr_vary <- cor.test(all_blocks$Var_Y, all_blocks$NARA)
-corr_vary
-```
-
-
-```{r p_corr_varz}
-p_corr_varz <- ggplot(all_blocks, aes(x=NARA, y=Var_Z)) + 
-  geom_point(color = "#ffa6b4")+
-  geom_smooth(method=lm, color = "black", fill = "#ffa6b4")+
-  ylab("Var Z (degrees/x)")+
-  xlim(0,100)+
-  theme(text = element_text(size = 20),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank(), 
-        axis.line = element_line(colour = "black"))
-p_corr_varz
-ggsave(file="/Users/yasminebassil/Documents/Emory/3_Research/Projects/CogMap_Paper/figure_creation/plots/fig6_varz.svg",
-       height = 4, width=5, plot=p_corr_varz)
-```
-
-```{r echo=TRUE}
-corr_varz <- cor.test(all_blocks$Var_Z, all_blocks$NARA)
-corr_varz
-```
-
-
 ```{r p_corr_teleport}
-p_corr_teleport <- ggplot(all_blocks, aes(x=NARA, y=Teleportations)) + 
-  geom_point(color = "#ffa6b4")+
+p_corr_teleport <- ggplot(change, aes(x=NARA, y=Teleportations)) + 
+  geom_point(data = change, aes(color = Participant), size = 3, alpha = 0.5)+
+  scale_color_viridis(option = "plasma", discrete = TRUE)+
   geom_smooth(method=lm, color = "black", fill = "#ffa6b4")+
   ylab("Teleportations (count)")+
-  xlim(0,100)+
   theme(text = element_text(size = 20),
         panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
         panel.background = element_blank(), 
-        axis.line = element_line(colour = "black"))
+        axis.line = element_line(colour = "black")) +
+  theme(legend.position = "none")
 p_corr_teleport
 ggsave(file="/Users/yasminebassil/Documents/Emory/3_Research/Projects/CogMap_Paper/figure_creation/plots/fig6_teleport.svg",
        height = 4, width=5, plot=p_corr_teleport)
 ```
 
 ```{r echo=TRUE}
-corr_teleport <- cor.test(all_blocks$Teleportations, all_blocks$NARA)
+corr_teleport <- cor.test(change$Teleportations, change$NARA)
 corr_teleport
 ```

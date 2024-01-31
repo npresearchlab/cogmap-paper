@@ -1,0 +1,384 @@
+---
+title: "Outcome Measures Per Block"
+output: html_document
+date: "2023-05-01"
+---
+
+
+```{r global-options, include=FALSE}
+knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE)
+```
+
+
+```{r loading libraries, include=FALSE}
+# This code chunk loads various libraries necessary to complete the data analysis and produce graphics
+library(tidyverse)
+library(stringr)
+library(ez)
+library(cowplot)
+library(viridis)
+library(viridisLite)
+library("readxl")
+library("ggcorrplot")
+library(dplyr)
+library(ltm)
+library(plotrix)
+library("viridis")
+library("paletteer")
+```
+
+```{r reading data, include=FALSE}
+#This data chunk loads and tidies up the data
+
+#This loads the data file as the variable "data"
+data <- read.csv('/Users/yasminebassil/Desktop/Data/averaged_results.csv')
+# Tidying up the data
+names(data)[1] <- 'index'
+names(data)[2] <- 'Participant'
+names(data)[3] <- 'Block_num'
+names(data)[4] <- 'Total_Time'
+names(data)[5] <- 'Orientation_Time'
+names(data)[6] <- 'Navigation_Time'
+names(data)[7] <- 'Distance'
+names(data)[8] <- 'Speed'
+names(data)[9] <- 'Mean_Dwell'
+names(data)[10] <- 'Var_X'
+names(data)[11] <- 'Var_Y'
+names(data)[12] <- 'Var_Z'
+names(data)[13] <- 'Teleportations'
+data <- data[ -c(1) ]
+data$Block_num <- as.factor(data$Block_num)
+sapply(data, class)
+data
+```
+
+```{r ct}
+#Data.summary for Total_Time
+data.summary <- data %>%
+  group_by(Block_num) %>%
+  summarise(
+    se = std.error(Total_Time),
+    Total_Time = mean(Total_Time)
+  )
+#Total_time by Block_num
+p_ct <- ggplot(data, aes(x=Block_num, y=Total_Time, color=Participant))+
+  geom_line(data, mapping = aes(x= Block_num, y = Total_Time, group = Participant, color = Participant), alpha = .5)+
+  scale_color_viridis(option = "plasma", discrete = TRUE)+
+  geom_point(data, mapping = aes(x= Block_num, y = Total_Time, group = Participant),color = 'white', size = 3)+
+  geom_point(data, mapping = aes(x= Block_num, y = Total_Time, group = Participant, color = Participant),alpha = .5)+
+  geom_line(data.summary, mapping = aes(x= Block_num, y = Total_Time, group = 1), size = 1.5, color = '#242526')+
+  stat_summary(fun.args = list(mean_se), 
+                geom="crossbar", 
+                width=0.2, 
+                color="#242526") +
+  labs(color= "Participant", y="Total Time (s)", x="")+
+  scale_x_discrete(labels = c( "Block 1","Block 2","Block 3"))+
+  ylim(0,1000)+
+  theme_classic()+
+  theme(axis.line = element_line(linewidth = .5, colour = "#242526"))+
+  theme(axis.ticks = element_line(linewidth = .2, colour = "#242526"))+
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(legend.position = "none")+
+  theme(axis.text.x = element_text(size=16))+
+  theme(axis.text.y = element_text(size=16))+
+  theme(axis.title.y = element_text(size=16))
+p_ct
+```
+
+```{r orict}
+#Data.summary for Orientation_Time
+data.summary <- data %>%
+  group_by(Block_num) %>%
+  summarise(
+    se = std.error(Orientation_Time),
+    Orientation_Time = mean(Orientation_Time)
+  )
+#Orientation Time by Block_num
+p_orict <- ggplot(data, aes(x=Block_num, y=Orientation_Time, color=Participant))+
+  geom_line(data, mapping = aes(x= Block_num, y = Orientation_Time, group = Participant, color = Participant), alpha = .5)+
+  scale_color_viridis(option = "plasma", discrete = TRUE)+
+  geom_point(data, mapping = aes(x= Block_num, y = Orientation_Time, group = Participant),color = 'white', size = 3)+
+  geom_point(data, mapping = aes(x= Block_num, y = Orientation_Time, group = Participant, color = Participant),alpha = .5)+
+  geom_line(data.summary, mapping = aes(x= Block_num, y = Orientation_Time, group = 1), size = 1.5, color = '#242526')+
+  stat_summary(fun.args = list(mean_se), 
+                geom="crossbar", 
+                width=0.2, 
+                color="#242526") +
+  labs(color= "Participant", y="Orientation Time (s)", x="")+
+  scale_x_discrete(labels = c( "Block 1","Block 2","Block 3"))+
+  ylim(0,100)+
+  theme_classic()+
+  theme(axis.line = element_line(linewidth = .5, colour = "#242526"))+
+  theme(axis.ticks = element_line(linewidth = .2, colour = "#242526"))+
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(legend.position = "none")+
+  theme(axis.text.x = element_text(size=16))+
+  theme(axis.text.y = element_text(size=16))+
+  theme(axis.title.y = element_text(size=16))
+p_orict
+```
+
+
+```{r navct}
+#Data.summary for Navigation_Time
+data.summary <- data %>%
+  group_by(Block_num) %>%
+  summarise(
+    se = std.error(Navigation_Time),
+    Navigation_Time = mean(Navigation_Time)
+  )
+#Navigation Time by Block_num
+p_navct <- ggplot(data, aes(x=Block_num, y=Navigation_Time, color=Participant))+
+  geom_line(data, mapping = aes(x= Block_num, y = Navigation_Time, group = Participant, color = Participant), alpha = .5)+
+  scale_color_viridis(option = "plasma", discrete = TRUE)+
+  geom_point(data, mapping = aes(x= Block_num, y = Navigation_Time, group = Participant),color = 'white', size = 3)+
+  geom_point(data, mapping = aes(x= Block_num, y = Navigation_Time, group = Participant, color = Participant),alpha = .5)+
+  geom_line(data.summary, mapping = aes(x= Block_num, y = Navigation_Time, group = 1), size = 1.5, color = '#242526')+
+  stat_summary(fun.args = list(mean_se), 
+                geom="crossbar", 
+                width=0.2, 
+                color="#242526") +
+  labs(color= "Participant", y="Navigation Time (s)", x="")+
+  scale_x_discrete(labels = c( "Block 1","Block 2","Block 3"))+
+  ylim(0,1000)+
+  theme_classic()+
+  theme(axis.line = element_line(linewidth = .5, colour = "#242526"))+
+  theme(axis.ticks = element_line(linewidth = .2, colour = "#242526"))+
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(legend.position = "none")+
+  theme(axis.text.x = element_text(size=16))+
+  theme(axis.text.y = element_text(size=16))+
+  theme(axis.title.y = element_text(size=16))
+p_navct
+```
+
+```{r dt}
+#Data.summary for Distance
+data.summary <- data %>%
+  group_by(Block_num) %>%
+  summarise(
+    se = std.error(Distance),
+    Distance = mean(Distance)
+  )
+#Distance by Block_num
+p_dt <- ggplot(data, aes(x=Block_num, y=Distance, color=Participant))+
+  geom_line(data, mapping = aes(x= Block_num, y = Distance, group = Participant, color = Participant), alpha = .5)+
+  scale_color_viridis(option = "plasma", discrete = TRUE)+
+  geom_point(data, mapping = aes(x= Block_num, y = Distance, group = Participant),color = 'white', size = 3)+
+  geom_point(data, mapping = aes(x= Block_num, y = Distance, group = Participant, color = Participant),alpha = .5)+
+  geom_line(data.summary, mapping = aes(x= Block_num, y = Distance, group = 1), size = 1.5, color = '#242526')+
+  stat_summary(fun.args = list(mean_se), 
+                geom="crossbar", 
+                width=0.2, 
+                color="#242526") +
+  labs(color= "Participant", y="Distance Traveled (VR Units)", x="")+
+  scale_x_discrete(labels = c( "Block 1","Block 2","Block 3"))+
+  ylim(0,5000)+
+  theme_classic()+
+  theme(axis.line = element_line(linewidth = .5, colour = "#242526"))+
+  theme(axis.ticks = element_line(linewidth = .2, colour = "#242526"))+
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(legend.position = "none")+
+  theme(axis.text.x = element_text(size=16))+
+  theme(axis.text.y = element_text(size=16))+
+  theme(axis.title.y = element_text(size=16))
+p_dt
+```
+
+```{r speed}
+#Data.summary for Speed
+data.summary <- data %>%
+  group_by(Block_num) %>%
+  summarise(
+    se = std.error(Speed),
+    Speed = mean(Speed)
+  )
+#Speed by Block_num
+p_speed <- ggplot(data, aes(x=Block_num, y=Speed, color=Participant))+
+  geom_line(data, mapping = aes(x= Block_num, y = Speed, group = Participant, color = Participant), alpha = .5)+
+  scale_color_viridis(option = "plasma", discrete = TRUE)+
+  geom_point(data, mapping = aes(x= Block_num, y = Speed, group = Participant),color = 'white', size = 3)+
+  geom_point(data, mapping = aes(x= Block_num, y = Speed, group = Participant, color = Participant),alpha = .5)+
+  geom_line(data.summary, mapping = aes(x= Block_num, y = Speed, group = 1), size = 1.5, color = '#242526')+
+  stat_summary(fun.args = list(mean_se), 
+                geom="crossbar", 
+                width=0.2, 
+                color="#242526") +
+  labs(color= "Participant", y="Speed (VR Unit/s)", x="")+
+  scale_x_discrete(labels = c( "Block 1","Block 2","Block 3"))+
+  ylim(0,23)+
+  theme_classic()+
+  theme(axis.line = element_line(linewidth = .5, colour = "#242526"))+
+  theme(axis.ticks = element_line(linewidth = .2, colour = "#242526"))+
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(legend.position = "none")+
+  theme(axis.text.x = element_text(size=16))+
+  theme(axis.text.y = element_text(size=16))+
+  theme(axis.title.y = element_text(size=16))
+p_speed
+```
+
+```{r dwell}
+#Data.summary for Mean_Dwell
+data.summary <- data %>%
+  group_by(Block_num) %>%
+  summarise(
+    se = std.error(Mean_Dwell),
+    Mean_Dwell = mean(Mean_Dwell)
+  )
+#Mean_Dwell by Block_num
+p_dwell <- ggplot(data, aes(x=Block_num, y=Mean_Dwell, color=Participant))+
+  geom_line(data, mapping = aes(x= Block_num, y = Mean_Dwell, group = Participant, color = Participant), alpha = .5)+
+  scale_color_viridis(option = "plasma", discrete = TRUE)+
+  geom_point(data, mapping = aes(x= Block_num, y = Mean_Dwell, group = Participant),color = 'white', size = 3)+
+  geom_point(data, mapping = aes(x= Block_num, y = Mean_Dwell, group = Participant, color = Participant),alpha = .5)+
+  geom_line(data.summary, mapping = aes(x= Block_num, y = Mean_Dwell, group = 1), size = 1.5, color = '#242526')+
+  stat_summary(fun.args = list(mean_se), 
+                geom="crossbar", 
+                width=0.2, 
+                color="#242526") +
+  labs(color= "Participant", y="Mean Dwell Time (s)", x="")+
+  scale_x_discrete(labels = c( "Block 1","Block 2","Block 3"))+
+  ylim(0,3)+
+  theme_classic()+
+  theme(axis.line = element_line(linewidth = .5, colour = "#242526"))+
+  theme(axis.ticks = element_line(linewidth = .2, colour = "#242526"))+
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(legend.position = "none")+
+  theme(axis.text.x = element_text(size=16))+
+  theme(axis.text.y = element_text(size=16))+
+  theme(axis.title.y = element_text(size=16))
+p_dwell
+``` 
+
+```{r varx}
+#Data.summary for Var_X
+data.summary <- data %>%
+  group_by(Block_num) %>%
+  summarise(
+    se = std.error(Var_X),
+    Var_X = mean(Var_X)
+  )
+#Var_X by Block_num
+p_varx <- ggplot(data, aes(x=Block_num, y=Var_X, color=Participant))+
+  geom_line(data, mapping = aes(x= Block_num, y = Var_X, group = Participant, color = Participant), alpha = .5)+
+  scale_color_viridis(option = "plasma", discrete = TRUE)+
+  geom_point(data, mapping = aes(x= Block_num, y = Var_X, group = Participant),color = 'white', size = 3)+
+  geom_point(data, mapping = aes(x= Block_num, y = Var_X, group = Participant, color = Participant),alpha = .5)+
+  geom_line(data.summary, mapping = aes(x= Block_num, y = Var_X, group = 1), size = 1.5, color = '#242526')+
+  stat_summary(fun.args = list(mean_se), 
+                geom="crossbar", 
+                width=0.2, 
+                color="#242526") +
+  labs(color= "Participant", y="X Euler Angle Variation (degrees/s)", x="")+
+  scale_x_discrete(labels = c( "Block 1","Block 2","Block 3"))+
+  ylim(0,20)+
+  theme_classic()+
+  theme(axis.line = element_line(linewidth = .5, colour = "#242526"))+
+  theme(axis.ticks = element_line(linewidth = .2, colour = "#242526"))+
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(legend.position = "none")+
+  theme(axis.text.x = element_text(size=16))+
+  theme(axis.text.y = element_text(size=16))+
+  theme(axis.title.y = element_text(size=16))
+p_varx
+```
+
+```{r vary}
+#Data.summary for Var_Y
+data.summary <- data %>%
+  group_by(Block_num) %>%
+  summarise(
+    se = std.error(Var_Y),
+    Var_Y = mean(Var_Y)
+  )
+#Var_Y by Block_num
+p_vary <- ggplot(data, aes(x=Block_num, y=Var_Y, color=Participant))+
+  geom_line(data, mapping = aes(x= Block_num, y = Var_Y, group = Participant, color = Participant), alpha = .5)+
+  scale_color_viridis(option = "plasma", discrete = TRUE)+
+  geom_point(data, mapping = aes(x= Block_num, y = Var_Y, group = Participant),color = 'white', size = 3)+
+  geom_point(data, mapping = aes(x= Block_num, y = Var_Y, group = Participant, color = Participant),alpha = .5)+
+  geom_line(data.summary, mapping = aes(x= Block_num, y = Var_Y, group = 1), size = 1.5, color = '#242526')+
+  stat_summary(fun.args = list(mean_se), 
+                geom="crossbar", 
+                width=0.2, 
+                color="#242526") +
+  labs(color= "Participant", y="Y Euler Angle Variation (degrees/s)", x="")+
+  scale_x_discrete(labels = c( "Block 1","Block 2","Block 3"))+
+  ylim(0,130)+
+  theme_classic()+
+  theme(axis.line = element_line(linewidth = .5, colour = "#242526"))+
+  theme(axis.ticks = element_line(linewidth = .2, colour = "#242526"))+
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(legend.position = "none")+
+  theme(axis.text.x = element_text(size=16))+
+  theme(axis.text.y = element_text(size=16))+
+  theme(axis.title.y = element_text(size=16))
+p_vary
+```
+
+```{r varz}
+#Data.summary for Var_Z
+data.summary <- data %>%
+  group_by(Block_num) %>%
+  summarise(
+    se = std.error(Var_Z),
+    Var_Z = mean(Var_Z)
+  )
+#Var_Z by Block_num
+p_varz <- ggplot(data, aes(x=Block_num, y=Var_Z, color=Participant))+
+  geom_line(data, mapping = aes(x= Block_num, y = Var_Z, group = Participant, color = Participant), alpha = .5)+
+  scale_color_viridis(option = "plasma", discrete = TRUE)+
+  geom_point(data, mapping = aes(x= Block_num, y = Var_Z, group = Participant),color = 'white', size = 3)+
+  geom_point(data, mapping = aes(x= Block_num, y = Var_Z, group = Participant, color = Participant),alpha = .5)+
+  geom_line(data.summary, mapping = aes(x= Block_num, y = Var_Z, group = 1), size = 1.5, color = '#242526')+
+  stat_summary(fun.args = list(mean_se), 
+                geom="crossbar", 
+                width=0.2, 
+                color="#242526") +
+  labs(color= "Participant", y="Z Euler Angle Variation (degrees/s)", x="")+
+  scale_x_discrete(labels = c( "Block 1","Block 2","Block 3"))+
+  ylim(0,10)+
+  theme_classic()+
+  theme(axis.line = element_line(linewidth = .5, colour = "#242526"))+
+  theme(axis.ticks = element_line(linewidth = .2, colour = "#242526"))+
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(legend.position = "none")+
+  theme(axis.text.x = element_text(size=16))+
+  theme(axis.text.y = element_text(size=16))+
+  theme(axis.title.y = element_text(size=16))
+p_varz
+```
+
+```{r teleport}
+#Data.summary for Teleportations
+data.summary <- data %>%
+  group_by(Block_num) %>%
+  summarise(
+    se = std.error(Teleportations),
+    Teleportations = mean(Teleportations)
+  )
+#Teleportations by Block_num
+p_teleport <- ggplot(data, aes(x=Block_num, y=Teleportations, color=Participant))+
+  geom_line(data, mapping = aes(x= Block_num, y = Teleportations, group = Participant, color = Participant), alpha = .5)+
+  scale_color_viridis(option = "plasma", discrete = TRUE)+
+  geom_point(data, mapping = aes(x= Block_num, y = Teleportations, group = Participant),color = 'white', size = 3)+
+  geom_point(data, mapping = aes(x= Block_num, y = Teleportations, group = Participant, color = Participant),alpha = .5)+
+  geom_line(data.summary, mapping = aes(x= Block_num, y = Teleportations, group = 1), size = 1.5, color = '#242526')+
+  stat_summary(fun.args = list(mean_se), 
+                geom="crossbar", 
+                width=0.2, 
+                color="#242526") +
+  labs(color= "Participant", y="Teleportations (count)", x="")+
+  scale_x_discrete(labels = c( "Block 1","Block 2","Block 3"))+
+  ylim(0,700)+
+  theme_classic()+
+  theme(axis.line = element_line(linewidth = .5, colour = "#242526"))+
+  theme(axis.ticks = element_line(linewidth = .2, colour = "#242526"))+
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(legend.position = "none")+
+  theme(axis.text.x = element_text(size=16))+
+  theme(axis.text.y = element_text(size=16))+
+  theme(axis.title.y = element_text(size=16))
+p_teleport
+```

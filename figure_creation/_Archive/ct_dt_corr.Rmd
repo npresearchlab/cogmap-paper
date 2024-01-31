@@ -1,0 +1,114 @@
+---
+title: "CT DT Correlation Plot"
+output: html_document
+date: "2024-01-05"
+---
+
+```{r global-options, include=FALSE}
+knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE)
+```
+
+```{r loading libraries, include=FALSE}
+# This code chunk loads various libraries necessary to complete the data analysis and produce graphics
+library(tidyverse)
+library(stringr)
+library(ez)
+library(cowplot)
+library(viridis)
+library(viridisLite)
+library("readxl")
+library("ggcorrplot")
+library(dplyr)
+library(ltm)
+library(plotrix)
+library("viridis")
+library("paletteer")
+library(corrplot)
+```
+
+```{r reading data, include=FALSE}
+#This loads the data file as the variable "data"
+nav_data <- read.csv('/Users/yasminebassil/Desktop/Data/averaged_results.csv')
+# Tidying up the data
+names(nav_data)[1] <- 'index'
+names(nav_data)[2] <- 'Participant'
+names(nav_data)[3] <- 'Block_num'
+names(nav_data)[4] <- 'Total_Time'
+names(nav_data)[5] <- 'Orientation_Time'
+names(nav_data)[6] <- 'Navigation_Time'
+names(nav_data)[7] <- 'Distance'
+names(nav_data)[8] <- 'Speed'
+names(nav_data)[9] <- 'Mean_Dwell'
+names(nav_data)[10] <- 'Var_X'
+names(nav_data)[11] <- 'Var_Y'
+names(nav_data)[12] <- 'Var_Z'
+names(nav_data)[13] <- 'Teleportations'
+nav_data <- nav_data[ -c(1) ]
+nav_data$Block_num <- as.factor(nav_data$Block_num)
+sapply(nav_data, class)
+
+#This loads the data file as the variable "data"
+non_nav_data <- read.csv('/Users/yasminebassil/Desktop/Data/non_nav_data.csv')
+# Tidying up the data
+names(non_nav_data)[1] <- 'Participant'
+names(non_nav_data)[2] <- 'Age'
+names(non_nav_data)[3] <- 'PSQI'
+names(non_nav_data)[4] <- 'SSS_Pre'
+names(non_nav_data)[5] <- 'SSS_Post'
+names(non_nav_data)[6] <- 'SBSOD'
+names(non_nav_data)[7] <- 'MiniCog'
+names(non_nav_data)[8] <- 'TrailsA'
+names(non_nav_data)[9] <- 'TrailsB'
+names(non_nav_data)[10] <- 'SetShifting'
+names(non_nav_data)[11] <- 'CorsiBlocks'
+names(non_nav_data)[12] <- 'SSQ_Pre'
+names(non_nav_data)[13] <- 'SSQ_Post'
+names(non_nav_data)[14] <- 'NARA'
+```
+
+```{r organizing data, include=FALSE}
+b1 <- subset(nav_data, Block_num == 1)
+rownames(b1) <- NULL 
+b2 <- subset(nav_data, Block_num == 2)
+rownames(b2) <- NULL 
+b3 <- subset(nav_data, Block_num == 3)
+rownames(b3) <- NULL 
+
+change <- subset(b3, select = c(Participant))
+
+for (i in 1:nrow(b3)) {
+  change$Total_Time[i] <- b3$Total_Time[i] - b1$Total_Time[i]
+  change$Orientation_Time[i] <- b3$Orientation_Time[i] - b1$Orientation_Time[i]
+  change$Navigation_Time[i] <- b3$Navigation_Time[i] - b1$Navigation_Time[i]
+  change$Distance[i] <- b3$Distance[i] - b1$Distance[i]
+  change$Speed[i] <- b3$Speed[i] - b1$Speed[i]
+  change$Mean_Dwell[i] <- b3$Mean_Dwell[i] - b1$Mean_Dwell[i]
+  change$Var_X[i] <- b3$Var_X[i] - b1$Var_X[i]
+  change$Var_Y[i] <- b3$Var_Y[i] - b1$Var_Y[i]
+  change$Var_Z[i] <- b3$Var_Z[i] - b1$Var_Z[i]
+  change$Teleportations[i] <- b3$Teleportations[i] - b1$Teleportations[i]
+}
+
+all_blocks <- aggregate(cbind(Total_Time, Orientation_Time, Navigation_Time, 
+                              Distance, Speed, Mean_Dwell, Var_X, Var_Y, Var_Z,
+                              Teleportations) ~ Participant, 
+                        data = nav_data, FUN = mean)
+
+all_blocks$NARA <- non_nav_data$NARA
+```
+
+## Correlations between All-Block Completion Time and Distance Traveled
+
+```{r p_corr_ct}
+p_corr_ctdt <- ggplot(all_blocks, aes(x=Total_Time, y=Distance)) + 
+  geom_point()+
+  geom_smooth(method=lm)+
+  xlab("Completion Time")+
+  ylab("Distance Traveled")
+p_corr_ctdt
+```
+
+```{r echo=TRUE}
+corr_ctdt <- cor.test(all_blocks$Total_Time, all_blocks$Distance)
+corr_ctdt
+```
