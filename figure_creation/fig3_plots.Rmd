@@ -50,10 +50,7 @@ names(data)[6] <- 'Navigation_Time'
 names(data)[7] <- 'Distance'
 names(data)[8] <- 'Speed'
 names(data)[9] <- 'Mean_Dwell'
-names(data)[10] <- 'Var_X'
-names(data)[11] <- 'Var_Y'
-names(data)[12] <- 'Var_Z'
-names(data)[13] <- 'Teleportations'
+names(data)[10] <- 'Teleportations'
 data <- data[ -c(1) ]
 data$Block_num <- as.factor(data$Block_num)
 sapply(data, class)
@@ -74,10 +71,7 @@ names(nav_data)[7] <- 'Navigation_Time'
 names(nav_data)[8] <- 'Distance'
 names(nav_data)[9] <- 'Speed'
 names(nav_data)[10] <- 'Mean_Dwell'
-names(nav_data)[11] <- 'Var_X'
-names(nav_data)[12] <- 'Var_Y'
-names(nav_data)[13] <- 'Var_Z'
-names(nav_data)[14] <- 'Teleportations'
+names(nav_data)[11] <- 'Teleportations'
 nav_data <- nav_data[ -c(1) ]
 nav_data$Block_num <- as.factor(nav_data$Block_num)
 sapply(nav_data, class)

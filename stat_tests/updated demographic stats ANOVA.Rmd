@@ -1,0 +1,264 @@
+---
+title: "demographic data ANOVA"
+output: html_document
+date: "2023-11-02"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r}
+
+data <- read.csv('/Users/emmafunderburg/Desktop/Lab/BORICH LAB/YB CogMap/cogmap_alldata_final1.csv')
+
+```
+
+
+```{r}
+
+# checking normality of mean distance traveled - dependent variable
+
+hist(data$Mean.Distance.Traveled)
+
+```
+
+
+
+
+```{r}
+# this code chunk is calculating mean & sd by gender 
+# then runs one way ANOVA on this
+
+library(dplyr)
+library(ggplot2)
+library(ggpubr)
+library(stats)
+
+# calculating mean & sd
+
+data %>%
+  group_by(Gender) %>%
+  summarise(mean = mean(Mean.Distance.Traveled),
+            sd = sd(Mean.Distance.Traveled))
+
+# running Bartlett's test for unequal variances
+
+bartlett.test(Mean.Distance.Traveled~Gender, data = data)
+
+# p-value = 0.9097, variances cannot be deemed unequal
+
+# checking distribution of data - ignore but keeping code just in case
+
+ggplot(data, aes(x = Gender, y = Mean.Distance.Traveled, fill = Gender)) +
+    geom_boxplot() +
+    geom_jitter(shape = 15,
+        color = "steelblue",
+        position = position_jitter(0.21)) +
+    theme_classic()
+
+# male right skewed... checking with YB on this
+
+# now we run one way anova test
+
+anova_one_way_gender <- aov(Mean.Distance.Traveled~Gender, data = data)
+summary(anova_one_way_gender)
+
+```
+
+```{r}
+# option for independent samples t test for gender --> only two groups present in study (3 options)
+
+t.test(Mean.Distance.Traveled~Gender, var.equal=TRUE, data=data)
+
+
+```
+
+```{r}
+
+# this chunk is running one-way anova for handedness
+
+# calculating mean & sd
+
+data %>%
+  group_by(Handedness) %>%
+  summarise(mean = mean(Mean.Distance.Traveled),
+            sd = sd(Mean.Distance.Traveled))
+
+# running Bartlett's test for unequal variances
+
+bartlett.test(Mean.Distance.Traveled~Handedness, data = data)
+
+# checking distribution of data - ignore but keeping code just in case
+
+ggplot(data, aes(x = Handedness, y = Mean.Distance.Traveled, fill = Handedness)) +
+    geom_boxplot() +
+    geom_jitter(shape = 15,
+        color = "steelblue",
+        position = position_jitter(0.21)) +
+    theme_classic()
+
+# concerned about mixed... checking with YB
+
+# now we run one way anova test
+
+anova_one_way_handedness <- aov(Mean.Distance.Traveled~Handedness, data = data)
+summary(anova_one_way_handedness)
+
+```
+
+
+```{r}
+
+# this chunk is running a one way anova on VR experience quantified
+
+# calculating mean & sd
+
+data %>%
+  group_by(VR.Experience.Quantified) %>%
+  summarise(mean = mean(Mean.Distance.Traveled),
+            sd = sd(Mean.Distance.Traveled))
+
+# running Bartlett's test for unequal variances
+
+bartlett.test(Mean.Distance.Traveled~VR.Experience.Quantified, data = data)
+
+# bartlett p-value = 0.1448, no evidence that variance is unequal
+
+# checking distribution of data - ignore but keeping code just in case
+
+ggplot(data, aes(x = VR.Experience.Quantified, y = Mean.Distance.Traveled, fill = VR.Experience.Quantified)) +
+    geom_boxplot() +
+    geom_jitter(shape = 15,
+        color = "steelblue",
+        position = position_jitter(0.21)) +
+    theme_classic()
+
+# now we run one way anova test
+
+anova_one_way_VRexperience <- aov(Mean.Distance.Traveled~VR.Experience.Quantified, data = data)
+summary(anova_one_way_VRexperience)
+
+```
+
+
+```{r}
+
+# running correlation test between mean distance traveled & video game hrs per week
+# used Pearson's coefficient -> continuous
+
+# renaming variables
+vge <- data$Video.Game.Experience..hours.per.week.
+
+
+# scatter plot to get first glance at association
+plot(vge,data$Mean.Distance.Traveled)
+
+# run correlation test
+cor.test(vge,data$Mean.Distance.Traveled)
+
+```
+
+
+```{r}
+
+# running correlation test between exercise (hrs/week) & mean distance traveled
+# used Pearson's coefficient -> continuous
+
+# renaming variables
+exercise <- data$Exercise..hrs.week.
+
+# scatter plot to get first glance at association
+plot(exercise,data$Mean.Distance.Traveled)
+
+# run correlation test
+cor.test(exercise,data$Mean.Distance.Traveled)
+
+
+```
+
+
+```{r}
+
+# running correlation test between mean distance traveled & PSQI
+# used Spearman's coefficient -> non-parametric
+
+# renaming variables
+PSQI <- data$PSQI
+
+# scatter plot to get first glance at association
+plot(PSQI,data$Mean.Distance.Traveled)
+
+# run correlation test
+cor.test(PSQI,data$Mean.Distance.Traveled, method = "spearman", exact=FALSE)
+
+
+```
+
+```{r}
+
+# running correlation test between mean distance traveled & SBSOD
+# used Spearman's coefficient -> non-parametric
+
+# renaming variables
+SBSOD <- data$SBSOD
+
+# scatter plot to get first glance at association
+plot(SBSOD,data$Mean.Distance.Traveled)
+
+# run correlation test
+cor.test(SBSOD,data$Mean.Distance.Traveled, method = "spearman",exact=FALSE)
+
+```
+
+```{r}
+
+ttestdata <- read.csv('SSS SSQ Paper Data - Sheet1.csv')
+
+```
+
+```{r}
+
+# running two way t test on SSQ
+
+t.test(ttestdata$SSQ.Diff)
+
+```
+```{r}
+
+# running one sample, two-tailed t test on SSS differences
+
+t.test(ttestdata$SSS.Diff)
+
+
+```
+
+```{r}
+
+twosampledata <- read.csv('CogMap Paper 2 Sample T Tests - Differences.csv')
+
+```
+
+```{r}
+
+# running two sample t test on SSS data
+
+
+t.test(twosampledata$SSS.Pre, twosampledata$SSS.Post, paired = TRUE, alternative = "two.sided")
+
+```
+
+```{r}
+
+# running two sample t test on SSQ data
+
+t.test(twosampledata$SSQ.Pre, twosampledata$SSQ.Post, paired = TRUE, alternative = "two.sided")
+
+```
+

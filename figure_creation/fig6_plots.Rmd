@@ -39,10 +39,7 @@ names(nav_data)[6] <- 'Navigation_Time'
 names(nav_data)[7] <- 'Distance'
 names(nav_data)[8] <- 'Speed'
 names(nav_data)[9] <- 'Mean_Dwell'
-names(nav_data)[10] <- 'Var_X'
-names(nav_data)[11] <- 'Var_Y'
-names(nav_data)[12] <- 'Var_Z'
-names(nav_data)[13] <- 'Teleportations'
+names(nav_data)[10] <- 'Teleportations'
 nav_data <- nav_data[ -c(1) ]
 nav_data$Block_num <- as.factor(nav_data$Block_num)
 sapply(nav_data, class)
@@ -84,14 +81,11 @@ for (i in 1:nrow(b3)) {
   change$Distance[i] <- b3$Distance[i] - b1$Distance[i]
   change$Speed[i] <- b3$Speed[i] - b1$Speed[i]
   change$Mean_Dwell[i] <- b3$Mean_Dwell[i] - b1$Mean_Dwell[i]
-  change$Var_X[i] <- b3$Var_X[i] - b1$Var_X[i]
-  change$Var_Y[i] <- b3$Var_Y[i] - b1$Var_Y[i]
-  change$Var_Z[i] <- b3$Var_Z[i] - b1$Var_Z[i]
   change$Teleportations[i] <- b3$Teleportations[i] - b1$Teleportations[i]
 }
 
 all_blocks <- aggregate(cbind(Total_Time, Orientation_Time, Navigation_Time, 
-                              Distance, Speed, Mean_Dwell, Var_X, Var_Y, Var_Z,
+                              Distance, Speed, Mean_Dwell,
                               Teleportations) ~ Participant, 
                         data = nav_data, FUN = mean)
 

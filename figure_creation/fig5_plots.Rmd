@@ -48,10 +48,7 @@ names(data)[6] <- 'Navigation_Time'
 names(data)[7] <- 'Distance'
 names(data)[8] <- 'Speed'
 names(data)[9] <- 'Mean_Dwell'
-names(data)[10] <- 'Var_X'
-names(data)[11] <- 'Var_Y'
-names(data)[12] <- 'Var_Z'
-names(data)[13] <- 'Teleportations'
+names(data)[10] <- 'Teleportations'
 data <- data[ -c(1) ]
 data$Block_num <- as.factor(data$Block_num)
 sapply(data, class)
@@ -72,10 +69,7 @@ names(nav_data)[7] <- 'Navigation_Time'
 names(nav_data)[8] <- 'Distance'
 names(nav_data)[9] <- 'Speed'
 names(nav_data)[10] <- 'Mean_Dwell'
-names(nav_data)[11] <- 'Var_X'
-names(nav_data)[12] <- 'Var_Y'
-names(nav_data)[13] <- 'Var_Z'
-names(nav_data)[14] <- 'Teleportations'
+names(nav_data)[11] <- 'Teleportations'
 nav_data$Block_num <- as.factor(nav_data$Block_num)
 sapply(nav_data, class)
 
@@ -120,9 +114,6 @@ for (i in 1:nrow(b3)) {
   change$Distance[i] <- b3$Distance[i] - b1$Distance[i]
   change$Speed[i] <- b3$Speed[i] - b1$Speed[i]
   change$Mean_Dwell[i] <- b3$Mean_Dwell[i] - b1$Mean_Dwell[i]
-  change$Var_X[i] <- b3$Var_X[i] - b1$Var_X[i]
-  change$Var_Y[i] <- b3$Var_Y[i] - b1$Var_Y[i]
-  change$Var_Z[i] <- b3$Var_Z[i] - b1$Var_Z[i]
   change$Teleportations[i] <- b3$Teleportations[i] - b1$Teleportations[i]
 }
 
@@ -186,6 +177,10 @@ b3_targets <- b3 %>%
 b3_targets$Block_num <- as.factor(3)
 
 allblocks_targets <- rbind(b1_targets, b2_targets, b3_targets)
+```
+
+```{r}
+write.csv(allblocks_targets, "/Users/yasminebassil/Documents/Emory/3_Research/Projects/CogMap_Paper/data/target_avg_data.csv")
 ```
 
 # Total Time

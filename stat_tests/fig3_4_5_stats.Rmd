@@ -1,5 +1,5 @@
 ---
-title: "Figure 4 Stats Code"
+title: "Figure 3/4/5 Stats Code"
 output: html_document
 date: "2023-05-13"
 ---
@@ -31,6 +31,7 @@ library(lme4)
 library(lmerTest)
 #install.packages('emmeans')
 library('emmeans')
+library(patchwork)
 ```
 
 ```{r reading data, include=FALSE}
@@ -48,10 +49,7 @@ names(data)[6] <- 'Navigation_Time'
 names(data)[7] <- 'Distance'
 names(data)[8] <- 'Speed'
 names(data)[9] <- 'Mean_Dwell'
-names(data)[10] <- 'Var_X'
-names(data)[11] <- 'Var_Y'
-names(data)[12] <- 'Var_Z'
-names(data)[13] <- 'Teleportations'
+names(data)[10] <- 'Teleportations'
 data <- data[ -c(1) ]
 data$Block_num <- as.factor(data$Block_num)
 sapply(data, class)
@@ -72,10 +70,7 @@ names(nav_data)[7] <- 'Navigation_Time'
 names(nav_data)[8] <- 'Distance'
 names(nav_data)[9] <- 'Speed'
 names(nav_data)[10] <- 'Mean_Dwell'
-names(nav_data)[11] <- 'Var_X'
-names(nav_data)[12] <- 'Var_Y'
-names(nav_data)[13] <- 'Var_Z'
-names(nav_data)[14] <- 'Teleportations'
+names(nav_data)[11] <- 'Teleportations'
 nav_data <- nav_data[ -c(1) ]
 nav_data$Block_num <- as.factor(nav_data$Block_num)
 sapply(nav_data, class)
@@ -121,9 +116,6 @@ for (i in 1:nrow(b3)) {
   change$Distance[i] <- b3$Distance[i] - b1$Distance[i]
   change$Speed[i] <- b3$Speed[i] - b1$Speed[i]
   change$Mean_Dwell[i] <- b3$Mean_Dwell[i] - b1$Mean_Dwell[i]
-  change$Var_X[i] <- b3$Var_X[i] - b1$Var_X[i]
-  change$Var_Y[i] <- b3$Var_Y[i] - b1$Var_Y[i]
-  change$Var_Z[i] <- b3$Var_Z[i] - b1$Var_Z[i]
   change$Teleportations[i] <- b3$Teleportations[i] - b1$Teleportations[i]
 }
 
@@ -390,13 +382,13 @@ m_teleport_blocktarget <- as.data.frame(m_teleport_blocktarget)
 dataframes <- ls()
 
 # Filter dataframes that end with "anova"
-dataframes_to_save <- dataframes[grep("anova$", dataframes)]
+dataframes_to_save_anova <- dataframes[grep("anova$", dataframes)]
 
 # Create an empty list to store dataframes
-combined_dataframes <- list()
+combined_dataframes_anova <- list()
 
 # Loop through the selected dataframes, combine them, and add a "Source" column
-for (df_name in dataframes_to_save) {
+for (df_name in dataframes_to_save_anova) {
   # Get the dataframe by name
   df <- get(df_name)
   
@@ -404,11 +396,11 @@ for (df_name in dataframes_to_save) {
   df$Source <- df_name
   
   # Append the modified dataframe to the list
-  combined_dataframes[[df_name]] <- df
+  combined_dataframes_anova[[df_name]] <- df
 }
 
 # Combine all dataframes into one giant dataframe
-final_combined_dataframe <- do.call(rbind, combined_dataframes)
+final_combined_dataframe_anova <- do.call(rbind, combined_dataframes_anova)
 
 # Specify the directory where you want to save the CSV file
 output_directory <- "/Users/yasminebassil/Documents/Emory/3_Research/Projects/CogMap_Paper/stat_tests/"
@@ -417,7 +409,7 @@ output_directory <- "/Users/yasminebassil/Documents/Emory/3_Research/Projects/Co
 csv_file <- paste0(output_directory, "combined_anova_data.csv")
 
 # Save the combined dataframe as a CSV file
-write.csv(final_combined_dataframe, file = csv_file, row.names = FALSE)
+write.csv(final_combined_dataframe_anova, file = csv_file, row.names = FALSE)
 
 # Print a message to confirm the save
 cat("Saved combined data as", csv_file, "\n")
@@ -431,13 +423,13 @@ cat("Saved combined data as", csv_file, "\n")
 dataframes <- ls()
 
 # Filter dataframes that end with "anova"
-dataframes_to_save <- dataframes[grep("block$", dataframes)]
+dataframes_to_save_block <- dataframes[grep("block$", dataframes)]
 
 # Create an empty list to store dataframes
-combined_dataframes <- list()
+combined_dataframes_block <- list()
 
 # Loop through the selected dataframes, combine them, and add a "Source" column
-for (df_name in dataframes_to_save) {
+for (df_name in dataframes_to_save_block) {
   # Get the dataframe by name
   df <- get(df_name)
   
@@ -445,11 +437,11 @@ for (df_name in dataframes_to_save) {
   df$Source <- df_name
   
   # Append the modified dataframe to the list
-  combined_dataframes[[df_name]] <- df
+  combined_dataframes_block[[df_name]] <- df
 }
 
 # Combine all dataframes into one giant dataframe
-final_combined_dataframe <- do.call(rbind, combined_dataframes)
+final_combined_dataframe_block <- do.call(rbind, combined_dataframes_block)
 
 # Specify the directory where you want to save the CSV file
 output_directory <- "/Users/yasminebassil/Documents/Emory/3_Research/Projects/CogMap_Paper/stat_tests/"
@@ -458,7 +450,7 @@ output_directory <- "/Users/yasminebassil/Documents/Emory/3_Research/Projects/Co
 csv_file <- paste0(output_directory, "combined_block_data.csv")
 
 # Save the combined dataframe as a CSV file
-write.csv(final_combined_dataframe, file = csv_file, row.names = FALSE)
+write.csv(final_combined_dataframe_block, file = csv_file, row.names = FALSE)
 
 # Print a message to confirm the save
 cat("Saved combined data as", csv_file, "\n")
@@ -470,16 +462,16 @@ cat("Saved combined data as", csv_file, "\n")
 ```{r}
 
 # List all dataframes in the global environment
-dataframes2 <- ls()
+dataframes <- ls()
 
 # Filter dataframes that end with "anova"
-dataframes_to_save2 <- dataframes2[grep("blocktarget$", dataframes2)]
+dataframes_to_save_blocktarget <- dataframes[grep("blocktarget$", dataframes)]
 
 # Create an empty list to store dataframes
-combined_dataframes2 <- list()
+combined_dataframes_blocktarget <- list()
 
 # Loop through the selected dataframes, combine them, and add a "Source" column
-for (df_name in dataframes_to_save2) {
+for (df_name in dataframes_to_save_blocktarget) {
   # Get the dataframe by name
   df <- get(df_name)
   
@@ -487,11 +479,11 @@ for (df_name in dataframes_to_save2) {
   df$Source <- df_name
   
   # Append the modified dataframe to the list
-  combined_dataframes2[[df_name]] <- df
+  combined_dataframes_blocktarget[[df_name]] <- df
 }
 
 # Combine all dataframes into one giant dataframe
-final_combined_dataframe <- do.call(rbind, combined_dataframes2)
+final_combined_dataframe_blocktarget <- do.call(rbind, combined_dataframes_blocktarget)
 
 # Specify the directory where you want to save the CSV file
 output_directory <- "/Users/yasminebassil/Documents/Emory/3_Research/Projects/CogMap_Paper/stat_tests/"
@@ -500,7 +492,7 @@ output_directory <- "/Users/yasminebassil/Documents/Emory/3_Research/Projects/Co
 csv_file <- paste0(output_directory, "combined_blocktarget_data.csv")
 
 # Save the combined dataframe as a CSV file
-write.csv(final_combined_dataframe, file = csv_file, row.names = FALSE)
+write.csv(final_combined_dataframe_blocktarget, file = csv_file, row.names = FALSE)
 
 # Print a message to confirm the save
 cat("Saved combined data as", csv_file, "\n")
@@ -510,16 +502,16 @@ cat("Saved combined data as", csv_file, "\n")
 ```{r}
 
 # List all dataframes in the global environment
-dataframes3 <- ls()
+dataframes <- ls()
 
 # Filter dataframes that end with "anova"
-dataframes_to_save3 <- dataframes3[grep("targetonly$", dataframes3)]
+dataframes_to_save_targetonly <- dataframes[grep("targetonly$", dataframes)]
 
 # Create an empty list to store dataframes
-combined_dataframes3 <- list()
+combined_dataframes_targetonly <- list()
 
 # Loop through the selected dataframes, combine them, and add a "Source" column
-for (df_name in dataframes_to_save3) {
+for (df_name in dataframes_to_save_targetonly) {
   # Get the dataframe by name
   df <- get(df_name)
   
@@ -527,11 +519,11 @@ for (df_name in dataframes_to_save3) {
   df$Source <- df_name
   
   # Append the modified dataframe to the list
-  combined_dataframes3[[df_name]] <- df
+  combined_dataframes_targetonly[[df_name]] <- df
 }
 
 # Combine all dataframes into one giant dataframe
-final_combined_dataframe <- do.call(rbind, combined_dataframes3)
+final_combined_dataframe_targetonly <- do.call(rbind, combined_dataframes_targetonly)
 
 # Specify the directory where you want to save the CSV file
 output_directory <- "/Users/yasminebassil/Documents/Emory/3_Research/Projects/CogMap_Paper/stat_tests/"
@@ -540,8 +532,432 @@ output_directory <- "/Users/yasminebassil/Documents/Emory/3_Research/Projects/Co
 csv_file <- paste0(output_directory, "combined_target_data.csv")
 
 # Save the combined dataframe as a CSV file
-write.csv(final_combined_dataframe, file = csv_file, row.names = FALSE)
+write.csv(final_combined_dataframe_targetonly, file = csv_file, row.names = FALSE)
 
 # Print a message to confirm the save
 cat("Saved combined data as", csv_file, "\n")
 ```
+
+
+# Creating Figure 4 P-Value Matrices
+
+```{r}
+unique_labels <- unique(final_combined_dataframe_targetonly$Source)
+
+for (source_label in unique_labels) {
+  # Filter the dataset based on the label
+  filtered_data <- subset(final_combined_dataframe_targetonly, Source == source_label)
+  filtered_data[, 8] <- filtered_data[, 6] * 7
+  colnames(filtered_data)[8] <- "p.value.adj"
+  filtered_data <- separate(filtered_data, contrast, into = c("t1", "t2"), sep = " - ")
+  filtered_data$p.value.adj[filtered_data$p.value.adj > 1] <- 1
+  filtered_data$t1 <- factor(filtered_data$t1, 
+                                  levels = c("Automobile shop", "Police station ", 
+                                             "Fire Station", "Bank", "Pawn Shop",
+                                             "Pizzeria", "Quattroki Restaurant",
+                                             "High School"))
+  filtered_data$t2 <- factor(filtered_data$t2, 
+                                  levels = c("Automobile shop", "Police station ", 
+                                             "Fire Station", "Bank", "Pawn Shop",
+                                             "Pizzeria", "Quattroki Restaurant",
+                                             "High School"))
+  
+  new <- data.frame()
+  for (i in 1:nrow(filtered_data)) {
+    if (filtered_data$t1[i] == "Automobile shop" | filtered_data$t2[i] == "High School") {
+      new <- rbind(new, filtered_data[i, ])
+    }
+  }
+  
+  
+  temp <- new$t1
+  new$t1 <- new$t2
+  new$t2 <- temp
+  combined <- rbind(filtered_data, new)
+  
+  combined <- combined[!(combined$t1 == "Police station " & combined$t2 == "Automobile shop"), ]
+  combined <- combined[!(combined$t1 == "Fire Station" & combined$t2 == "Automobile shop"), ]
+  combined <- combined[!(combined$t1 == "Bank" & combined$t2 == "Automobile shop"), ]
+  combined <- combined[!(combined$t1 == "Pawn Shop" & combined$t2 == "Automobile shop"), ]
+  combined <- combined[!(combined$t1 == "Pizzeria" & combined$t2 == "Automobile shop"), ]
+  combined <- combined[!(combined$t1 == "Quattroki Restaurant" & combined$t2 == "Automobile shop"), ]
+  combined <- combined[!(combined$t1 == "High School" & combined$t2 == "Automobile shop"), ]
+  combined <- combined[!(combined$t1 == "High School" & combined$t2 == "Police station "), ]
+  combined <- combined[!(combined$t1 == "High School" & combined$t2 == "Fire Station"), ]
+  combined <- combined[!(combined$t1 == "High School" & combined$t2 == "Bank"), ]
+  combined <- combined[!(combined$t1 == "High School" & combined$t2 == "Pawn Shop"), ]
+  combined <- combined[!(combined$t1 == "High School" & combined$t2 == "Pizzeria"), ]
+  combined <- combined[!(combined$t1 == "High School" & combined$t2 == "Quattroki Restaurant"), ]
+  
+  new_rows <- data.frame(
+    t1 = c("Automobile shop", "Police station ", "Fire Station", "Bank", "Pawn Shop", "Pizzeria", 
+           "Quattroki Restaurant", "High School"),
+    t2 = c("Automobile shop", "Police station ", "Fire Station", "Bank", "Pawn Shop", "Pizzeria", 
+           "Quattroki Restaurant", "High School"),
+    estimate = c(rep(1, times = 8)),
+    SE = c(rep(1, times = 8)),
+    df = c(rep(1, times = 8)),
+    t.ratio = c(rep(1, times = 8)),
+    p.value = c(rep(1, times = 8)),
+    Source = c(rep(source_label, times = 8)),
+    p.value.adj = c(rep(1, times = 8))
+    )
+  
+ 
+  new_combined <- rbind(combined, new_rows)
+  
+  # Assign filtered data to a new data frame with the label name
+  assign(paste0("data_", source_label), new_combined)
+}
+```
+  
+
+## Creating Heatmaps
+
+```{r}
+heatmap_speed <- ggplot(data_m_speed_targetonly, aes(x = t1, y = t2, fill = p.value.adj)) +
+  geom_tile(aes(width = 1, height = 1), color = "white", lwd = 1) +
+  geom_tile(data = subset(data_m_speed_targetonly, p.value.adj < 0.05), aes(width = 1, height = 1), 
+            color = "white", lwd = 1) +
+  geom_text(aes(label = ifelse(p.value.adj < 0.05, "*", ""), 
+                fontface = ifelse(p.value.adj <0.05, "bold", "plain")),
+            size = 10, vjust = 0.7, hjust = 0.5, color = "white") +
+  scale_fill_gradient(limits = c(0,0.05), low = "#800971", high = "#EDACE5", na.value = "#ffd2d9") +
+  labs(title = "", x = "", y = "", fill = "P-Value") +
+  theme_classic() +
+  theme(axis.line = element_line(linewidth = .5, colour = "#242526")) +
+  theme(axis.ticks = element_line(linewidth = .2, colour = "#242526")) +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme(legend.position = "right") +
+  theme(axis.text.x = element_text(size=25)) +
+  theme(axis.text.y = element_text(size=25)) +
+  scale_x_discrete(labels=c("T1","T2","T3","T4","T5","T6","T7","T8")) +
+  scale_y_discrete(labels=c("T1","T2","T3","T4","T5","T6","T7","T8"))
+heatmap_speed
+ggsave(file="/Users/yasminebassil/Documents/Emory/3_Research/Projects/CogMap_Paper/figure_creation/plots/fig4_heatmap_speed.svg", height = 6, width = 6, plot=heatmap_speed)
+```
+
+
+```{r}
+heatmap_ct <- ggplot(data_m_ct_targetonly, aes(x = t1, y = t2, fill = p.value.adj)) +
+  geom_tile(aes(width = 1, height = 1), color = "white", lwd = 1) +
+  geom_tile(data = subset(data_m_ct_targetonly, p.value.adj < 0.05), aes(width = 1, height = 1), 
+            color = "white", lwd = 1) +
+  geom_text(aes(label = ifelse(p.value.adj < 0.05, "*", ""), 
+                fontface = ifelse(p.value.adj <0.05, "bold", "plain")),
+            size = 10, vjust = 0.7, hjust = 0.5, color = "white") +
+  scale_fill_gradient(limits = c(0,0.05), low = "#800971", high = "#EDACE5", na.value = "#ffd2d9") +
+  labs(title = "", x = "", y = "", fill = "P-Value") +
+  theme_classic() +
+  theme(axis.line = element_line(linewidth = .5, colour = "#242526")) +
+  theme(axis.ticks = element_line(linewidth = .2, colour = "#242526")) +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme(legend.position = "right") +
+  theme(axis.text.x = element_text(size=25)) +
+  theme(axis.text.y = element_text(size=25)) +
+  scale_x_discrete(labels=c("T1","T2","T3","T4","T5","T6","T7","T8")) +
+  scale_y_discrete(labels=c("T1","T2","T3","T4","T5","T6","T7","T8"))
+heatmap_ct
+ggsave(file="/Users/yasminebassil/Documents/Emory/3_Research/Projects/CogMap_Paper/figure_creation/plots/fig4_heatmap_ct.svg", height = 6, width = 6, plot=heatmap_ct)
+```
+
+
+```{r}
+heatmap_orict <- ggplot(data_m_orict_targetonly, aes(x = t1, y = t2, fill = p.value.adj)) +
+  geom_tile(aes(width = 1, height = 1), color = "white", lwd = 1) +
+  geom_tile(data = subset(data_m_orict_targetonly, p.value.adj < 0.05), aes(width = 1, height = 1), 
+            color = "white", lwd = 1) +
+  geom_text(aes(label = ifelse(p.value.adj < 0.05, "*", ""), 
+                fontface = ifelse(p.value.adj <0.05, "bold", "plain")),
+            size = 10, vjust = 0.7, hjust = 0.5, color = "white") +
+  scale_fill_gradient(limits = c(0,0.05), low = "#800971", high = "#EDACE5", na.value = "#ffd2d9") +
+  labs(title = "", x = "", y = "", fill = "P-Value") +
+  theme_classic() +
+  theme(axis.line = element_line(linewidth = .5, colour = "#242526")) +
+  theme(axis.ticks = element_line(linewidth = .2, colour = "#242526")) +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme(legend.position = "right") +
+  theme(axis.text.x = element_text(size=25)) +
+  theme(axis.text.y = element_text(size=25)) +
+  scale_x_discrete(labels=c("T1","T2","T3","T4","T5","T6","T7","T8")) +
+  scale_y_discrete(labels=c("T1","T2","T3","T4","T5","T6","T7","T8"))
+heatmap_orict
+ggsave(file="/Users/yasminebassil/Documents/Emory/3_Research/Projects/CogMap_Paper/figure_creation/plots/fig4_heatmap_orict.svg", height = 6, width = 6, plot=heatmap_orict)
+```
+
+```{r}
+heatmap_navct <- ggplot(data_m_navct_targetonly, aes(x = t1, y = t2, fill = p.value.adj)) +
+  geom_tile(aes(width = 1, height = 1), color = "white", lwd = 1) +
+  geom_tile(data = subset(data_m_navct_targetonly, p.value.adj < 0.05), aes(width = 1, height = 1), 
+            color = "white", lwd = 1) +
+  geom_text(aes(label = ifelse(p.value.adj < 0.05, "*", ""), 
+                fontface = ifelse(p.value.adj <0.05, "bold", "plain")),
+            size = 10, vjust = 0.7, hjust = 0.5, color = "white") +
+  scale_fill_gradient(limits = c(0,0.05), low = "#800971", high = "#EDACE5", na.value = "#ffd2d9") +
+  labs(title = "", x = "", y = "", fill = "P-Value") +
+  theme_classic() +
+  theme(axis.line = element_line(linewidth = .5, colour = "#242526")) +
+  theme(axis.ticks = element_line(linewidth = .2, colour = "#242526")) +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme(legend.position = "right") +
+  theme(axis.text.x = element_text(size=25)) +
+  theme(axis.text.y = element_text(size=25)) +
+  scale_x_discrete(labels=c("T1","T2","T3","T4","T5","T6","T7","T8")) +
+  scale_y_discrete(labels=c("T1","T2","T3","T4","T5","T6","T7","T8"))
+heatmap_navct
+ggsave(file="/Users/yasminebassil/Documents/Emory/3_Research/Projects/CogMap_Paper/figure_creation/plots/fig4_heatmap_navct.svg", height = 6, width = 6, plot=heatmap_navct)
+```
+
+```{r}
+heatmap_dt <- ggplot(data_m_dt_targetonly, aes(x = t1, y = t2, fill = p.value.adj)) +
+  geom_tile(aes(width = 1, height = 1), color = "white", lwd = 1) +
+  geom_tile(data = subset(data_m_dt_targetonly, p.value.adj < 0.05), aes(width = 1, height = 1), 
+            color = "white", lwd = 1) +
+  geom_text(aes(label = ifelse(p.value.adj < 0.05, "*", ""), 
+                fontface = ifelse(p.value.adj <0.05, "bold", "plain")),
+            size = 10, vjust = 0.7, hjust = 0.5, color = "white") +
+  scale_fill_gradient(limits = c(0,0.05), low = "#800971", high = "#EDACE5", na.value = "#ffd2d9") +
+  labs(title = "", x = "", y = "", fill = "P-Value") +
+  theme_classic() +
+  theme(axis.line = element_line(linewidth = .5, colour = "#242526")) +
+  theme(axis.ticks = element_line(linewidth = .2, colour = "#242526")) +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme(legend.position = "right") +
+  theme(axis.text.x = element_text(size=25)) +
+  theme(axis.text.y = element_text(size=25)) +
+  scale_x_discrete(labels=c("T1","T2","T3","T4","T5","T6","T7","T8")) +
+  scale_y_discrete(labels=c("T1","T2","T3","T4","T5","T6","T7","T8"))
+heatmap_dt
+ggsave(file="/Users/yasminebassil/Documents/Emory/3_Research/Projects/CogMap_Paper/figure_creation/plots/fig4_heatmap_dt.svg", height = 6, width = 6, plot=heatmap_dt)
+```
+
+```{r}
+heatmap_dwell <- ggplot(data_m_dwell_targetonly, aes(x = t1, y = t2, fill = p.value.adj)) +
+  geom_tile(aes(width = 1, height = 1), color = "white", lwd = 1) +
+  geom_tile(data = subset(data_m_dwell_targetonly, p.value.adj < 0.05), aes(width = 1, height = 1), 
+            color = "white", lwd = 1) +
+  geom_text(aes(label = ifelse(p.value.adj < 0.05, "*", ""), 
+                fontface = ifelse(p.value.adj <0.05, "bold", "plain")),
+            size = 10, vjust = 0.7, hjust = 0.5, color = "white") +
+  scale_fill_gradient(limits = c(0,0.05), low = "#800971", high = "#EDACE5", na.value = "#ffd2d9") +
+  labs(title = "", x = "", y = "", fill = "P-Value") +
+  theme_classic() +
+  theme(axis.line = element_line(linewidth = .5, colour = "#242526")) +
+  theme(axis.ticks = element_line(linewidth = .2, colour = "#242526")) +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme(legend.position = "right") +
+  theme(axis.text.x = element_text(size=25)) +
+  theme(axis.text.y = element_text(size=25)) +
+  scale_x_discrete(labels=c("T1","T2","T3","T4","T5","T6","T7","T8")) +
+  scale_y_discrete(labels=c("T1","T2","T3","T4","T5","T6","T7","T8"))
+heatmap_dwell
+ggsave(file="/Users/yasminebassil/Documents/Emory/3_Research/Projects/CogMap_Paper/figure_creation/plots/fig4_heatmap_dwell.svg", height = 6, width = 6, plot=heatmap_dwell)
+```
+
+```{r}
+heatmap_teleport <- ggplot(data_m_teleport_targetonly, aes(x = t1, y = t2, fill = p.value.adj)) +
+  geom_tile(aes(width = 1, height = 1), color = "white", lwd = 1) +
+  geom_tile(data = subset(data_m_teleport_targetonly, p.value.adj < 0.05), aes(width = 1, height = 1), 
+            color = "white", lwd = 1) +
+  geom_text(aes(label = ifelse(p.value.adj < 0.05, "*", ""), 
+                fontface = ifelse(p.value.adj <0.05, "bold", "plain")),
+            size = 10, vjust = 0.7, hjust = 0.5, color = "white") +
+  scale_fill_gradient(limits = c(0,0.05), low = "#800971", high = "#EDACE5", na.value = "#ffd2d9") +
+  labs(title = "", x = "", y = "", fill = "P-Value") +
+  theme_classic() +
+  theme(axis.line = element_line(linewidth = .5, colour = "#242526")) +
+  theme(axis.ticks = element_line(linewidth = .2, colour = "#242526")) +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme(legend.position = "right") +
+  theme(axis.text.x = element_text(size=25)) +
+  theme(axis.text.y = element_text(size=25)) +
+  scale_x_discrete(labels=c("T1","T2","T3","T4","T5","T6","T7","T8")) +
+  scale_y_discrete(labels=c("T1","T2","T3","T4","T5","T6","T7","T8"))
+heatmap_teleport
+ggsave(file="/Users/yasminebassil/Documents/Emory/3_Research/Projects/CogMap_Paper/figure_creation/plots/fig4_heatmap_teleport.svg", height = 6, width = 6, plot=heatmap_teleport)
+```
+
+
+# Creating Figure 5 P-Value Plots
+
+```{r}
+unique_labels <- unique(final_combined_dataframe_blocktarget$Source)
+
+for (source_label in unique_labels) {
+  # Filter the dataset based on the label
+  filtered_data2 <- subset(final_combined_dataframe_blocktarget, Source == source_label)
+  filtered_data2[, 8] <- filtered_data2[, 7] * 7
+  colnames(filtered_data2)[8] <- "p.value.adj"
+  filtered_data2$p.value.adj[filtered_data2$p.value.adj > 1] <- 1
+  filtered_data2$contrast <- factor(filtered_data2$contrast, 
+                                    levels = c("Block_num1 - Block_num2",
+                                               "Block_num2 - Block_num3",
+                                               "Block_num1 - Block_num3"))
+  
+  # Assign filtered data to a new data frame with the label name
+  assign(paste0("data_", source_label), filtered_data2)
+}
+```
+
+
+```{r}
+fig5_heatmap_speed <- ggplot(data_m_speed_blocktarget, aes(x = contrast, y = Target_Name, fill = p.value.adj)) +
+  geom_tile(aes(width = 1, height = 1), color = "white", lwd = 1) +
+  geom_tile(data = subset(data_m_speed_blocktarget, p.value.adj < 0.05), aes(width = 1, height = 1), 
+            color = "white", lwd = 1) +
+  geom_text(aes(label = ifelse(p.value.adj < 0.05, "*", ""), 
+                fontface = ifelse(p.value.adj <0.05, "bold", "plain")),
+            size = 10, vjust = 0.7, hjust = 0.5, color = "white") +
+  scale_fill_gradient(limits = c(0,0.05), low = "#800971", high = "#EDACE5", na.value = "#ffd2d9") +
+  labs(title = "", x = "", y = "", fill = "P-Value") +
+  theme_classic() +
+  theme(axis.line = element_line(linewidth = .5, colour = "#242526")) +
+  theme(axis.ticks = element_line(linewidth = .2, colour = "#242526")) +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme(legend.position = "right") +
+  theme(axis.text.x = element_text(size=25)) +
+  theme(axis.text.y = element_text(size=25)) +
+  scale_x_discrete(labels=c("B1-B2","B2-B3","B1-B3")) +
+  scale_y_discrete(labels=c("T1","T2","T3","T4","T5","T6","T7","T8"))
+fig5_heatmap_speed
+ggsave(file="/Users/yasminebassil/Documents/Emory/3_Research/Projects/CogMap_Paper/figure_creation/plots/fig5_heatmap_speed.svg", height = 6, width = 6, plot=fig5_heatmap_speed)
+```
+
+```{r}
+fig5_heatmap_ct <- ggplot(data_m_ct_blocktarget, aes(x = contrast, y = Target_Name, fill = p.value.adj)) +
+  geom_tile(aes(width = 1, height = 1), color = "white", lwd = 1) +
+  geom_tile(data = subset(data_m_ct_blocktarget, p.value.adj < 0.05), aes(width = 1, height = 1), 
+            color = "white", lwd = 1) +
+  geom_text(aes(label = ifelse(p.value.adj < 0.05, "*", ""), 
+                fontface = ifelse(p.value.adj <0.05, "bold", "plain")),
+            size = 10, vjust = 0.7, hjust = 0.5, color = "white") +
+  scale_fill_gradient(limits = c(0,0.05), low = "#800971", high = "#EDACE5", na.value = "#ffd2d9") +
+  labs(title = "", x = "", y = "", fill = "P-Value") +
+  theme_classic() +
+  theme(axis.line = element_line(linewidth = .5, colour = "#242526")) +
+  theme(axis.ticks = element_line(linewidth = .2, colour = "#242526")) +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme(legend.position = "right") +
+  theme(axis.text.x = element_text(size=25)) +
+  theme(axis.text.y = element_text(size=25)) +
+  scale_x_discrete(labels=c("B1-B2","B2-B3","B1-B3")) +
+  scale_y_discrete(labels=c("T1","T2","T3","T4","T5","T6","T7","T8"))
+fig5_heatmap_ct
+ggsave(file="/Users/yasminebassil/Documents/Emory/3_Research/Projects/CogMap_Paper/figure_creation/plots/fig5_heatmap_ct.svg", height = 6, width = 6, plot=fig5_heatmap_ct)
+```
+
+```{r}
+fig5_heatmap_orict <- ggplot(data_m_orict_blocktarget, aes(x = contrast, y = Target_Name, fill = p.value.adj)) +
+  geom_tile(aes(width = 1, height = 1), color = "white", lwd = 1) +
+  geom_tile(data = subset(data_m_orict_blocktarget, p.value.adj < 0.05), aes(width = 1, height = 1), 
+            color = "white", lwd = 1) +
+  geom_text(aes(label = ifelse(p.value.adj < 0.05, "*", ""), 
+                fontface = ifelse(p.value.adj <0.05, "bold", "plain")),
+            size = 10, vjust = 0.7, hjust = 0.5, color = "white") +
+  scale_fill_gradient(limits = c(0,0.05), low = "#800971", high = "#EDACE5", na.value = "#ffd2d9") +
+  labs(title = "", x = "", y = "", fill = "P-Value") +
+  theme_classic() +
+  theme(axis.line = element_line(linewidth = .5, colour = "#242526")) +
+  theme(axis.ticks = element_line(linewidth = .2, colour = "#242526")) +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme(legend.position = "right") +
+  theme(axis.text.x = element_text(size=25)) +
+  theme(axis.text.y = element_text(size=25)) +
+  scale_x_discrete(labels=c("B1-B2","B2-B3","B1-B3")) +
+  scale_y_discrete(labels=c("T1","T2","T3","T4","T5","T6","T7","T8"))
+fig5_heatmap_orict
+ggsave(file="/Users/yasminebassil/Documents/Emory/3_Research/Projects/CogMap_Paper/figure_creation/plots/fig5_heatmap_orict.svg", height = 6, width = 6, plot=fig5_heatmap_orict)
+```
+
+```{r}
+fig5_heatmap_navct <- ggplot(data_m_navct_blocktarget, aes(x = contrast, y = Target_Name, fill = p.value.adj)) +
+  geom_tile(aes(width = 1, height = 1), color = "white", lwd = 1) +
+  geom_tile(data = subset(data_m_navct_blocktarget, p.value.adj < 0.05), aes(width = 1, height = 1), 
+            color = "white", lwd = 1) +
+  geom_text(aes(label = ifelse(p.value.adj < 0.05, "*", ""), 
+                fontface = ifelse(p.value.adj <0.05, "bold", "plain")),
+            size = 10, vjust = 0.7, hjust = 0.5, color = "white") +
+  scale_fill_gradient(limits = c(0,0.05), low = "#800971", high = "#EDACE5", na.value = "#ffd2d9") +
+  labs(title = "", x = "", y = "", fill = "P-Value") +
+  theme_classic() +
+  theme(axis.line = element_line(linewidth = .5, colour = "#242526")) +
+  theme(axis.ticks = element_line(linewidth = .2, colour = "#242526")) +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme(legend.position = "right") +
+  theme(axis.text.x = element_text(size=25)) +
+  theme(axis.text.y = element_text(size=25)) +
+  scale_x_discrete(labels=c("B1-B2","B2-B3","B1-B3")) +
+  scale_y_discrete(labels=c("T1","T2","T3","T4","T5","T6","T7","T8"))
+fig5_heatmap_navct
+ggsave(file="/Users/yasminebassil/Documents/Emory/3_Research/Projects/CogMap_Paper/figure_creation/plots/fig5_heatmap_navct.svg", height = 6, width = 6, plot=fig5_heatmap_navct)
+```
+
+```{r}
+fig5_heatmap_dt <- ggplot(data_m_dt_blocktarget, aes(x = contrast, y = Target_Name, fill = p.value.adj)) +
+  geom_tile(aes(width = 1, height = 1), color = "white", lwd = 1) +
+  geom_tile(data = subset(data_m_dt_blocktarget, p.value.adj < 0.05), aes(width = 1, height = 1), 
+            color = "white", lwd = 1) +
+  geom_text(aes(label = ifelse(p.value.adj < 0.05, "*", ""), 
+                fontface = ifelse(p.value.adj <0.05, "bold", "plain")),
+            size = 10, vjust = 0.7, hjust = 0.5, color = "white") +
+  scale_fill_gradient(limits = c(0,0.05), low = "#800971", high = "#EDACE5", na.value = "#ffd2d9") +
+  labs(title = "", x = "", y = "", fill = "P-Value") +
+  theme_classic() +
+  theme(axis.line = element_line(linewidth = .5, colour = "#242526")) +
+  theme(axis.ticks = element_line(linewidth = .2, colour = "#242526")) +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme(legend.position = "right") +
+  theme(axis.text.x = element_text(size=25)) +
+  theme(axis.text.y = element_text(size=25)) +
+  scale_x_discrete(labels=c("B1-B2","B2-B3","B1-B3")) +
+  scale_y_discrete(labels=c("T1","T2","T3","T4","T5","T6","T7","T8"))
+fig5_heatmap_dt
+ggsave(file="/Users/yasminebassil/Documents/Emory/3_Research/Projects/CogMap_Paper/figure_creation/plots/fig5_heatmap_dt.svg", height = 6, width = 6, plot=fig5_heatmap_dt)
+```
+
+```{r}
+fig5_heatmap_dwell <- ggplot(data_m_dwell_blocktarget, aes(x = contrast, y = Target_Name, fill = p.value.adj)) +
+  geom_tile(aes(width = 1, height = 1), color = "white", lwd = 1) +
+  geom_tile(data = subset(data_m_dwell_blocktarget, p.value.adj < 0.05), aes(width = 1, height = 1), 
+            color = "white", lwd = 1) +
+  geom_text(aes(label = ifelse(p.value.adj < 0.05, "*", ""), 
+                fontface = ifelse(p.value.adj <0.05, "bold", "plain")),
+            size = 10, vjust = 0.7, hjust = 0.5, color = "white") +
+  scale_fill_gradient(limits = c(0,0.05), low = "#800971", high = "#EDACE5", na.value = "#ffd2d9") +
+  labs(title = "", x = "", y = "", fill = "P-Value") +
+  theme_classic() +
+  theme(axis.line = element_line(linewidth = .5, colour = "#242526")) +
+  theme(axis.ticks = element_line(linewidth = .2, colour = "#242526")) +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme(legend.position = "right") +
+  theme(axis.text.x = element_text(size=25)) +
+  theme(axis.text.y = element_text(size=25)) +
+  scale_x_discrete(labels=c("B1-B2","B2-B3","B1-B3")) +
+  scale_y_discrete(labels=c("T1","T2","T3","T4","T5","T6","T7","T8"))
+fig5_heatmap_dwell
+ggsave(file="/Users/yasminebassil/Documents/Emory/3_Research/Projects/CogMap_Paper/figure_creation/plots/fig5_heatmap_dwell.svg", height = 6, width = 6, plot=fig5_heatmap_dwell)
+```
+
+```{r}
+fig5_heatmap_teleport <- ggplot(data_m_teleport_blocktarget, aes(x = contrast, y = Target_Name, fill = p.value.adj)) +
+  geom_tile(aes(width = 1, height = 1), color = "white", lwd = 1) +
+  geom_tile(data = subset(data_m_teleport_blocktarget, p.value.adj < 0.05), aes(width = 1, height = 1), 
+            color = "white", lwd = 1) +
+  geom_text(aes(label = ifelse(p.value.adj < 0.05, "*", ""), 
+                fontface = ifelse(p.value.adj <0.05, "bold", "plain")),
+            size = 10, vjust = 0.7, hjust = 0.5, color = "white") +
+  scale_fill_gradient(limits = c(0,0.05), low = "#800971", high = "#EDACE5", na.value = "#ffd2d9") +
+  labs(title = "", x = "", y = "", fill = "P-Value") +
+  theme_classic() +
+  theme(axis.line = element_line(linewidth = .5, colour = "#242526")) +
+  theme(axis.ticks = element_line(linewidth = .2, colour = "#242526")) +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme(legend.position = "right") +
+  theme(axis.text.x = element_text(size=25)) +
+  theme(axis.text.y = element_text(size=25)) +
+  scale_x_discrete(labels=c("B1-B2","B2-B3","B1-B3")) +
+  scale_y_discrete(labels=c("T1","T2","T3","T4","T5","T6","T7","T8"))
+fig5_heatmap_teleport
+ggsave(file="/Users/yasminebassil/Documents/Emory/3_Research/Projects/CogMap_Paper/figure_creation/plots/fig5_heatmap_teleport.svg", height = 6, width = 6, plot=fig5_heatmap_teleport)
+```
+

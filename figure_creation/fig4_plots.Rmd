@@ -48,10 +48,7 @@ names(data)[6] <- 'Navigation_Time'
 names(data)[7] <- 'Distance'
 names(data)[8] <- 'Speed'
 names(data)[9] <- 'Mean_Dwell'
-names(data)[10] <- 'Var_X'
-names(data)[11] <- 'Var_Y'
-names(data)[12] <- 'Var_Z'
-names(data)[13] <- 'Teleportations'
+names(data)[10] <- 'Teleportations'
 data <- data[ -c(1) ]
 data$Block_num <- as.factor(data$Block_num)
 sapply(data, class)
@@ -72,10 +69,7 @@ names(nav_data)[7] <- 'Navigation_Time'
 names(nav_data)[8] <- 'Distance'
 names(nav_data)[9] <- 'Speed'
 names(nav_data)[10] <- 'Mean_Dwell'
-names(nav_data)[11] <- 'Var_X'
-names(nav_data)[12] <- 'Var_Y'
-names(nav_data)[13] <- 'Var_Z'
-names(nav_data)[14] <- 'Teleportations'
+names(nav_data)[11] <- 'Teleportations'
 nav_data <- nav_data[ -c(1) ]
 nav_data$Block_num <- as.factor(nav_data$Block_num)
 sapply(nav_data, class)
@@ -142,10 +136,7 @@ target_data <- nav_data %>%
             Distance = mean(Distance),
             Speed = mean(Speed),
             Mean_Dwell = mean(Mean_Dwell),
-            Teleportations = mean(Teleportations),
-            Var_X = mean(Var_X),
-            Var_Y = mean(Var_Y),
-            Var_Z = mean(Var_Z))
+            Teleportations = mean(Teleportations))
 ```
 
 ```{r}
@@ -157,10 +148,7 @@ all_target_data <- nav_data %>%
             Distance = mean(Distance),
             Speed = mean(Speed),
             Mean_Dwell = mean(Mean_Dwell),
-            Teleportations = mean(Teleportations),
-            Var_X = mean(Var_X),
-            Var_Y = mean(Var_Y),
-            Var_Z = mean(Var_Z))
+            Teleportations = mean(Teleportations))
 ```
 
 # Total Time
@@ -201,6 +189,7 @@ p_ct <- ggplot(target_data, aes(x=Target_Name, y=Total_Time, color=Participant))
 p_ct
 ggsave(file="/Users/yasminebassil/Documents/Emory/3_Research/Projects/CogMap_Paper/figure_creation/plots/fig4_ct.svg", height = 4, width = 6.5, plot=p_ct)
 ```
+
 
 # Orientation Time
 
@@ -430,3 +419,6 @@ p_teleport <- ggplot(target_data, aes(x=Target_Name, y=Teleportations, color=Par
 p_teleport
 ggsave(file="/Users/yasminebassil/Documents/Emory/3_Research/Projects/CogMap_Paper/figure_creation/plots/fig4_teleport.svg", height = 4, width = 6.5, plot=p_teleport)
 ```
+
+# Creating Heatmaps
+
