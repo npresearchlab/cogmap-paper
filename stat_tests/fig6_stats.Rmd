@@ -97,6 +97,23 @@ b1$NARA <- non_nav_data$NARA
 change_paper <- change
 ```
 
+```{r}
+b1_b2 <- subset(b2, select = c(Participant))
+
+for (i in 1:nrow(b3)) {
+  b1_b2$Total_Time[i] <- b2$Total_Time[i] - b1$Total_Time[i]
+  b1_b2$Orientation_Time[i] <- b2$Orientation_Time[i] - b1$Orientation_Time[i]
+  b1_b2$Navigation_Time[i] <- b2$Navigation_Time[i] - b1$Navigation_Time[i]
+  b1_b2$Distance[i] <- b2$Distance[i] - b1$Distance[i]
+  b1_b2$Speed[i] <- b2$Speed[i] - b1$Speed[i]
+  b1_b2$Mean_Dwell[i] <- b2$Mean_Dwell[i] - b1$Mean_Dwell[i]
+  b1_b2$Teleportations[i] <- b2$Teleportations[i] - b1$Teleportations[i]
+}
+b1_b2$NARA <- non_nav_data$NARA
+
+```
+
+
 ## Correlations between B1 All-Target Outcome Measures vs NARA
 
 ```{r p_corr_ct_b1}
@@ -115,7 +132,7 @@ ggsave(file="/Users/yasminebassil/Documents/Emory/3_Research/Projects/CogMap_Pap
 ```
 
 ```{r echo=TRUE}
-corr_b1_ct <- cor.test(b1$Total_Time, b1$NARA)
+corr_b1_ct <- cor.test(b1$Total_Time, b1$NARA, method = "spearman")
 corr_b1_ct
 ```
 
@@ -134,7 +151,7 @@ ggsave(file="/Users/yasminebassil/Documents/Emory/3_Research/Projects/CogMap_Pap
        height = 4, width=5, plot=p_corr_ctnav_b1)
 ```
 ```{r echo=TRUE}
-corr_b1_ctnav <- cor.test(b1$Navigation_Time, b1$NARA)
+corr_b1_ctnav <- cor.test(b1$Navigation_Time, b1$NARA, method = "spearman")
 corr_b1_ctnav
 ```
 
@@ -154,7 +171,7 @@ ggsave(file="/Users/yasminebassil/Documents/Emory/3_Research/Projects/CogMap_Pap
 ```
 
 ```{r echo=TRUE}
-corr_b1_ctori <- cor.test(b1$Orientation_Time, b1$NARA)
+corr_b1_ctori <- cor.test(b1$Orientation_Time, b1$NARA, method = "spearman")
 corr_b1_ctori
 ```
 
@@ -174,7 +191,7 @@ ggsave(file="/Users/yasminebassil/Documents/Emory/3_Research/Projects/CogMap_Pap
 ```
 
 ```{r echo=TRUE}
-corr_b1_dt <- cor.test(b1$Distance, b1$NARA)
+corr_b1_dt <- cor.test(b1$Distance, b1$NARA, method = "spearman")
 corr_b1_dt
 ```
 
@@ -194,7 +211,7 @@ ggsave(file="/Users/yasminebassil/Documents/Emory/3_Research/Projects/CogMap_Pap
 ```
 
 ```{r echo=TRUE}
-corr_b1_dwell <- cor.test(b1$Mean_Dwell, b1$NARA)
+corr_b1_dwell <- cor.test(b1$Mean_Dwell, b1$NARA, method = "spearman")
 corr_b1_dwell
 ```
 
@@ -214,7 +231,7 @@ ggsave(file="/Users/yasminebassil/Documents/Emory/3_Research/Projects/CogMap_Pap
 ```
 
 ```{r echo=TRUE}
-corr_b1_speed <- cor.test(b1$Speed, b1$NARA)
+corr_b1_speed <- cor.test(b1$Speed, b1$NARA, method = "spearman")
 corr_b1_speed
 ```
 
@@ -234,8 +251,136 @@ ggsave(file="/Users/yasminebassil/Documents/Emory/3_Research/Projects/CogMap_Pap
 ```
 
 ```{r echo=TRUE}
-corr_b1_teleport <- cor.test(b1$Teleportations, b1$NARA)
+corr_b1_teleport <- cor.test(b1$Teleportations, b1$NARA, method = "spearman")
 corr_b1_teleport
+```
+
+## Correlations between First Exposure Block (B2-B1) All-Target Outcome Measures vs NARA
+
+```{r}
+p_corr_ct_b1b2 <- ggplot(b1_b2, aes(x=NARA, y=Total_Time)) + 
+  geom_point(color = "#ffa6b4")+
+  geom_smooth(method=lm, color = "black", fill = "#ffa6b4")+
+  ylab("Time to Target (s)")+
+  xlim(0,100)+
+  theme(text = element_text(size = 20),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank(), 
+        axis.line = element_line(colour = "black"))
+p_corr_ct_b1b2
+```
+
+```{r echo=TRUE}
+corr_change_ct_b1b2 <- cor.test(b1_b2$Total_Time, b1_b2$NARA, method = "spearman")
+corr_change_ct_b1b2
+```
+
+```{r}
+p_corr_ctori_b1b2 <- ggplot(b1_b2, aes(x=NARA, y=Orientation_Time)) + 
+  geom_point(color = "#ffa6b4")+
+  geom_smooth(method=lm, color = "black", fill = "#ffa6b4")+
+  ylab("Orientation Time (s)")+
+  xlim(0,100)+
+  theme(text = element_text(size = 20),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank(), 
+        axis.line = element_line(colour = "black"))
+p_corr_ctori_b1b2
+```
+
+```{r echo=TRUE}
+corr_change_ctori_b1b2 <- cor.test(b1_b2$Orientation_Time, b1_b2$NARA, method = "spearman")
+corr_change_ctori_b1b2
+```
+
+```{r}
+p_corr_ctnav_b1b2 <- ggplot(b1_b2, aes(x=NARA, y=Navigation_Time)) + 
+  geom_point(color = "#ffa6b4")+
+  geom_smooth(method=lm, color = "black", fill = "#ffa6b4")+
+  ylab("Navigation Time (s)")+
+  xlim(0,100)+
+  theme(text = element_text(size = 20),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank(), 
+        axis.line = element_line(colour = "black"))
+p_corr_ctnav_b1b2
+```
+
+```{r echo=TRUE}
+corr_change_ctnav_b1b2 <- cor.test(b1_b2$Navigation_Time, b1_b2$NARA, method = "spearman")
+corr_change_ctnav_b1b2
+```
+
+```{r}
+p_corr_dt_b1b2 <- ggplot(b1_b2, aes(x=NARA, y=Distance)) + 
+  geom_point(color = "#ffa6b4")+
+  geom_smooth(method=lm, color = "black", fill = "#ffa6b4")+
+  ylab("Distance (VR Units)")+
+  xlim(0,100)+
+  theme(text = element_text(size = 20),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank(), 
+        axis.line = element_line(colour = "black"))
+p_corr_dt_b1b2
+```
+
+```{r echo=TRUE}
+corr_change_dt_b1b2 <- cor.test(b1_b2$Distance, b1_b2$NARA, method = "spearman")
+corr_change_dt_b1b2
+```
+
+```{r}
+p_corr_dwell_b1b2 <- ggplot(b1_b2, aes(x=NARA, y=Mean_Dwell)) + 
+  geom_point(color = "#ffa6b4")+
+  geom_smooth(method=lm, color = "black", fill = "#ffa6b4")+
+  ylab("Dwell Time (s)")+
+  xlim(0,100)+
+  theme(text = element_text(size = 20),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank(), 
+        axis.line = element_line(colour = "black"))
+p_corr_dwell_b1b2
+```
+
+```{r echo=TRUE}
+corr_change_dwell_b1b2 <- cor.test(b1_b2$Mean_Dwell, b1_b2$NARA, method = "spearman")
+corr_change_dwell_b1b2
+```
+
+```{r}
+p_corr_speed_b1b2 <- ggplot(b1_b2, aes(x=NARA, y=Speed)) + 
+  geom_point(color = "#ffa6b4")+
+  geom_smooth(method=lm, color = "black", fill = "#ffa6b4")+
+  ylab("Speed (VR Units/s)")+
+  xlim(0,100)+
+  theme(text = element_text(size = 20),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank(), 
+        axis.line = element_line(colour = "black"))
+p_corr_speed_b1b2
+```
+
+```{r echo=TRUE}
+corr_change_speed_b1b2 <- cor.test(b1_b2$Speed, b1_b2$NARA, method = "spearman")
+corr_change_speed_b1b2
+```
+
+```{r}
+p_corr_teleport_b1b2 <- ggplot(b1_b2, aes(x=NARA, y=Teleportations)) + 
+  geom_point(color = "#ffa6b4")+
+  geom_smooth(method=lm, color = "black", fill = "#ffa6b4")+
+  ylab("Teleportations (count)")+
+  xlim(0,100)+
+  theme(text = element_text(size = 20),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank(), 
+        axis.line = element_line(colour = "black"))
+p_corr_teleport_b1b2
+```
+
+```{r echo=TRUE}
+corr_change_teleport_b1b2 <- cor.test(b1_b2$Teleportations, b1_b2$NARA, method = "spearman")
+corr_change_teleport_b1b2
 ```
 
 ## Correlations between Block Change (B3-B1) All-Target Outcome Measures vs NARA
@@ -254,7 +399,7 @@ p_corr_ct
 ```
 
 ```{r echo=TRUE}
-corr_change_ct <- cor.test(change$Total_Time, change$NARA)
+corr_change_ct <- cor.test(change$Total_Time, change$NARA, method = "spearman")
 corr_change_ct
 ```
 
@@ -272,7 +417,7 @@ p_corr_ctori
 ```
 
 ```{r echo=TRUE}
-corr_change_ctori <- cor.test(change$Orientation_Time, change$NARA)
+corr_change_ctori <- cor.test(change$Orientation_Time, change$NARA, method = "spearman")
 corr_change_ctori
 ```
 ```{r p_corr_ctnav}
@@ -289,7 +434,7 @@ p_corr_ctnav
 ```
 
 ```{r echo=TRUE}
-corr_change_ctnav <- cor.test(change$Navigation_Time, change$NARA)
+corr_change_ctnav <- cor.test(change$Navigation_Time, change$NARA, method = "spearman")
 corr_change_ctnav
 ```
 
@@ -307,7 +452,7 @@ p_corr_dt
 ```
 
 ```{r echo=TRUE}
-corr_change_dt <- cor.test(change$Distance, change$NARA)
+corr_change_dt <- cor.test(change$Distance, change$NARA, method = "spearman")
 corr_change_dt
 ```
 
@@ -325,7 +470,7 @@ p_corr_dwell
 ```
 
 ```{r echo=TRUE}
-corr_change_dwell <- cor.test(change$Mean_Dwell, change$NARA)
+corr_change_dwell <- cor.test(change$Mean_Dwell, change$NARA, method = "spearman")
 corr_change_dwell
 ```
 
@@ -343,7 +488,7 @@ p_corr_speed
 ```
 
 ```{r echo=TRUE}
-corr_change_speed <- cor.test(change$Speed, change$NARA)
+corr_change_speed <- cor.test(change$Speed, change$NARA, method = "spearman")
 corr_change_speed
 ```
 
@@ -361,7 +506,7 @@ p_corr_teleport
 ```
 
 ```{r echo=TRUE}
-corr_change_teleport <- cor.test(change$Teleportations, change$NARA)
+corr_change_teleport <- cor.test(change$Teleportations, change$NARA, method = "spearman")
 corr_change_teleport
 ```
 ```{r}

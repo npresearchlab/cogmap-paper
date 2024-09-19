@@ -1,0 +1,144 @@
+---
+title: "Correlation Plots B3-B1"
+output: html_document
+date: "2023-10-06"
+---
+
+```{r global-options, include=FALSE}
+knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE)
+```
+
+```{r loading libraries, include=FALSE}
+# This code chunk loads various libraries necessary to complete the data analysis and produce graphics
+library(tidyverse)
+library(stringr)
+library(ez)
+library(cowplot)
+library(viridis)
+library(viridisLite)
+library("readxl")
+library("ggcorrplot")
+library(dplyr)
+library(ltm)
+library(plotrix)
+library("viridis")
+library("paletteer")
+library(corrplot)
+library("Hmisc")
+```
+
+```{r reading data, include=FALSE}
+#This loads the data file as the variable "data"
+nav_data <- read.csv('/Users/yasminebassil/Desktop/YA_Data/averaged_results.csv')
+# Tidying up the data
+names(nav_data)[1] <- 'index'
+names(nav_data)[2] <- 'Participant'
+names(nav_data)[3] <- 'Block_num'
+names(nav_data)[4] <- 'Total_Time'
+names(nav_data)[5] <- 'Orientation_Time'
+names(nav_data)[6] <- 'Navigation_Time'
+names(nav_data)[7] <- 'Distance'
+names(nav_data)[8] <- 'Speed'
+names(nav_data)[9] <- 'Mean_Dwell'
+names(nav_data)[10] <- 'Teleportations'
+nav_data <- nav_data[ -c(1) ]
+nav_data$Block_num <- as.factor(nav_data$Block_num)
+sapply(nav_data, class)
+
+#This loads the data file as the variable "data"
+non_nav_data <- read.csv('/Users/yasminebassil/Desktop/YA_Data/non_nav_data.csv')
+# Tidying up the data
+names(non_nav_data)[1] <- 'Participant'
+names(non_nav_data)[2] <- 'Age'
+names(non_nav_data)[3] <- 'PSQI'
+names(non_nav_data)[4] <- 'SSS_Pre'
+names(non_nav_data)[5] <- 'SSS_Post'
+names(non_nav_data)[6] <- 'SBSOD'
+names(non_nav_data)[7] <- 'MiniCog'
+names(non_nav_data)[8] <- 'TrailsA'
+names(non_nav_data)[9] <- 'TrailsB'
+names(non_nav_data)[10] <- 'SetShifting'
+names(non_nav_data)[11] <- 'CorsiBlocks'
+names(non_nav_data)[12] <- 'SSQ_Pre'
+names(non_nav_data)[13] <- 'SSQ_Post'
+names(non_nav_data)[14] <- 'NARA'
+non_nav_data <- head(non_nav_data, n=26)
+```
+
+```{r organizing data, include=FALSE}
+b1 <- subset(nav_data, Block_num == 1)
+rownames(b1) <- NULL 
+b2 <- subset(nav_data, Block_num == 2)
+rownames(b2) <- NULL 
+b3 <- subset(nav_data, Block_num == 3)
+rownames(b3) <- NULL 
+
+mean_data <- subset(b3, select = c(Participant))
+
+for (i in 1:nrow(b3)) {
+  mean_data$Total_Time[i] <- (b3$Total_Time[i] + b2$Total_Time[i]+b1$Total_Time[i])/3
+  mean_data$Orientation_Time[i] <- (b3$Orientation_Time[i] + b2$Orientation_Time[i]+b1$Orientation_Time[i])/3
+  mean_data$Navigation_Time[i] <- (b3$Navigation_Time[i] + b2$Navigation_Time[i]+b1$Navigation_Time[i])/3
+  mean_data$Distance[i] <- (b3$Distance[i] + b2$Distance[i]+b1$Distance[i])/3
+  mean_data$Speed[i] <- (b3$Speed[i] + b2$Speed[i]+b1$Speed[i])/3
+  mean_data$Mean_Dwell[i] <- (b3$Mean_Dwell[i] + b2$Mean_Dwell[i]+b1$Mean_Dwell[i])/3
+  mean_data$Teleportations[i] <- (b3$Teleportations[i] + b2$Teleportations[i]+b1$Teleportations[i])/3
+}
+
+change <- subset(b3, select = c(Participant))
+
+for (i in 1:nrow(b3)) {
+  change$Total_Time[i] <- b3$Total_Time[i] - b1$Total_Time[i]
+  change$Orientation_Time[i] <- b3$Orientation_Time[i] - b1$Orientation_Time[i]
+  change$Navigation_Time[i] <- b3$Navigation_Time[i] - b1$Navigation_Time[i]
+  change$Distance[i] <- b3$Distance[i] - b1$Distance[i]
+  change$Speed[i] <- b3$Speed[i] - b1$Speed[i]
+  change$Mean_Dwell[i] <- b3$Mean_Dwell[i] - b1$Mean_Dwell[i]
+  change$Teleportations[i] <- b3$Teleportations[i] - b1$Teleportations[i]
+}
+
+all_blocks <- aggregate(cbind(Total_Time, Orientation_Time, Navigation_Time, 
+                              Distance, Speed, Mean_Dwell,
+                              Teleportations) ~ Participant, 
+                        data = nav_data, FUN = mean)
+
+all_blocks$NARA <- non_nav_data$NARA
+change$NARA <- non_nav_data$NARA
+
+mean_data_corr <- subset(mean_data, select = -c(Participant))
+```
+
+## Correlations between B3-B1 All-Target Outcome Measures vs NARA
+
+```{r p_corr_ct}
+p_corr_ct <- ggplot(change, aes(x=NARA, y=Total_Time)) + 
+  geom_point(data = change, aes(color = Participant), size = 3, alpha = 0.5)+
+  scale_color_viridis(option = "plasma", discrete = TRUE)+
+  geom_smooth(method=lm, color = "black", fill = "#ffa6b4")+
+  ylab("Total Time (s)")+
+  theme(text = element_text(size = 20),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank(), 
+        axis.line = element_line(colour = "black")) +
+  theme(legend.position = "none")
+p_corr_ct
+ggsave(file="/Users/yasminebassil/Documents/Emory/3_Research/Projects/CogMap_Paper/figure_creation/plots/fig6_ct_fix.svg",
+       height = 4, width=5, plot=p_corr_ct)
+```
+
+
+```{r echo=TRUE}
+corr_ct <- cor.test(change$Total_Time, change$NARA, method = "spearman")
+corr_ct
+```
+
+```{r}
+try <- cor(mean_data_corr)
+try_matrix <- rcorr(as.matrix(mean_data_corr))
+try_matrix
+```
+
+```{r}
+corrplot(try)
+```
+

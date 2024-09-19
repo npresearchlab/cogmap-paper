@@ -1,8 +1,15 @@
-"statistic","parameter","p.value","estimate","null.value","alternative","method","data.name","conf.int","Source"
-c(t = -1.15924633963844),c(df = 24),0.257759955139858,c(cor = -0.2302710921245),c(correlation = 0),two.sided,Pearson's product-moment correlation,change$Total_Time and change$NARA,c(-0.56704491855276, 0.172463931699317),corr_change_ct
-c(t = -1.09480722713637),c(df = 24),0.284467124856269,c(cor = -0.218096865863989),c(correlation = 0),two.sided,Pearson's product-moment correlation,change$Navigation_Time and change$NARA,c(-0.558284771156573, 0.184873206618494),corr_change_ctnav
-c(t = -0.623107184283448),c(df = 24),0.539090846160625,c(cor = -0.126174713599363),c(correlation = 0),two.sided,Pearson's product-moment correlation,change$Orientation_Time and change$NARA,c(-0.489598028680443, 0.27459793001529),corr_change_ctori
-c(t = -1.54371162133875),c(df = 24),0.135742692067359,c(cor = -0.300540988029107),c(correlation = 0),two.sided,Pearson's product-moment correlation,change$Distance and change$NARA,c(-0.616162308908769, 0.0982485715383299),corr_change_dt
-c(t = -1.26892537256491),c(df = 24),0.216636810851952,c(cor = -0.250743588581765),c(correlation = 0),two.sided,Pearson's product-moment correlation,change$Mean_Dwell and change$NARA,c(-0.581606414069528, 0.15130389469929),corr_change_dwell
-c(t = 4.68638485223878),c(df = 24),9.21822651874917e-05,c(cor = 0.691253801003443),c(correlation = 0),two.sided,Pearson's product-moment correlation,change$Speed and change$NARA,c(0.415029552597431, 0.850797482192322),corr_change_speed
-c(t = -1.77484465820511),c(df = 24),0.0886099182065867,c(cor = -0.340623684597284),c(correlation = 0),two.sided,Pearson's product-moment correlation,change$Teleportations and change$NARA,c(-0.643121387202771, 0.0538307505332821),corr_change_teleport
+"statistic","parameter","p.value","estimate","null.value","alternative","method","data.name","Source"
+c(S = 3451.70446022306),NULL,0.378724086202647,c(rho = -0.18006990093096),c(rho = 0),two.sided,Spearman's rank correlation rho,change$Total_Time and change$NARA,corr_change_ct
+c(S = 3835.40312053852),NULL,0.121683816548949,c(rho = -0.311248930098638),c(rho = 0),two.sided,Spearman's rank correlation rho,b1_b2$Total_Time and b1_b2$NARA,corr_change_ct_b1b2
+c(S = 3420.48488418689),NULL,0.40807871899151,c(rho = -0.169396541602356),c(rho = 0),two.sided,Spearman's rank correlation rho,change$Navigation_Time and change$NARA,corr_change_ctnav
+c(S = 3808.21187689411),NULL,0.133824852633494,c(rho = -0.301952778425338),c(rho = 0),two.sided,Spearman's rank correlation rho,b1_b2$Navigation_Time and b1_b2$NARA,corr_change_ctnav_b1b2
+c(S = 3780.01355015177),NULL,0.147317408928462,c(rho = -0.292312324838212),c(rho = 0),two.sided,Spearman's rank correlation rho,change$Orientation_Time and change$NARA,corr_change_ctori
+c(S = 3678.29815725975),NULL,0.204027060113931,c(rho = -0.257537831541794),c(rho = 0),two.sided,Spearman's rank correlation rho,b1_b2$Orientation_Time and b1_b2$NARA,corr_change_ctori_b1b2
+c(S = 3827.34645575499),NULL,0.125193765106718,c(rho = -0.308494514788031),c(rho = 0),two.sided,Spearman's rank correlation rho,change$Distance and change$NARA,corr_change_dt
+c(S = 3822.31104026529),NULL,0.127424644217199,c(rho = -0.306773005218901),c(rho = 0),two.sided,Spearman's rank correlation rho,b1_b2$Distance and b1_b2$NARA,corr_change_dt_b1b2
+c(S = 3752.82230650737),NULL,0.161223902061662,c(rho = -0.283016173164912),c(rho = 0),two.sided,Spearman's rank correlation rho,change$Mean_Dwell and change$NARA,corr_change_dwell
+c(S = 3794.11271352294),NULL,0.140454569140698,c(rho = -0.297132551631775),c(rho = 0),two.sided,Spearman's rank correlation rho,b1_b2$Mean_Dwell and b1_b2$NARA,corr_change_dwell_b1b2
+c(S = 773.870502798372),NULL,1.86602378976528e-05,c(rho = 0.735428887932181),c(rho = 0),two.sided,Spearman's rank correlation rho,change$Speed and change$NARA,corr_change_speed
+c(S = 926.947133685379),NULL,0.000120177370963741,c(rho = 0.68309499703064),c(rho = 0),two.sided,Spearman's rank correlation rho,b1_b2$Speed and b1_b2$NARA,corr_change_speed_b1b2
+c(S = 3992.50808381729),NULL,0.0667676029031029,c(rho = -0.364960028655483),c(rho = 0),two.sided,Spearman's rank correlation rho,change$Teleportations and change$NARA,corr_change_teleport
+c(S = 4021.90101413319),NULL,0.0590678432397307,c(rho = -0.37500889372075),c(rho = 0),two.sided,Spearman's rank correlation rho,b1_b2$Teleportations and b1_b2$NARA,corr_change_teleport_b1b2

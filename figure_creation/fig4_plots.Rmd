@@ -106,6 +106,20 @@ rownames(b2) <- NULL
 b3 <- subset(nav_data, Block_num == 3)
 rownames(b3) <- NULL 
 
+mean_data <- subset(b3, select = c(Participant))
+
+for (i in 1:nrow(b3)) {
+  mean_data$Total_Time[i] <- (b3$Total_Time[i] + b2$Total_Time[i]+b1$Total_Time[i])/3
+  mean_data$Orientation_Time[i] <- (b3$Orientation_Time[i] + b2$Orientation_Time[i]+b1$Orientation_Time[i])/3
+  mean_data$Navigation_Time[i] <- (b3$Navigation_Time[i] + b2$Navigation_Time[i]+b1$Navigation_Time[i])/3
+  mean_data$Distance[i] <- (b3$Distance[i] + b2$Distance[i]+b1$Distance[i])/3
+  mean_data$Speed[i] <- (b3$Speed[i] + b2$Speed[i]+b1$Speed[i])/3
+  mean_data$Mean_Dwell[i] <- (b3$Mean_Dwell[i] + b2$Mean_Dwell[i]+b1$Mean_Dwell[i])/3
+  mean_data$Teleportations[i] <- (b3$Teleportations[i] + b2$Teleportations[i]+b1$Teleportations[i])/3
+}
+
+mean_data_corr <- subset(mean_data, select = -c(Participant))
+
 change <- subset(b3, select = c(Participant, Target_Name))
 
 for (i in 1:nrow(b3)) {
@@ -420,5 +434,118 @@ p_teleport
 ggsave(file="/Users/yasminebassil/Documents/Emory/3_Research/Projects/CogMap_Paper/figure_creation/plots/fig4_teleport.svg", height = 4, width = 6.5, plot=p_teleport)
 ```
 
-# Creating Heatmaps
+# Calculating Variability for Mean
 
+## Range, interquartile range, standard deviation, variance
+
+```{r}
+ct_range <- range(mean_data_corr$Total_Time)
+navct_range <- range(mean_data_corr$Navigation_Time)
+orict_range <- range(mean_data_corr$Orientation_Time)
+speed_range <- range(mean_data_corr$Speed)
+dt_range <- range(mean_data_corr$Distance)
+dwell_range <- range(mean_data_corr$Mean_Dwell)
+teleport_range <- range(mean_data_corr$Teleportations)
+```
+
+```{r}
+# Step 1: Identify all variables ending with "range"
+range_variables <- ls(pattern = "range$")
+
+# Step 2: Collect these variables into a list
+range_variables_list <- lapply(range_variables, get)
+range_variables_list <- do.call(rbind.data.frame, range_variables_list)
+colnames(range_variables_list) <- c("min","max")
+range_variables_list$variable <- c("ct", "dt","dwell","navct","orict", "speed","teleport")
+```
+
+```{r}
+ct_iqr <- IQR(mean_data_corr$Total_Time)
+navct_iqr <- IQR(mean_data_corr$Navigation_Time)
+orict_iqr <- IQR(mean_data_corr$Orientation_Time)
+speed_iqr <- IQR(mean_data_corr$Speed)
+dt_iqr <- IQR(mean_data_corr$Distance)
+dwell_iqr <- IQR(mean_data_corr$Mean_Dwell)
+teleport_iqr <- IQR(mean_data_corr$Teleportations)
+```
+
+```{r}
+# Step 1: Identify all variables ending with "range"
+iqr_variables <- ls(pattern = "iqr$")
+
+# Step 2: Collect these variables into a list
+iqr_variables_list <- lapply(iqr_variables, get)
+iqr_variables_list <- do.call(rbind.data.frame, iqr_variables_list)
+colnames(iqr_variables_list) <- c("value")
+iqr_variables_list$variable <- c("ct", "dt","dwell","navct","orict", "speed","teleport")
+```
+
+```{r}
+ct_sd <- sd(mean_data_corr$Total_Time)
+navct_sd <- sd(mean_data_corr$Navigation_Time)
+orict_sd <- sd(mean_data_corr$Orientation_Time)
+speed_sd <- sd(mean_data_corr$Speed)
+dt_sd <- sd(mean_data_corr$Distance)
+dwell_sd <- sd(mean_data_corr$Mean_Dwell)
+teleport_sd <- sd(mean_data_corr$Teleportations)
+```
+
+```{r}
+# Step 1: Identify all variables ending with "range"
+sd_variables <- ls(pattern = "sd$")
+
+# Step 2: Collect these variables into a list
+sd_variables_list <- lapply(sd_variables, get)
+sd_variables_list <- do.call(rbind.data.frame, sd_variables_list)
+colnames(sd_variables_list) <- c("value")
+sd_variables_list$variable <- c("ct", "dt","dwell","navct","orict", "speed","teleport")
+```
+
+```{r}
+ct_var <- var(mean_data_corr$Total_Time)
+navct_var <- var(mean_data_corr$Navigation_Time)
+orict_var <- var(mean_data_corr$Orientation_Time)
+speed_var <- var(mean_data_corr$Speed)
+dt_var <- var(mean_data_corr$Distance)
+dwell_var <- var(mean_data_corr$Mean_Dwell)
+teleport_var <- var(mean_data_corr$Teleportations)
+```
+
+```{r}
+# Step 1: Identify all variables ending with "range"
+var_variables <- ls(pattern = "var$")
+
+# Step 2: Collect these variables into a list
+var_variables_list <- lapply(var_variables, get)
+var_variables_list <- do.call(rbind.data.frame, var_variables_list)
+colnames(var_variables_list) <- c("value")
+var_variables_list$variable <- c("ct", "dt","dwell","navct","orict", "speed","teleport")
+```
+
+# Standard Deviation
+
+```{r}
+sd_target_data <- nav_data %>%
+  group_by(Target_Name) %>%
+  summarize(Total_Time = sd(Total_Time),
+            Orientation_Time = sd(Orientation_Time),
+            Navigation_Time = sd(Navigation_Time),
+            Distance = sd(Distance),
+            Speed = sd(Speed),
+            Mean_Dwell = sd(Mean_Dwell),
+            Teleportations = sd(Teleportations))
+```
+
+# Variance
+
+```{r}
+var_target_data <- nav_data %>%
+  group_by(Target_Name) %>%
+  summarize(Total_Time = var(Total_Time),
+            Orientation_Time = var(Orientation_Time),
+            Navigation_Time = var(Navigation_Time),
+            Distance = var(Distance),
+            Speed = var(Speed),
+            Mean_Dwell = var(Mean_Dwell),
+            Teleportations = var(Teleportations))
+```

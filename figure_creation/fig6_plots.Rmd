@@ -111,10 +111,12 @@ ggsave(file="/Users/yasminebassil/Documents/Emory/3_Research/Projects/CogMap_Pap
        height = 4, width=5, plot=p_corr_ct)
 ```
 
+
 ```{r echo=TRUE}
-corr_ct <- cor.test(change$Total_Time, change$NARA)
+corr_ct <- cor.test(change$Total_Time, change$NARA, method = "spearman")
 corr_ct
 ```
+
 
 ```{r p_corr_ct_nav}
 p_corr_ctnav <- ggplot(change, aes(x=NARA, y=Navigation_Time)) + 
@@ -133,7 +135,7 @@ ggsave(file="/Users/yasminebassil/Documents/Emory/3_Research/Projects/CogMap_Pap
 ```
 
 ```{r echo=TRUE}
-corr_ctnav <- cor.test(change$Navigation_Time, change$NARA)
+corr_ctnav <- cor.test(change$Navigation_Time, change$NARA, method = "spearman")
 corr_ctnav
 ```
 
@@ -154,7 +156,7 @@ ggsave(file="/Users/yasminebassil/Documents/Emory/3_Research/Projects/CogMap_Pap
 ```
 
 ```{r echo=TRUE}
-corr_ctori <- cor.test(change$Orientation_Time, change$NARA)
+corr_ctori <- cor.test(change$Orientation_Time, change$NARA, method = "spearman")
 corr_ctori
 ```
 
@@ -175,7 +177,7 @@ ggsave(file="/Users/yasminebassil/Documents/Emory/3_Research/Projects/CogMap_Pap
 ```
 
 ```{r echo=TRUE}
-corr_dt <- cor.test(change$Distance, change$NARA)
+corr_dt <- cor.test(change$Distance, change$NARA, method = "spearman")
 corr_dt
 ```
 
@@ -196,7 +198,7 @@ ggsave(file="/Users/yasminebassil/Documents/Emory/3_Research/Projects/CogMap_Pap
 ```
 
 ```{r echo=TRUE}
-corr_dwell <- cor.test(change$Mean_Dwell, change$NARA)
+corr_dwell <- cor.test(change$Mean_Dwell, change$NARA, method = "spearman")
 corr_dwell
 ```
 
@@ -217,7 +219,7 @@ ggsave(file="/Users/yasminebassil/Documents/Emory/3_Research/Projects/CogMap_Pap
 ```
 
 ```{r echo=TRUE}
-corr_speed <- cor.test(change$Speed, change$NARA)
+corr_speed <- cor.test(change$Speed, change$NARA, method = "spearman")
 corr_speed
 ```
 
@@ -238,6 +240,6 @@ ggsave(file="/Users/yasminebassil/Documents/Emory/3_Research/Projects/CogMap_Pap
 ```
 
 ```{r echo=TRUE}
-corr_teleport <- cor.test(change$Teleportations, change$NARA)
+corr_teleport <- cor.test(change$Teleportations, change$NARA, method = "spearman")
 corr_teleport
 ```
