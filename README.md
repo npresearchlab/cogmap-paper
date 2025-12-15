@@ -1,6 +1,6 @@
 # CogMap Paper Repository
 
-[![DOI](https://img.shields.io/badge/DOI-pending-blue)]() <!-- [Add your DOI when available](https://doi.org/10.1016/j.neuropsychologia.2025.109290) -->
+[![DOI](https://img.shields.io/badge/DOI-10.1016%2Fj.neuropsychologia.2025.109290-blue)](https://doi.org/10.1016/j.neuropsychologia.2025.109290)
 
 This repository contains relevant code and materials supporting the following paper (also nicknamed the "NPRL CogMap Paper"):
 
