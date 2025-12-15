@@ -4,13 +4,6 @@
 
 Welcome to the repository for ***"Formation of allocentric representations after exposure to a novel, naturalistic, city-like, virtual reality environment"*** (also nicknamed the NPRL "CogMap Paper"). 
 
-> Bassil, Y., Kanukolanu, A., Funderburg, E., Brown, T., & Borich, M. R. (2026). Formation of allocentric representations after exposure to a novel, naturalistic, city-like, virtual reality environment. *Neuropsychologia, 220,* 109290. https://doi.org/10.1016/j.neuropsychologia.2025.109290
-
-**Authors**: Yasmine Bassil, Anisha Kanukolanu, Emma Funderburg, Thackery Brown, Michael R. Borich
-**Affiliation**: Neural Plasticity Research Lab, Emory University  
-**Contact**: Dr. Michael Borich, PhD, DPT, PT ([mborich@emory.edu](mailto:mborich@emory.edu))  
-**Lab Website**: [npresearchlab.com](https://npresearchlab.com)
-
 The project examines how individuals develop allocentric (i.e., world-centered) spatial representations after exploring a novel, virtual reality, city-like environment.
 
 ## What's Here?
@@ -20,6 +13,15 @@ This repository contains all **analysis code, figures, and statistical tests** a
 All **data** for this paper can be found on the associated [CogMap OSF Project](https://osf.io/7dfcu/overview).
 
 Below is an explanation of the folder structure in this repository. Feel free to reach out to the Neural Plasticity Research Lab via our [website](https://npresearchlab.com) or contact Yasmine Bassil at [ybassil@emory.edu](mailto:ybassil@emory.edu) with any questions.
+
+## Paper Info
+
+> Bassil, Y., Kanukolanu, A., Funderburg, E., Brown, T., & Borich, M. R. (2026). Formation of allocentric representations after exposure to a novel, naturalistic, city-like, virtual reality environment. *Neuropsychologia, 220,* 109290. https://doi.org/10.1016/j.neuropsychologia.2025.109290
+
+**Authors**: Yasmine Bassil, Anisha Kanukolanu, Emma Funderburg, Thackery Brown, Michael R. Borich
+**Affiliation**: Neural Plasticity Research Lab, Emory University  
+**Contact**: Dr. Michael Borich, PhD, DPT, PT ([mborich@emory.edu](mailto:mborich@emory.edu))  
+**Lab Website**: [npresearchlab.com](https://npresearchlab.com)
 
 ---
 
