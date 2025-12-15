@@ -71,10 +71,10 @@
 <polyline points='176.06,243.81 176.06,241.07 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
 <polyline points='258.58,243.81 258.58,241.07 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
 <polyline points='341.11,243.81 341.11,241.07 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
-<text x='93.53' y='257.48' text-anchor='middle' style='font-size: 16.00px;fill: #4D4D4D; font-family: "Arial";' textLength='17.80px' lengthAdjust='spacingAndGlyphs'>25</text>
-<text x='176.06' y='257.48' text-anchor='middle' style='font-size: 16.00px;fill: #4D4D4D; font-family: "Arial";' textLength='17.80px' lengthAdjust='spacingAndGlyphs'>50</text>
-<text x='258.58' y='257.48' text-anchor='middle' style='font-size: 16.00px;fill: #4D4D4D; font-family: "Arial";' textLength='17.80px' lengthAdjust='spacingAndGlyphs'>75</text>
-<text x='341.11' y='257.48' text-anchor='middle' style='font-size: 16.00px;fill: #4D4D4D; font-family: "Arial";' textLength='26.70px' lengthAdjust='spacingAndGlyphs'>100</text>
+<text x='93.53' y='257.48' text-anchor='middle' style='font-size: 16.00px;fill: #4D4D4D; font-family: "Arial";' textLength='8.90px' lengthAdjust='spacingAndGlyphs'>2</text>
+<text x='176.06' y='257.48' text-anchor='middle' style='font-size: 16.00px;fill: #4D4D4D; font-family: "Arial";' textLength='8.90px' lengthAdjust='spacingAndGlyphs'>4</text>
+<text x='258.58' y='257.48' text-anchor='middle' style='font-size: 16.00px;fill: #4D4D4D; font-family: "Arial";' textLength='8.90px' lengthAdjust='spacingAndGlyphs'>6</text>
+<text x='341.11' y='257.48' text-anchor='middle' style='font-size: 16.00px;fill: #4D4D4D; font-family: "Arial";' textLength='8.90px' lengthAdjust='spacingAndGlyphs'>8</text>
 <text x='207.01' y='278.10' text-anchor='middle' style='font-size: 20.00px; font-family: "Arial";' textLength='55.57px' lengthAdjust='spacingAndGlyphs'>NARA</text>
 <text transform='translate(19.83,123.27) rotate(-90)' text-anchor='middle' style='font-size: 20.00px; font-family: "Arial";' textLength='127.78px' lengthAdjust='spacingAndGlyphs'>Dwell Time (s)</text>
 </g>

@@ -243,6 +243,6 @@
 <text x='119.52' y='337.04' text-anchor='middle' style='font-size: 20.00px;fill: #4D4D4D; font-family: "Arial";' textLength='65.59px' lengthAdjust='spacingAndGlyphs'>Block 1</text>
 <text x='209.91' y='337.04' text-anchor='middle' style='font-size: 20.00px;fill: #4D4D4D; font-family: "Arial";' textLength='65.59px' lengthAdjust='spacingAndGlyphs'>Block 2</text>
 <text x='300.29' y='337.04' text-anchor='middle' style='font-size: 20.00px;fill: #4D4D4D; font-family: "Arial";' textLength='65.59px' lengthAdjust='spacingAndGlyphs'>Block 3</text>
-<text transform='translate(19.83,161.62) rotate(-90)' text-anchor='middle' style='font-size: 20.00px; font-family: "Arial";' textLength='258.98px' lengthAdjust='spacingAndGlyphs'>Distance Traveled (VR Units)</text>
+<text transform='translate(19.83,161.62) rotate(-90)' text-anchor='middle' style='font-size: 20.00px; font-family: "Arial";' textLength='230.08px' lengthAdjust='spacingAndGlyphs'>Distance Traveled (VR m)</text>
 </g>
 </svg>

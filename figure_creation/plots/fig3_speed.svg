@@ -243,6 +243,6 @@
 <text x='110.48' y='337.04' text-anchor='middle' style='font-size: 20.00px;fill: #4D4D4D; font-family: "Arial";' textLength='65.59px' lengthAdjust='spacingAndGlyphs'>Block 1</text>
 <text x='204.34' y='337.04' text-anchor='middle' style='font-size: 20.00px;fill: #4D4D4D; font-family: "Arial";' textLength='65.59px' lengthAdjust='spacingAndGlyphs'>Block 2</text>
 <text x='298.20' y='337.04' text-anchor='middle' style='font-size: 20.00px;fill: #4D4D4D; font-family: "Arial";' textLength='65.59px' lengthAdjust='spacingAndGlyphs'>Block 3</text>
-<text transform='translate(19.83,161.62) rotate(-90)' text-anchor='middle' style='font-size: 20.00px; font-family: "Arial";' textLength='161.19px' lengthAdjust='spacingAndGlyphs'>Speed (VR Unit/s)</text>
+<text transform='translate(19.83,161.62) rotate(-90)' text-anchor='middle' style='font-size: 20.00px; font-family: "Arial";' textLength='142.28px' lengthAdjust='spacingAndGlyphs'>Speed (VR m/s)</text>
 </g>
 </svg>

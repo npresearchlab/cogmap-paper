@@ -28,7 +28,7 @@ library(corrplot)
 
 ```{r reading data, include=FALSE}
 #This loads the data file as the variable "data"
-nav_data <- read.csv('/Users/yasminebassil/Desktop/YA_Data/averaged_results.csv')
+nav_data <- read.csv('/Users/yasminebassil/Desktop/everything/YA_Data/averaged_results.csv')
 # Tidying up the data
 names(nav_data)[1] <- 'index'
 names(nav_data)[2] <- 'Participant'
@@ -45,7 +45,7 @@ nav_data$Block_num <- as.factor(nav_data$Block_num)
 sapply(nav_data, class)
 
 #This loads the data file as the variable "data"
-non_nav_data <- read.csv('/Users/yasminebassil/Desktop/YA_Data/non_nav_data.csv')
+non_nav_data <- read.csv('/Users/yasminebassil/Desktop/everything/YA_Data/non_nav_data.csv')
 # Tidying up the data
 names(non_nav_data)[1] <- 'Participant'
 names(non_nav_data)[2] <- 'Age'
@@ -60,7 +60,8 @@ names(non_nav_data)[10] <- 'SetShifting'
 names(non_nav_data)[11] <- 'CorsiBlocks'
 names(non_nav_data)[12] <- 'SSQ_Pre'
 names(non_nav_data)[13] <- 'SSQ_Post'
-names(non_nav_data)[14] <- 'NARA'
+names(non_nav_data)[14] <- 'NARA_0ld'
+names(non_nav_data)[15] <- 'NARA'
 non_nav_data <- head(non_nav_data, n=26)
 ```
 
@@ -165,7 +166,7 @@ p_corr_dt <- ggplot(change, aes(x=NARA, y=Distance)) +
   geom_point(data = change, aes(color = Participant), size = 3, alpha = 0.5)+
   scale_color_viridis(option = "plasma", discrete = TRUE)+
   geom_smooth(method=lm, color = "black", fill = "#ffa6b4")+
-  ylab("Distance Traveled (VR Units)")+
+  ylab("Distance Traveled (VR m)")+
   theme(text = element_text(size = 18),
         panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
         panel.background = element_blank(), 
@@ -207,7 +208,7 @@ p_corr_speed <- ggplot(change, aes(x=NARA, y=Speed)) +
   geom_point(data = change, aes(color = Participant), size = 3, alpha = 0.5)+
   scale_color_viridis(option = "plasma", discrete = TRUE)+
   geom_smooth(method=lm, color = "black", fill = "#ffa6b4")+
-  ylab("Speed (VR Units/s)")+
+  ylab("Speed (VR m/s)")+
   theme(text = element_text(size = 20),
         panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
         panel.background = element_blank(), 

@@ -37,7 +37,7 @@ library('emmeans')
 #This data chunk loads and tidies up the data
 
 #This loads the data file as the variable "data"
-data <- read.csv('/Users/yasminebassil/Desktop/YA_Data/averaged_results.csv')
+data <- read.csv('/Users/yasminebassil/Desktop/everything/YA_Data/averaged_results.csv')
 # Tidying up the data
 names(data)[1] <- 'index'
 names(data)[2] <- 'Participant'
@@ -57,7 +57,7 @@ data
 
 ```{r reading more data, include=FALSE}
 #This loads the data file as the variable "data"
-nav_data <- read.csv('/Users/yasminebassil/Desktop/YA_Data/merged_results.csv')
+nav_data <- read.csv('/Users/yasminebassil/Desktop/everything/YA_Data/merged_results.csv')
 # Tidying up the data
 names(nav_data)[1] <- 'index'
 names(nav_data)[2] <- 'Participant'
@@ -78,7 +78,7 @@ desired_order <- c("Automobile shop", "Police station ", "Fire Station", "Bank",
 nav_data$Target_Name <- factor(nav_data$Target_Name, levels = desired_order)
 
 #This loads the data file as the variable "data"
-non_nav_data <- read.csv('/Users/yasminebassil/Desktop/YA_Data/non_nav_data.csv')
+non_nav_data <- read.csv('/Users/yasminebassil/Desktop/everything/YA_Data//non_nav_data.csv')
 # Tidying up the data
 names(non_nav_data)[1] <- 'Participant'
 names(non_nav_data)[2] <- 'Age'
@@ -334,7 +334,7 @@ p_dt <- ggplot(allblocks_targets, aes(x=Block_num, y=Distance_m, shape=Target_Na
   geom_errorbar(allblocks_targets, mapping = aes(x=Block_num, ymin=Distance_m-Distance_se, 
                     ymax=Distance_m+Distance_se, group = Target_Name, color = Target_Name), 
                 width=0.1, alpha=0.7)+
-  labs(color= "Target_Name", y="Distance (VR Units)", x = "Block Number")+
+  labs(color= "Target_Name", y="Distance (VR m)", x = "Block Number")+
   theme_classic()+
   theme(axis.line = element_line(linewidth = .5, colour = "#242526"))+
   theme(axis.ticks = element_line(linewidth = .2, colour = "#242526"))+
@@ -375,7 +375,7 @@ p_speed <- ggplot(allblocks_targets, aes(x=Block_num, y=Speed_m, shape=Target_Na
   geom_errorbar(allblocks_targets, mapping = aes(x=Block_num, ymin=Speed_m-Speed_se, 
                     ymax=Speed_m+Speed_se, group = Target_Name, color = Target_Name), 
                 width=0.1, alpha=0.7)+
-  labs(color= "Target_Name", y="Speed (VR Units / s)", x = "Block Number")+
+  labs(color= "Target_Name", y="Speed (VR m/s)", x = "Block Number")+
   theme_classic()+
   theme(axis.line = element_line(linewidth = .5, colour = "#242526"))+
   theme(axis.ticks = element_line(linewidth = .2, colour = "#242526"))+

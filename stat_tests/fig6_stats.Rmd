@@ -30,7 +30,7 @@ library(corrplot)
 
 ```{r reading data, include=FALSE}
 #This loads the data file as the variable "data"
-nav_data <- read.csv('/Users/yasminebassil/Desktop/YA_Data/averaged_results.csv')
+nav_data <- read.csv('/Users/yasminebassil/Desktop/everything/YA_Data/averaged_results.csv')
 # Tidying up the data
 names(nav_data)[1] <- 'index'
 names(nav_data)[2] <- 'Participant'
@@ -47,7 +47,7 @@ nav_data$Block_num <- as.factor(nav_data$Block_num)
 sapply(nav_data, class)
 
 #This loads the data file as the variable "data"
-non_nav_data <- read.csv('/Users/yasminebassil/Desktop/YA_Data/non_nav_data.csv')
+non_nav_data <- read.csv('/Users/yasminebassil/Desktop/everything/YA_Data/non_nav_data.csv')
 # Tidying up the data
 names(non_nav_data)[1] <- 'Participant'
 names(non_nav_data)[2] <- 'Age'
@@ -179,7 +179,7 @@ corr_b1_ctori
 p_corr_dt_b1 <- ggplot(b1, aes(x=NARA, y=Distance)) + 
   geom_point(color = "#ffa6b4")+
   geom_smooth(method=lm, color = "black", fill = "#ffa6b4")+
-  ylab("Distance (VR Units)")+
+  ylab("Distance (VR m)")+
   xlim(0,100)+
   theme(text = element_text(size = 20),
         panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
@@ -219,7 +219,7 @@ corr_b1_dwell
 p_corr_speed_b1 <- ggplot(b1, aes(x=NARA, y=Speed)) + 
   geom_point(color = "#ffa6b4")+
   geom_smooth(method=lm, color = "black", fill = "#ffa6b4")+
-  ylab("Speed (VR Units/s)")+
+  ylab("Speed (VR m/s)")+
   xlim(0,100)+
   theme(text = element_text(size = 20),
         panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
@@ -315,7 +315,7 @@ corr_change_ctnav_b1b2
 p_corr_dt_b1b2 <- ggplot(b1_b2, aes(x=NARA, y=Distance)) + 
   geom_point(color = "#ffa6b4")+
   geom_smooth(method=lm, color = "black", fill = "#ffa6b4")+
-  ylab("Distance (VR Units)")+
+  ylab("Distance (VR m)")+
   xlim(0,100)+
   theme(text = element_text(size = 20),
         panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
@@ -351,7 +351,7 @@ corr_change_dwell_b1b2
 p_corr_speed_b1b2 <- ggplot(b1_b2, aes(x=NARA, y=Speed)) + 
   geom_point(color = "#ffa6b4")+
   geom_smooth(method=lm, color = "black", fill = "#ffa6b4")+
-  ylab("Speed (VR Units/s)")+
+  ylab("Speed (VR m/s)")+
   xlim(0,100)+
   theme(text = element_text(size = 20),
         panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
@@ -442,7 +442,7 @@ corr_change_ctnav
 p_corr_dt <- ggplot(change, aes(x=NARA, y=Distance)) + 
   geom_point(color = "#ffa6b4")+
   geom_smooth(method=lm, color = "black", fill = "#ffa6b4")+
-  ylab("Distance (VR Units)")+
+  ylab("Distance (VR m)")+
   xlim(0,100)+
   theme(text = element_text(size = 20),
         panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
@@ -478,7 +478,7 @@ corr_change_dwell
 p_corr_speed <- ggplot(change, aes(x=NARA, y=Speed)) + 
   geom_point(color = "#ffa6b4")+
   geom_smooth(method=lm, color = "black", fill = "#ffa6b4")+
-  ylab("Speed (VR Units/s)")+
+  ylab("Speed (VR m/s)")+
   xlim(0,100)+
   theme(text = element_text(size = 20),
         panel.grid.major = element_blank(), panel.grid.minor = element_blank(),

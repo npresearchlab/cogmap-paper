@@ -77,10 +77,10 @@
 <polyline points='181.44,243.81 181.44,241.07 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
 <polyline points='261.48,243.81 261.48,241.07 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
 <polyline points='341.51,243.81 341.51,241.07 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
-<text x='101.40' y='257.48' text-anchor='middle' style='font-size: 16.00px;fill: #4D4D4D; font-family: "Arial";' textLength='17.80px' lengthAdjust='spacingAndGlyphs'>25</text>
-<text x='181.44' y='257.48' text-anchor='middle' style='font-size: 16.00px;fill: #4D4D4D; font-family: "Arial";' textLength='17.80px' lengthAdjust='spacingAndGlyphs'>50</text>
-<text x='261.48' y='257.48' text-anchor='middle' style='font-size: 16.00px;fill: #4D4D4D; font-family: "Arial";' textLength='17.80px' lengthAdjust='spacingAndGlyphs'>75</text>
-<text x='341.51' y='257.48' text-anchor='middle' style='font-size: 16.00px;fill: #4D4D4D; font-family: "Arial";' textLength='26.70px' lengthAdjust='spacingAndGlyphs'>100</text>
+<text x='101.40' y='257.48' text-anchor='middle' style='font-size: 16.00px;fill: #4D4D4D; font-family: "Arial";' textLength='8.90px' lengthAdjust='spacingAndGlyphs'>2</text>
+<text x='181.44' y='257.48' text-anchor='middle' style='font-size: 16.00px;fill: #4D4D4D; font-family: "Arial";' textLength='8.90px' lengthAdjust='spacingAndGlyphs'>4</text>
+<text x='261.48' y='257.48' text-anchor='middle' style='font-size: 16.00px;fill: #4D4D4D; font-family: "Arial";' textLength='8.90px' lengthAdjust='spacingAndGlyphs'>6</text>
+<text x='341.51' y='257.48' text-anchor='middle' style='font-size: 16.00px;fill: #4D4D4D; font-family: "Arial";' textLength='8.90px' lengthAdjust='spacingAndGlyphs'>8</text>
 <text x='211.45' y='278.10' text-anchor='middle' style='font-size: 20.00px; font-family: "Arial";' textLength='55.57px' lengthAdjust='spacingAndGlyphs'>NARA</text>
 <text transform='translate(19.83,123.27) rotate(-90)' text-anchor='middle' style='font-size: 20.00px; font-family: "Arial";' textLength='176.72px' lengthAdjust='spacingAndGlyphs'>Orientation Time (s)</text>
 </g>

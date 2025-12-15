@@ -39,7 +39,7 @@ library(svglite)
 #This data chunk loads and tidies up the data
 
 #This loads the data file as the variable "data"
-data <- read.csv('/Users/yasminebassil/Desktop/YA_Data/averaged_results.csv')
+data <- read.csv('/Users/yasminebassil/Desktop/everything/YA_Data/averaged_results.csv')
 # Tidying up the data
 names(data)[1] <- 'index'
 names(data)[2] <- 'Participant'
@@ -59,7 +59,7 @@ data
 
 ```{r reading more data, include=FALSE}
 #This loads the data file as the variable "data"
-nav_data <- read.csv('/Users/yasminebassil/Desktop/YA_Data/merged_results.csv')
+nav_data <- read.csv('/Users/yasminebassil/Desktop/everything/YA_Data/merged_results.csv')
 # Tidying up the data
 names(nav_data)[1] <- 'index'
 names(nav_data)[2] <- 'Participant'
@@ -81,7 +81,7 @@ desired_order <- c("Automobile shop", "Police station ", "Fire Station", "Bank",
 nav_data$Target_Name <- factor(nav_data$Target_Name, levels = desired_order)
 
 #This loads the data file as the variable "data"
-non_nav_data <- read.csv('/Users/yasminebassil/Desktop/YA_Data/non_nav_data.csv')
+non_nav_data <- read.csv('/Users/yasminebassil/Desktop/everything/YA_Data/non_nav_data.csv')
 # Tidying up the data
 names(non_nav_data)[1] <- 'Participant'
 names(non_nav_data)[2] <- 'Age'
@@ -264,7 +264,7 @@ p_dt <- ggplot(data, aes(x=Block_num, y=Distance, color=Participant))+
                 geom="errorbar", 
                 width=0.2, 
                 color="#242526") +
-  labs(color= "Participant", y="Distance Traveled (VR Units)", x="")+
+  labs(color= "Participant", y="Distance Traveled (VR m)", x="")+
   scale_x_discrete(labels = c( "Block 1","Block 2","Block 3"))+
   ylim(0,600)+
   theme_classic()+
@@ -301,7 +301,7 @@ p_speed <- ggplot(data, aes(x=Block_num, y=Speed, color=Participant))+
                 geom="errorbar", 
                 width=0.2, 
                 color="#242526") +
-  labs(color= "Participant", y="Speed (VR Unit/s)", x="")+
+  labs(color= "Participant", y="Speed (VR m/s)", x="")+
   scale_x_discrete(labels = c( "Block 1","Block 2","Block 3"))+
   ylim(0,30)+
   theme_classic()+
