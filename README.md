@@ -32,8 +32,7 @@ Below is an explanation of the folder structure in this repository. Feel free to
 - [Data](#data)
 - [Code](#code)
 - [Figures](#figures)
-- [Requirements](#requirements)
-- [Usage](#usage)
+- [Related Resources](#related-resources)
 - [Citation](#citation)
 - [License](#license)
 
@@ -55,8 +54,8 @@ This repository provides complete reproducibility materials for our study examin
 ```
 CogMap-Paper/
 │
-├── data_analysis/                     # Data processing and analysis scripts
-│   ├── 0_runall.ipynb                 # Master script to process all raw data
+├── data_analysis/                    # Data processing and analysis scripts
+│   ├── 0_runall.ipynb                # Master script to process all raw data
 │   ├── 1_calculate_outcomes.ipynb    # Calculates outcome measures from raw NavCity data
 │   ├── 2_merge_data.ipynb            # Merges outcome measures per block per participant
 │   ├── 3_average_data.ipynb          # Averages outcome measures over blocks per participant
@@ -64,10 +63,10 @@ CogMap-Paper/
 │   ├── 5_graph_data.ipynb            # Generates overhead path map visualizations
 │   └── 6_distance_calc.ipynb         # Calculates distance-based navigation metrics
 │
-├── figure_creation/                   # Scripts to generate manuscript figures
+├── figure_creation/                  # Scripts to generate manuscript figures
 │   └── plots/                        # Generated figure outputs
 │
-├── stat_tests/                        # Statistical analysis scripts
+├── stat_tests/                       # Statistical analysis scripts
 │   ├── fig3_4_5_stats.Rmd            # Statistical tests for Figures 3, 4, and 5
 │   ├── fig6_stats.Rmd                # Statistical tests for Figure 6
 │   ├── fig7_stats.Rmd                # Statistical tests for Figure 7
@@ -82,10 +81,10 @@ CogMap-Paper/
 │   ├── raw_results/                  # Raw statistical output files
 │   └── summary/                      # Summary statistics and tables
 │
-├── writing/                           # Manuscript drafts and supplementary materials
+├── writing/                          # Manuscript drafts and supplementary materials
 │
-├── .gitignore                         # Git ignore configuration
-└── README.md                          # Repository documentation
+├── .gitignore                        # Git ignore configuration
+└── README.md                         # Repository documentation
 ```
 
 ---
@@ -133,9 +132,18 @@ Contains scripts for all statistical tests reported in the paper, including:
 - Post-hoc analyses
 - Statistical validations
 
-### `writing/`
+---
 
-Contains manuscript drafts, supplementary materials, and other written components related to the paper.
+## Figures
+
+### `/final_figures/`
+
+This directory contains publication-ready figures in high-resolution formats (PNG, PDF, SVG).
+
+All figures follow journal specifications:
+- 300+ DPI resolution
+- Colorblind-friendly palettes
+- Clear axis labels and legends
 
 ---
 
@@ -154,8 +162,39 @@ If you use this code or data in your research, please cite:
 
 ---
 
-## Contact
+## License
 
-For questions or collaboration inquiries:
-- **Yasmine Bassil** - [ybassil@emory.edu](mailto:ybassil@emory.edu)
-- **Neural Plasticity Research Lab** - [npresearchlab.com](https://npresearchlab.com)
+**Data**: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) - Data are freely available with attribution
+
+**Code**: [MIT License](LICENSE) - Code is freely available for reuse and modification
+
+---
+
+---
+
+## Contributing
+
+We welcome questions, bug reports, and suggestions for improvements. Please:
+
+1. Check existing [Issues](https://github.com/npresearchlab/NavAging_Paper/issues)
+2. Open a new issue with detailed description
+3. For data questions, contact Dr. Michael Borich at mborich [at] emory.edu
+
+---
+
+## Acknowledgments
+
+This research was supported by [funding sources]. We thank all study participants and the research team members who contributed to data collection and analysis.
+
+---
+
+## Additional Resources
+
+- **Lab Website**: [npresearchlab.com](https://npresearchlab.com)
+- **Preprint**: [CogMap Preprint](https://osf.io/preprints/psyarxiv/mrabn_v1)
+- **OSF Project**: [OSF Data Repository](https://osf.io/7dfcu/overview)
+
+---
+
+**Last Updated**: December 2025  
+**Repository Maintainer**: Yasmine Bassil, Neuroscience PhD Candidate, Neural Plasticity Research Lab, Emory University
