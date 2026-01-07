@@ -1,4 +1,6 @@
-# Mac OS
+# Software
+
+## Mac OS
 **/.DS_Store
 .DS_Store
 .AppleDouble
@@ -18,48 +20,49 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-# RStudio
+## RStudio
 .Rproj.user
 .Rhistory
 .RData
 .Ruserdata
 *.Rproj
 
-# R
+## R
 .Rdata
 .httr-oauth
 .rds
 .rda
 
-# Session Data files
+## Session Data files
 .RData
 .RDataTmp
 
-# R Environment Variables
+## R Environment Variables
 .Renviron
 
-# pkgdown site
+## pkgdown site
 docs/
 
-# knitr and R markdown default cache directories
+## knitr and R markdown default cache directories
 *_cache/
 /cache/
 
-# Temporary files created by R markdown
+## Temporary files created by R markdown
 *.utf8.md
 *.knit.md
 
-# Shiny token
+## Shiny token
 rsconnect/
 
-# Translation temp files
+## Translation temp files
 po/*~
 
-# RStudio Connect folder
+## RStudio Connect folder
 rsconnect/
 
-# Custom folders - add your own below
-# Uncomment or add new lines as needed
+# Custom Folders (add your own below)
+
+## YB folders
 data/
 writing/
 
